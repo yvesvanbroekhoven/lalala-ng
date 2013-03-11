@@ -5,10 +5,22 @@
     float: none;
   }
 
-  .clear_filters_btn {
-    @extend %btn;
-    @extend %btn.red;
-    @include icon('cancel', 'button');
+  .buttons {
+    padding: 20px 0;
+
+    a,
+    input {
+      margin: 0 7px 7px 0;
+    }
+
+    .clear_filters_btn {
+      @extend %btn;
+      @extend %btn.red;
+      @include icon('cancel', 'button');
+    }
+
   }
+
+
 
 }
