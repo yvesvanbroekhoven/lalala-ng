@@ -1,18 +1,17 @@
-/*
-
-  BUTTONS [PRIVATE]
-  --------------------
-
-  .btn -> shouldn't be used directly,
-          scroll down for public classes
-
-*/
-.btn {
+//
+//
+// BUTTONS [PRIVATE]
+// --------------------
+//
+// .btn -> shouldn't be used directly,
+//         scroll down for public classes
+//
+//
+%btn {
   $button_colors: "green red blue";
   $padding_top:   10px;
   $padding_btm:   10px;
 
-  // @include box-sizing("border-box");
   @include border-radius(4px);
   @include single-text-shadow(rgba(0,0,0, .25), 1px, 1px, 0);
   @include transition(background-color 300ms);
@@ -38,6 +37,10 @@
     text-decoration: none;
     padding-bottom: $padding_btm - 1;
     padding-top: $padding_top + 1;
+  }
+
+  &.with-icon {
+    padding-left: 29px;
   }
 
   // green button
@@ -97,27 +100,21 @@ button::-moz-focus-inner {
 }
 
 
-
-/*
-
-  BUTTONS [PUBLIC]
-  -------------------
-
-*/
+//
+// BUTTONS [PUBLIC]
+//
 input[name="commit"],
 button[name="commit"],
 a.button.commit {
-  @extend .btn;
-  @extend .green;
-  @include icon("add");
-  padding-left: 29px;
+  @extend %btn;
+  @extend %btn.green;
+  @include icon('add', 'button');
 }
 
 input[name="destroy"],
 button[name="destroy"],
 a.button.destroy {
-  @extend .btn;
-  @extend .red;
-  @include icon("delete");
-  padding-left: 29px;
+  @extend %btn;
+  @extend %btn.red;
+  @include icon('delete', 'button');
 }

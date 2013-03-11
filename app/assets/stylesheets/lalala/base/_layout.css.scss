@@ -5,7 +5,7 @@ html, body {
 }
 
 #wrapper {
-  @include clearfix;
+  @include pie-clearfix;
   float: right;
   height: 100%;
 }
@@ -38,7 +38,6 @@ html, body {
   background-color: $white;
   float: left;
   height: 100%;
-  padding-top: 95px;
   width: 760px;
 
   @media screen and (min-width: $min_width_large) {
@@ -51,6 +50,7 @@ html, body {
 
   #main_content_wrapper {
     float: left;
+    padding-top: 95px;
     position: relative;
     width: 70%;
 
@@ -62,6 +62,7 @@ html, body {
 
   #sidebar {
     float: left;
+    padding-top: 95px;
     width: 30%;
   }
 
@@ -80,4 +81,16 @@ html, body {
   right: 0;
   top: 0;
   width: 232px;
+}
+
+
+//
+// Footer
+//
+#footer {
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  position: absolute;
+  right: 0;
 }

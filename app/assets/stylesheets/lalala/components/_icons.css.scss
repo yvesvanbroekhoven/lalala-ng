@@ -13,9 +13,13 @@ $icons: "accept", "add", "anchor", "application", "application_add", "applicatio
   }
 }
 
-@mixin icon($file_name) {
+@mixin icon($file_name, $type: false) {
   background-image: image-url('lalala/icons/#{$file_name}.png');
   background-repeat: no-repeat;
+
+  @if $type == 'button' {
+    padding-left: 29px;
+  }
 }
 
 .icon {

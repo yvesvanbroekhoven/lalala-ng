@@ -1,0 +1,14 @@
+.filter_form {
+
+  label {
+    display: block;
+    float: none;
+  }
+
+  .clear_filters_btn {
+    @extend %btn;
+    @extend %btn.red;
+    @include icon('cancel', 'button');
+  }
+
+}

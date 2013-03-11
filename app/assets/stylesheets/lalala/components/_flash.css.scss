@@ -1,5 +1,10 @@
 .flashes {
+  @include animation-name(flash-slide-up);
+  @include animation-duration(500ms);
+  @include animation-delay(3s);
+  @include animation-fill-mode(forwards);
   left: 0;
+  height: $top_nav_height;
   position: absolute;
   right: 0;
   top: 0;
@@ -10,11 +15,21 @@
   @include border-radius(3px);
   background-color: $yellow;
   color: white;
-  padding: 15px;
+  line-height: $top_nav_height;
   text-align: center;
 
   &.flash_alert {
 
   }
 
+}
+
+
+@include keyframes(flash-slide-up) {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 0 - $top_nav_height;
+  }
 }

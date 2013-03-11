@@ -49,9 +49,9 @@
 // @param $offset Offset from the edge
 //
 @mixin spiderman($offset: 0) {
-bottom: $offset;
-left: $offset;
-position: absolute;
-right: $offset;
-top: $offset;
+  bottom: $offset;
+  left: $offset;
+  position: absolute;
+  right: $offset;
+  top: $offset;
 }
