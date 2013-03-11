@@ -8,7 +8,6 @@
 //
 //
 %btn {
-  $button_colors: "green red blue";
   $padding_top:   10px;
   $padding_btm:   10px;
 
@@ -93,9 +92,13 @@
 
 }
 
-/* fixes the inner padding of a button or input element */
-input[type=submit]::-moz-focus-inner,
-button::-moz-focus-inner {
+// Fixes the inner padding of a button or input element
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner,
+button {
+  border: 0;
   padding: 0;
 }
 
