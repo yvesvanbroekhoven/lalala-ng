@@ -17,8 +17,10 @@ module Lalala
 
     require 'coffee_script/source'
     require 'coffee-rails'
+    require 'sprockets/commonjs'
 
     require 'uglifier'
+
   end
 
   require 'lalala/engine'

@@ -32,5 +32,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'coffee-rails',         '~> 3.2.1'
   gem.add_runtime_dependency 'coffee-script-source', '~> 1.4.0'
   gem.add_runtime_dependency 'uglifier',             '>= 1.0.3'
+  gem.add_runtime_dependency 'sprockets-commonjs',   '= 0.0.5'
 
 end
