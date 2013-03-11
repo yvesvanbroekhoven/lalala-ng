@@ -21,6 +21,8 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'rails',       '3.2.12'
   gem.add_runtime_dependency 'activeadmin', '0.5.1'
   gem.add_runtime_dependency 'meta_search', '>= 1.1.0.pre'
+  gem.add_runtime_dependency 'carrierwave', '~> 0.8'
+  gem.add_runtime_dependency 'mini_magick', '~> 3.5'
   gem.add_runtime_dependency 'jquery-rails'
 
   # assets group

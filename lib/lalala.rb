@@ -8,6 +8,8 @@ module Lalala
 
   require 'activeadmin'
   require 'meta_search'
+  require 'carrierwave'
+  require 'mini_magick'
   require 'jquery-rails'
 
   if groups.include?(:assets)
