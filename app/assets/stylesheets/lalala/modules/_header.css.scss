@@ -7,42 +7,82 @@
     color: gray(190);
     font-size: 16px;
     font-weight: 600;
-    line-height: 1em;
+    line-height: 1.2em;
     margin: 10px 0 100px 30px;
+    text-align: center;
   }
 
   // nav items
   #tabs {
 
-    a {
-      border-top: 1px solid gray(190);
-      color: $black;
-      display: block;
-      line-height: 36px;
-      margin: 0 0 0 30px;
-      position: relative;
-      text-decoration: none;
+    li {
+      background-position: 0 10px;
 
-      &:hover {
-        color: $blue;
+      a {
+        border-top: 1px solid gray(190);
+        color: $black;
+        display: block;
+        line-height: 36px;
+        margin: 0 0 0 30px;
+        position: relative;
+        text-decoration: none;
+
+        &:after {
+          position: absolute;
+          right: 10px;
+        }
+
+        &:hover {
+          color: $blue;
+        }
+
+      }
+
+      // li:first-child
+      &:first-child {
+
+          a {
+          border: none;
+        }
+
+      }
+
+      // li.current
+      &.current {
+
+        a {
+          font-size: 14px;
+          font-weight: bold;
+
+          &:after {
+            content: ">";
+          }
+
+        }
+
+      }
+
+      // Nav item has module name as ID
+      &#dashboard {
+        @include icon('application_view_tile');
+      }
+
+      &#admin_users {
+        @include icon('user_gray');
+      }
+
+      &#pages {
+        @include icon('page_white_text');
+      }
+
+      &#tags {
+        @include icon('tag_purple');
       }
 
     }
 
-    li:first-child a {
-      border: none;
-    }
 
-    li.current a {
-      font-size: 14px;
-      font-weight: bold;
-    }
 
-  }
-
-  ul li i {
-    left: -30px;
-    top: 9px;
   }
 
 }
