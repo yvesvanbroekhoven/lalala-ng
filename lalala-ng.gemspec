@@ -22,6 +22,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'activeadmin', '0.5.1'
   gem.add_runtime_dependency 'meta_search', '>= 1.1.0.pre'
   gem.add_runtime_dependency 'jquery-rails'
+  gem.add_runtime_dependency 'thin'
 
   # assets group
   gem.add_runtime_dependency 'sass-rails',           '~> 3.2.3'
