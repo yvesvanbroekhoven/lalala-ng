@@ -12,6 +12,10 @@
       background: gray(250);
     }
 
+    tr.selected {
+      background: $yellow;
+    }
+
   }
 
   // columns
