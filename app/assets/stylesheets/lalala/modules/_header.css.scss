@@ -33,7 +33,7 @@
       border: none;
     }
 
-    li.currentzd a {
+    li.current a {
       font-size: 14px;
       font-weight: bold;
     }
@@ -43,46 +43,6 @@
   ul li i {
     left: -30px;
     top: 9px;
-  }
-
-  #utility_nav {
-    position: absolute;
-    top: 110px;
-    left: 0;
-
-    .current_user {
-      @include border-radius(50%);
-      border: 1px solid $yellow;
-      display: block;
-      float: left;
-      height: 60px;
-      position: relative;
-      text-indent: -9999px;
-      width: 60px;
-      z-index: 0;
-
-      &:before {
-        @include background-image(linear-gradient(left top, rgba(white, 0.75), rgba(white, 0)));
-        @include border-radius(50%);
-        content: " ";
-        bottom: 0;
-        left: 0;
-        position: absolute;
-        right: 0;
-        top: 0;
-        z-index: 1;
-      }
-    }
-
-    a {
-      @include text-shadow(1px 1px 2px #AAAAAA);
-      color: $white;
-      font-size: 15px;
-      font-weight: bold;
-      padding: 20px 0 0 0;
-      text-decoration: none;
-    }
-
   }
 
 }
