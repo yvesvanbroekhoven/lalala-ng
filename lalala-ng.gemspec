@@ -25,7 +25,7 @@ Gem::Specification.new do |gem|
 
   # assets group
   gem.add_runtime_dependency 'sass-rails',           '~> 3.2.3'
-  gem.add_runtime_dependency 'sass',                 '= 3.3.0.alpha.3'
+  gem.add_runtime_dependency 'sass',                 '=  3.2.7'
   gem.add_runtime_dependency 'compass-rails',        '~> 1.0'
   gem.add_runtime_dependency 'coffee-rails',         '~> 3.2.1'
   gem.add_runtime_dependency 'coffee-script-source', '~> 1.4.0'
