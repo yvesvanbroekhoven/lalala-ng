@@ -1,4 +1,5 @@
 #title_bar {
+  background-color: transparentize($white, 0.25);
   border-bottom: 1px solid gray(220);
   font-size: 14px;
   height: $top_nav_height;
@@ -54,6 +55,7 @@
   h2 {
     color: gray(211);
     display: inline-block;
+    line-height: 56px;
   }
 
 }
