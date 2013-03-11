@@ -1,5 +1,5 @@
 #title_bar {
-  background-color: transparentize($white, 0.25);
+  background-color: $white;
   border-bottom: 1px solid gray(220);
   font-size: 14px;
   height: $top_nav_height;

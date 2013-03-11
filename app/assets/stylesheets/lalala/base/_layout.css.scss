@@ -37,7 +37,7 @@ html, body {
 #active_admin_content {
   background-color: $white;
   float: left;
-  height: 100%;
+  min-height: 100%;
   width: 760px;
 
   @media screen and (min-width: $min_width_large) {
@@ -88,9 +88,17 @@ html, body {
 // Footer
 //
 #footer {
-  bottom: 0;
-  left: 0;
-  padding: 10px;
-  position: absolute;
-  right: 0;
+  background-color: $white;
+  clear: both;
+  float: right;
+  width: 760px;
+
+  @media screen and (min-width: $min_width_large) {
+    width: 960px;
+  }
+
+  @media screen and (min-width: $min_width_xlarge) {
+    width: 1150px;
+  }
+
 }
