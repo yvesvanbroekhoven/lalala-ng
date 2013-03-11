@@ -15,7 +15,7 @@ module Lalala
     require 'sass-rails'
     require 'compass-rails'
 
-    require 'coffee-script/source'
+    require 'coffee_script/source'
     require 'coffee-rails'
 
     require 'uglifier'
