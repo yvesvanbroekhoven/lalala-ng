@@ -1,0 +1,61 @@
+.active_admin.logged_out.new {
+
+  #wrapper {
+    height: 400px;
+    left: 50%;
+    margin: -200px 0 0 -200px;
+    overflow: visible;
+    position: absolute;
+    top: 50%;
+    width: 400px;
+  }
+
+  #active_admin_content {
+    background-color: transparent;
+    padding: 0;
+    width: auto;
+  }
+
+  h2 {
+    @include text-shadow( 1px 1px 0 rgba(0,0,0, 0.2) );
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  label {
+    width: 120px;
+  }
+
+  input[type=email],
+  input[type=password] {
+    @include transition( background-color 300ms );
+    background-color: rgba(0,0,0, 0.1);
+    font-size: 35px;
+    font-weight: bold;
+    padding: 10px 20px;
+
+    &:focus {
+      background-color: transparentize($yellow, 0.9);
+      color: darken($yellow, 50%);
+    }
+
+  }
+
+  #admin_user_remember_me_input {
+    display: none;
+  }
+
+  input[name="commit"] {
+    background-image: none;
+    font-size: 20px;
+    margin-top: 10px;
+    padding-left: 12px;
+  }
+
+  .flash {
+    position: absolute;
+    top: -70px;
+  }
+
+}

@@ -1,0 +1,83 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper {
+  @include clearfix;
+  float: right;
+  height: 100%;
+}
+
+#header {
+  float: left;
+  margin: 0 30px 0 0;
+  padding-top: $top_nav_height + 1;
+  width: 230px - 30px;
+}
+
+#title_bar {
+  height: 56px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 760px;
+
+  @media screen and (min-width: $min_width_large) {
+    width: 960px;
+  }
+
+  @media screen and (min-width: $min_width_xlarge) {
+    width: 1150px;
+  }
+
+}
+
+#active_admin_content {
+  background-color: $white;
+  float: left;
+  height: 100%;
+  padding-top: 95px;
+  width: 760px;
+
+  @media screen and (min-width: $min_width_large) {
+    width: 960px;
+  }
+
+  @media screen and (min-width: $min_width_xlarge) {
+    width: 1150px;
+  }
+
+  #main_content_wrapper {
+    float: left;
+    position: relative;
+    width: 70%;
+
+    #main_content {
+      padding: 0 20px;
+    }
+
+  }
+
+  #sidebar {
+    float: left;
+    width: 30%;
+  }
+
+}
+
+
+//
+//  Content
+//
+#main #primary {
+  margin-right: 232px + 25;
+}
+
+#main aside {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 232px;
+}

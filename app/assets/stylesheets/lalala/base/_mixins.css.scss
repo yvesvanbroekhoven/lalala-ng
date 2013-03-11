@@ -1,0 +1,57 @@
+//
+// GRAY SHORTHAND (function)
+// ----------------------------
+//
+// @param value (0..255)
+// @param transparency (0..1)
+//
+// # examples:
+// body { color: gray(50); } => rgba(50,50,50, 1)
+// body { background-color: gray(150, 0.5); } => rgba(150,150,150, 0.5)
+//
+@function gray($value, $transparency: 1) {
+  @return rgba($value, $value, $value, $transparency);
+}
+
+
+//
+// USER SELECT (mixin)
+// ----------------------
+//
+// none
+//     The text of the element and sub-elements will appear as if they cannot be
+//     selected. Any use of Selection however will contain these elements.
+//
+// text
+//     The text can be selected by the user.
+//
+// -moz-none
+//     The text of the element and sub-elements cannot be selected, but selection
+//     can be enabled on sub-elements using -moz-user-select:text.
+//
+// all
+//     In HTML editor, if double-click or context-click occurred in sub-elements,
+//     the highest ancestor with this value will be selected.
+//
+@mixin user-select($value: text) {
+  -webkit-user-select: $value;
+  -khtml-user-select: $value;
+  -moz-user-select: $value;
+  -o-user-select: $value;
+  user-select: $value;
+}
+
+
+//
+// Spiderman is a mixin to absolute position an element
+// in his first relative parent, top to bottom, left to right.
+//
+// @param $offset Offset from the edge
+//
+@mixin spiderman($offset: 0) {
+bottom: $offset;
+left: $offset;
+position: absolute;
+right: $offset;
+top: $offset;
+}

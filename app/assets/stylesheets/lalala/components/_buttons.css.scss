@@ -1,0 +1,123 @@
+/*
+
+  BUTTONS [PRIVATE]
+  --------------------
+
+  .btn -> shouldn't be used directly,
+          scroll down for public classes
+
+*/
+.btn {
+  $button_colors: "green red blue";
+  $padding_top:   10px;
+  $padding_btm:   10px;
+
+  // @include box-sizing("border-box");
+  @include border-radius(4px);
+  @include single-text-shadow(rgba(0,0,0, .25), 1px, 1px, 0);
+  @include transition(background-color 300ms);
+  @include user-select(none);
+
+  background-color: gray(210);
+  background-position: 7px center;
+  border: 0;
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1em;
+  padding: 11px 12px 10px;
+  text-align: left;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:active {
+    @include single-text-shadow(rgba(0,0,0, 0.1), 0, 0, 0);
+    color: white;
+    text-decoration: none;
+    padding-bottom: $padding_btm - 1;
+    padding-top: $padding_top + 1;
+  }
+
+  // green button
+  &.green {
+    background-color: $button_green;
+
+    &:hover {
+      background-color: transparentize($button_green, .2);
+      color: $white;
+    }
+
+    // overwrite box-shadow inherited from input[type=submit]
+    &:focus {
+      @include box-shadow(transparentize($button_green, 0.5) 0 0 5px);
+      color: $white;
+    }
+  }
+
+  // blue button
+  &.blue {
+    background-color: $button_blue;
+
+    &:hover {
+      background-color: transparentize($button_blue, .2);
+      color: white;
+    }
+
+    // overwrite box-shadow inherited from input[type=submit]
+    &:focus {
+      @include box-shadow(transparentize($button_blue, 0.5) 0 0 5px);
+      color: $white;
+    }
+  }
+
+  // red button
+  &.red {
+    background-color: $button_red;
+
+    &:hover {
+      background-color: transparentize($button_red, .2);
+      color: white;
+    }
+
+    // Overwrite box-shadow inherited from input[type=submit]
+    &:focus {
+      @include box-shadow(transparentize($button_red, 0.5) 0 0 5px);
+      color: $white;
+    }
+  }
+
+}
+
+/* fixes the inner padding of a button or input element */
+input[type=submit]::-moz-focus-inner,
+button::-moz-focus-inner {
+  padding: 0;
+}
+
+
+
+/*
+
+  BUTTONS [PUBLIC]
+  -------------------
+
+*/
+input[name="commit"],
+button[name="commit"],
+a.button.commit {
+  @extend .btn;
+  @extend .green;
+  @include icon("add");
+  padding-left: 29px;
+}
+
+input[name="destroy"],
+button[name="destroy"],
+a.button.destroy {
+  @extend .btn;
+  @extend .red;
+  @include icon("delete");
+  padding-left: 29px;
+}

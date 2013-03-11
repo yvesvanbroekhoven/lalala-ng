@@ -17,6 +17,18 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
+  # generic
   gem.add_runtime_dependency 'rails',       '3.2.12'
   gem.add_runtime_dependency 'activeadmin', '0.5.1'
+  gem.add_runtime_dependency 'meta_search', '>= 1.1.0.pre'
+  gem.add_runtime_dependency 'jquery-rails'
+
+  # assets group
+  gem.add_runtime_dependency 'sass-rails',           '~> 3.2.3'
+  gem.add_runtime_dependency 'sass',                 '= 3.3.0.alpha.3'
+  gem.add_runtime_dependency 'compass-rails',        '~> 1.0'
+  gem.add_runtime_dependency 'coffee-rails',         '~> 3.2.1'
+  gem.add_runtime_dependency 'coffee-script-source', '~> 1.4.0'
+  gem.add_runtime_dependency 'uglifier',             '>= 1.0.3'
+
 end

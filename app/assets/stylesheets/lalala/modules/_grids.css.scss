@@ -1,0 +1,69 @@
+/*
+
+  IMAGE GRIDS
+  --------------
+
+*/
+.grid.images {
+  list-style: none;
+  overflow: hidden;
+
+  // [row]
+  li {
+    float: left;
+    margin: 0 11px 11px 0;
+    position: relative;
+
+    &, .image, .overlay {
+      height: 100px;
+      width: 100px;
+    }
+
+    &.move,
+    &.properties,
+    &.selected { .overlay { display: block; }}
+  }
+
+  // [row]:types
+  li.move label { cursor: move; }
+  li.properties { cursor: pointer; }
+  li.selected .overlay { background: rgba($yellow, .5); }
+
+  // image + overlay
+  li .image,
+  li .overlay {
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+
+  li .image {
+    z-index: 0;
+  }
+
+  li .overlay {
+    background: rgba(black, .5);
+    display: none;
+    z-index: 1;
+  }
+
+  // label
+  li label {
+    @include border-radius(2px);
+    background: #fff;
+    bottom: 6px;
+    color: #4f4f4f;
+    font-size: 9px;
+    height: 16px;
+    line-height: 16px;
+    left: 9px;
+    overflow: hidden;
+    padding: 2px 6px 1px;
+    position: absolute;
+    right: 9px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    z-index: 2;
+  }
+
+}

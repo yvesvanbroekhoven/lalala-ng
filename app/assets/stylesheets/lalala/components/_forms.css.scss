@@ -1,0 +1,179 @@
+/*
+
+  FORMS
+  --------
+
+  Base styles for various input types, form layouts and states
+
+*/
+form {
+  margin: 0 0 1em 0;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+legend {
+  color: gray(200);
+  display: block;
+  font-size: 1.5em;
+  font-style: italic;
+  margin: 0 0 1em 0;
+}
+
+select {
+  @include appearance(none);
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: $font_family;
+  font-size: 1em;
+  font-weight: normal;
+  line-height: 1em;
+}
+
+label {
+  display: inline-block;
+  font-size: 1em;
+  font-weight: bold;
+  color: gray(110);
+  padding: 1em 0;
+}
+
+input,
+textarea,
+select {
+  @include border-radius(5px);
+  @include box-sizing("border-box");
+  background-color: $white;
+  border: 1px solid gray(200);
+  color: gray(150);
+  display: inline-block;
+  line-height: 1em;
+  margin: 0;
+  max-width: 100%;
+  padding: 0.8em;
+}
+
+// textarea, only vertically resizable
+textarea {
+  resize: vertical;
+}
+
+// inputs within a label
+label input,
+label textarea,
+label select {
+  display: inline-block;
+}
+
+// focus state
+input:focus,
+textarea:focus,
+select:focus {
+  @include box-shadow(transparentize($yellow, .2) 0 0 5px);
+  border-color: $yellow;
+  color: $black;
+  outline: none;
+}
+
+
+
+/*
+
+  FORMS / FORMTASTIC
+  ---------------------
+
+*/
+
+// groups
+.inputs,
+.actions {
+  @extend .inner;
+
+  ul, ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    @include pie-clearfix;
+    margin: 0 0 1em 0;
+  }
+}
+
+// input line
+.input {
+  $label_width: 20%;
+  $input_width: 80%;
+  position: relative;
+
+  .label {
+    float: left;
+    width: $label_width;
+  }
+
+  input,
+  textarea {
+    width: $input_width;
+  }
+
+  label input,
+  label textarea,
+  label select {
+    width: auto;
+  }
+
+  .inline-hints {
+    color: gray(180);
+    font-style: italic;
+    margin: 0.5em 1em 0.5em $label_width;
+  }
+
+  .inline-errors {
+    @include border-radius(4px);
+    @include border-bottom-left-radius(0);
+    @include border-bottom-right-radius(0);
+    background-color: $red;
+    color: white;
+    font-size: 11px;
+    height: 22px;
+    line-height: 2em;
+    margin: 0;
+    padding: 0 10px;
+    position: absolute;
+    right: 0;
+    top: -22px;
+  }
+
+  &.boolean {
+    padding-left: $label_width;
+  }
+}
+
+// errors
+.input.error {
+  .label {
+    color: $red;
+    font-style: italic;
+  }
+
+  input,
+  select,
+  textarea {
+    @include border-top-right-radius(0);
+    border-color: $red;
+    color: $red;
+
+    &:focus {
+      @include box-shadow(transparentize($red,.2) 0 0 5px);
+    }
+  }
+}
