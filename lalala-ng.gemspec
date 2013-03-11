@@ -27,6 +27,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'sass-rails',           '~> 3.2.3'
   gem.add_runtime_dependency 'sass',                 '=  3.2.7'
   gem.add_runtime_dependency 'compass-rails',        '~> 1.0'
+  gem.add_runtime_dependency 'compass',              '= 0.13.alpha.0'
   gem.add_runtime_dependency 'coffee-rails',         '~> 3.2.1'
   gem.add_runtime_dependency 'coffee-script-source', '~> 1.4.0'
   gem.add_runtime_dependency 'uglifier',             '>= 1.0.3'
