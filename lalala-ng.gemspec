@@ -25,6 +25,8 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'thin',                      '=  1.5.0'
   gem.add_runtime_dependency 'ancestry',                  '=  1.3.0'
   #gem.add_runtime_dependency 'activeadmin-sortable-tree'#, '0.0.1'
+  gem.add_runtime_dependency 'mini_magick',               '=  3.5.0'
+  gem.add_runtime_dependency 'carrierwave',               '=  0.8.0'
 
   # assets group
   gem.add_runtime_dependency 'sass-rails',           '~> 3.2.3'

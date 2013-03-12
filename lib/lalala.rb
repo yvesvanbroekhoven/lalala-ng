@@ -9,6 +9,8 @@ module Lalala
   require 'activeadmin'
   require 'meta_search'
   require 'jquery-rails'
+  require 'carrierwave'
+  require 'mini_magick'
 
   if groups.include?(:assets)
     require 'sass'
@@ -20,7 +22,6 @@ module Lalala
     require 'sprockets/commonjs'
 
     require 'uglifier'
-
   end
 
   require 'lalala/engine'
