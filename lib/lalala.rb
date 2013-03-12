@@ -6,14 +6,13 @@ module Lalala
 
   groups = Rails.groups(:assets => %w(development test)).map(&:to_sym)
 
-
+  require 'globalize3'
   require 'activeadmin'
   require 'meta_search'
   require 'jquery-rails'
   require 'carrierwave'
   require 'mini_magick'
   require 'closure_tree'
-  require 'active_admin-awesome_nested_set'
 
   if groups.include?(:assets)
     require 'sass'
@@ -28,5 +27,8 @@ module Lalala
   end
 
   require 'lalala/engine'
+
+  require 'lalala/views/tree_table_for'
+  require 'lalala/views/index_as_tree_table'
 
 end

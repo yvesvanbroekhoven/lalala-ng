@@ -27,6 +27,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'mini_magick',  '= 3.5.0'
   gem.add_runtime_dependency 'carrierwave',  '= 0.8.0'
   gem.add_runtime_dependency 'pg',           '= 0.14.1'
+  gem.add_runtime_dependency 'globalize3',   '= 0.3.0'
 
 
   # assets group
