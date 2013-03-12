@@ -18,15 +18,16 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   # generic
-  gem.add_runtime_dependency 'rails',                     '=  3.2.12'
-  gem.add_runtime_dependency 'activeadmin',               '=  0.5.1'
-  gem.add_runtime_dependency 'meta_search',               '>= 1.1.0.pre'
-  gem.add_runtime_dependency 'jquery-rails',              '=  2.2.1'
-  gem.add_runtime_dependency 'thin',                      '=  1.5.0'
-  gem.add_runtime_dependency 'ancestry',                  '=  1.3.0'
-  #gem.add_runtime_dependency 'activeadmin-sortable-tree'#, '0.0.1'
-  gem.add_runtime_dependency 'mini_magick',               '=  3.5.0'
-  gem.add_runtime_dependency 'carrierwave',               '=  0.8.0'
+  gem.add_runtime_dependency 'rails',                           '=  3.2.12'
+  gem.add_runtime_dependency 'activeadmin',                     '=  0.5.1'
+  gem.add_runtime_dependency 'meta_search',                     '>= 1.1.0.pre'
+  gem.add_runtime_dependency 'jquery-rails',                    '=  2.2.1'
+  gem.add_runtime_dependency 'thin',                            '=  1.5.0'
+  gem.add_runtime_dependency 'active_admin-awesome_nested_set', '=  0.0.4'
+  gem.add_runtime_dependency 'closure_tree',                    '=  3.9.0'
+  gem.add_runtime_dependency 'mini_magick',                     '=  3.5.0'
+  gem.add_runtime_dependency 'carrierwave',                     '=  0.8.0'
+
 
   # assets group
   gem.add_runtime_dependency 'sass-rails',           '~> 3.2.3'

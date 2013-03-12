@@ -6,11 +6,14 @@ module Lalala
 
   groups = Rails.groups(:assets => %w(development test)).map(&:to_sym)
 
+
   require 'activeadmin'
   require 'meta_search'
   require 'jquery-rails'
   require 'carrierwave'
   require 'mini_magick'
+  require 'closure_tree'
+  require 'active_admin-awesome_nested_set'
 
   if groups.include?(:assets)
     require 'sass'
