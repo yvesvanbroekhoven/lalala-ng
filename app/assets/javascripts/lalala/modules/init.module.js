@@ -1,5 +1,6 @@
 var console = require('browser/console');
 
 $(function(){
-  console.log("hareee");
+  console.log($.fn.chosen);
+  $('select').chosen();
 });
