@@ -23,7 +23,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'meta_search',  '= 1.1.3'
   gem.add_runtime_dependency 'jquery-rails', '= 2.2.1'
   gem.add_runtime_dependency 'thin',         '= 1.5.0'
-  gem.add_runtime_dependency 'closure_tree', '= 3.9.0'
+  gem.add_runtime_dependency 'closure_tree', '= 3.10.0'
   gem.add_runtime_dependency 'mini_magick',  '= 3.5.0'
   gem.add_runtime_dependency 'carrierwave',  '= 0.8.0'
   gem.add_runtime_dependency 'pg',           '= 0.14.1'

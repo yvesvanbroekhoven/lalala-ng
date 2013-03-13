@@ -31,4 +31,8 @@ module Lalala
   require 'lalala/views/tree_table_for'
   require 'lalala/views/index_as_tree_table'
 
+  module Core
+    require 'lalala/core/class_inheritable_setting'
+  end
+
 end
