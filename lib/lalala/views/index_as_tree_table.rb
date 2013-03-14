@@ -100,11 +100,12 @@ module ActiveAdmin
       def build(page_presenter, collection)
         table_options = {
           :id => active_admin_config.resource_name.plural,
-          :sortable => true,
           :class => "index_table index",
           :i18n => active_admin_config.resource_class,
-          :paginator => page_presenter[:paginator] != false
         }
+
+        table_options[:sortable] = false
+        table_options[:paginator] = false
 
         # restrict to only the root objects
         collection = collection.roots
@@ -162,7 +163,7 @@ module ActiveAdmin
             if controller.action_methods.include?('edit')
               links << link_to(I18n.t('active_admin.edit'), edit_resource_path(resource), :class => "member_link edit_link")
             end
-            if controller.action_methods.include?('destroy')
+            if controller.action_methods.include?('destroy') and resource.allow_destroy
               links << link_to(I18n.t('active_admin.delete'), resource_path(resource), :method => :delete, :data => {:confirm => I18n.t('active_admin.delete_confirmation')}, :class => "member_link delete_link")
             end
             links
