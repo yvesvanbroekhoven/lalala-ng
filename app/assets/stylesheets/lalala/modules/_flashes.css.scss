@@ -15,11 +15,12 @@
   @include border-radius(3px);
   background-color: $yellow;
   color: white;
-  line-height: $top_nav_height;
+  line-height: $top_nav_height + 1;
+  padding: 0 20px;
   text-align: center;
 
   &.flash_alert {
-
+    background-color: $red;
   }
 
 }
