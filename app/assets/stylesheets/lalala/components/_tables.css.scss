@@ -1,26 +1,61 @@
 //
 // Tables
 //
-
-.index_table {
+table {
+  @include border-radius(7px);
+  background-color: gray(130);
+  border: 1px solid gray(224);
+  border-collapse: separate;
   margin: 0 0 1em 0;
   width: 100%;
-  border-collapse:collapse;
+
+  thead {
+
+    th {
+      border: none;
+
+      a {
+        color: gray(188);
+        font-weight: bold;
+      }
+
+      &[class*="sorted"] {
+
+        a {
+          color: white;
+        }
+
+      }
+
+    }
+
+  }
 
   tbody {
 
-    tr:nth-child(odd) {
-      background: gray(250);
-    }
+    tr {
+      @include transition( background-color 300ms );
 
-    tr.selected {
-      background: $yellow;
+      &:nth-child(odd) {
+        background-color: white;
+      }
+
+      &:nth-child(even) {
+        background-color: gray(250);
+      }
+
+      &.selected {
+        background-color: $yellow;
+      }
+
     }
 
   }
 
   // columns
-  th, td {
+  th,
+  td {
+    border-bottom: 1px solid gray(224);
     padding: 13px 15px 12px 15px;
 
     &.subtree {
@@ -38,10 +73,7 @@
     &:last-child {
       width: 75px;
     }
-  }
 
-  th {
-    font-weight: bold;
   }
 
   a {
