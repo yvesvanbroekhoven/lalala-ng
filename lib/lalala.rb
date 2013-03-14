@@ -35,4 +35,8 @@ module Lalala
     require 'lalala/core/class_inheritable_setting'
   end
 
+  module Pages
+    require 'lalala/pages/child_type_validator'
+  end
+
 end

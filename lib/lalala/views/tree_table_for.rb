@@ -25,25 +25,24 @@ module ActiveAdmin
 
       def populate_columns(tbody, collection, col)
         i = 0
-        collection.each_with_index do |item|
+        collection.each do |item|
 
           # find the <tr/>
           tr_elem = tbody.children[i]
-
           within tr_elem do
             build_table_cell(col, item)
             i += 1
+          end
 
-            unless item.children.blank?
-              # find the tbody
-              tr_elem    = tbody.children[i]
-              table_elem = tr_elem.children[0]
-              tbody_elem = table_elem.children[0]
+          unless item.children.blank?
+            # find the tbody
+            tr_elem    = tbody.children[i]
+            td_elem    = tr_elem.children[0]
+            table_elem = td_elem.children[0]
+            tbody_elem = table_elem.children[0]
 
-              populate_columns(tbody_elem, item.children, col)
-              i += 1
-            end
-
+            populate_columns(tbody_elem, item.children, col)
+            i += 1
           end
         end
       end
@@ -69,7 +68,9 @@ module ActiveAdmin
 
         tr do
           td(:class => "subtree", :colspan => "42") do
-            table(:class => "index_table index subtree") { build_tbody(collection) }
+            table(:class => "index_table index subtree") do
+              build_tbody(collection)
+            end
           end
         end
       end

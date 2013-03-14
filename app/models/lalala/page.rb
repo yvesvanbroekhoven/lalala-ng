@@ -1,7 +1,7 @@
 class Lalala::Page < ActiveRecord::Base
   include Lalala::Core::ClassInheritableSetting
 
-  # table name
+  self.abstract_class = true
   self.table_name = "pages"
 
   # Basic properties
@@ -19,11 +19,21 @@ class Lalala::Page < ActiveRecord::Base
     presence:     true,
     numericality: { greater_than_or_equal_to: 0, only_integer: true }
 
+  validates :parent,
+    associated: true
+
+  validates_with Lalala::Pages::ChildTypeValidator, types: ->(r){ r.allowed_children }
+
+  # Before filters
+  before_validation :set_default_title,             :on => :create
+  before_validation :set_default_position,          :on => :create
+  before_validation :build_default_static_children, :on => :create
 
   # Settings
-  define_setting :allow_children, default: true
   define_setting :maximum_children
   define_setting :minimum_children
+  define_setting :allowed_children, default: []
+  define_setting :allow_destroy,    default: true
   define_setting :form
 
 
@@ -48,5 +58,27 @@ class Lalala::Page < ActiveRecord::Base
   end
 
   self.form = self.default_form
+
+private
+
+  def static_children
+    []
+  end
+
+  def set_default_title
+    self.title ||= self.class.to_s.humanize
+  end
+
+  def set_default_position
+    # set to the curent UNIX timestamp
+    self.position ||= Time.now.utc.to_i
+  end
+
+  def build_default_static_children
+    children = static_children
+    return if children.blank?
+
+    self.children = children
+  end
 
 end

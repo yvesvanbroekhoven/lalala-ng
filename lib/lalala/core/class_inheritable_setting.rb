@@ -13,8 +13,10 @@ module Lalala::Core::ClassInheritableSetting
         def self.#{name}
           if defined?(@#{name})
             @#{name}
+          elsif superclass.respond_to?(#{name.inspect})
+            superclass.#{name}
           else
-            super
+            nil
           end
         end
 
