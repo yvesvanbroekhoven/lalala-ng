@@ -9,12 +9,17 @@
 
   tbody {
 
-    tr:nth-child(odd) {
-      background: gray(250);
-    }
+    tr {
+      @include transition( background-color 300ms );
 
-    tr.selected {
-      background: $yellow;
+      &:nth-child(odd) {
+        background-color: gray(250);
+      }
+
+      &.selected {
+        background-color: $yellow;
+      }
+
     }
 
   }

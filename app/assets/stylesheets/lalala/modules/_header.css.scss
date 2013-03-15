@@ -75,6 +75,10 @@
         @include icon('page_white_text');
       }
 
+      &#posts {
+        @include icon('newspaper');
+      }
+
       &#tags {
         @include icon('tag_purple');
       }
