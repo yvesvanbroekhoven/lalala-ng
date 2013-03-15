@@ -68,7 +68,7 @@ module ActiveAdmin
 
         tr do
           td(:class => "subtree", :colspan => "42") do
-            table(:class => "index_table index subtree") do
+            table(:class => "subtree") do
               build_tbody(collection)
             end
           end

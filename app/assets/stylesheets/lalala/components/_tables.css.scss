@@ -89,6 +89,11 @@ table {
       width: 16px;
     }
 
+
+    &.new_link {
+      @include icon('add');
+    }
+
     &.view_link {
       @include icon('eye');
     }
@@ -101,6 +106,34 @@ table {
       @include icon('delete');
     }
 
+  }
+
+  .dropdown_menu {
+    display: inline-block;
+    height:  16px;
+    margin:  0 3px;
+    width:   16px;
+
+    .dropdown_menu_button {
+      background-color: transparent;
+      background-position: 0 0;
+      display:             inline-block;
+      height:              16px;
+      padding:     0 !important;
+      text-indent: -9999px;
+      width: 16px;
+
+      @include icon('add');
+
+      &:after {
+        display: none;
+      }
+
+      &:before {
+        display: none;
+      }
+
+    }
   }
 
   &.subtree {

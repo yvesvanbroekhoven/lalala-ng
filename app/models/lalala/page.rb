@@ -34,6 +34,7 @@ class Lalala::Page < ActiveRecord::Base
   define_setting :minimum_children
   define_setting :allowed_children, default: []
   define_setting :allow_destroy,    default: true
+  define_setting :allow_create,     default: true
   define_setting :form
 
 
@@ -58,6 +59,21 @@ class Lalala::Page < ActiveRecord::Base
   end
 
   self.form = self.default_form
+
+
+  def self.allowed_child_classes
+    self.allowed_children.map do |name|
+      if Class === name
+        name
+      else
+        name.to_s.classify.constantize
+      end
+    end
+  end
+
+  def allowed_child_classes
+    self.class.allowed_child_classes
+  end
 
 private
 
