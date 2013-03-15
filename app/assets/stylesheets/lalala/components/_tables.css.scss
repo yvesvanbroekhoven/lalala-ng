@@ -1,13 +1,18 @@
 //
-// Tables
+// Table wrapper default style
+// Use as @extend on div wrapping the table
 //
-
 %table-wrapper {
   @include border-radius(5px);
   border: 1px solid gray(224);
   overflow: hidden;
+  margin: 0 0 1em 0;
 }
 
+
+//
+// Table default styles
+//
 table {
   background-color: gray(130);
   border-collapse: collapse;
