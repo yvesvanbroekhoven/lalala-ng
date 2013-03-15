@@ -1,0 +1,91 @@
+#index_footer {
+
+  .pagination {
+    float: right;
+    font-size: 13px;
+    padding: 0 0 0 35px;
+
+    > span {
+      color: gray(130);
+      display: inline-block;
+      height: 20px;
+      line-height: 20px;
+      margin: 0 1px;
+      text-align: center;
+
+      a {
+        color: gray(130);
+        display: block;
+        text-decoration: none;
+      }
+
+      &.page {
+        width: 20px;
+
+        a {
+
+        }
+
+        &.current {
+          @include border-radius(3px);
+          @include text-shadow(1px 1px 0 transparentize( darken($yellow, 20%), 0.5) );
+          background-color: $yellow;
+          color: white;
+        }
+
+      }
+
+    }
+
+  }
+
+  .pagination_information {
+    color: gray(110);
+    float: right;
+    font-size: 11px;
+    line-height: 20px;
+
+    b {
+      font-weight: bold;
+    }
+
+  }
+
+  .download_links {
+    @include icon('rainbow');
+    color: gray(110);
+    float: left;
+    font-size: 13px;
+    padding: 0 0 40px 30px;
+    position: relative;
+    top: 4px;
+
+    &:before {
+      content: " ";
+      border-left: 1px solid gray(224);
+      height: 12px;
+      left: 31px;
+      position: absolute;
+      top: 25px;
+    }
+
+    &:after {
+      border-bottom: 1px solid gray(224);
+      content: "";
+      left: 31px;
+      position: absolute;
+      top: 37px;
+      width: 12px;
+    }
+
+    a {
+      left: -40px;
+      margin: 0 10px 0 0;
+      position: relative;
+      text-decoration: none;
+      top: 30px;
+    }
+
+  }
+
+}

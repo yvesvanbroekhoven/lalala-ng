@@ -5,6 +5,7 @@ table {
   @include border-radius(7px);
   background-color: gray(130);
   border: 1px solid gray(224);
+  border-top-color: transparent;
   border-collapse: separate;
   margin: 0 0 1em 0;
   width: 100%;
