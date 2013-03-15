@@ -1,13 +1,17 @@
 //
 // Tables
 //
-table {
-  @include border-radius(7px);
-  background-color: gray(130);
+
+%table-wrapper {
+  @include border-radius(5px);
   border: 1px solid gray(224);
-  border-top-color: transparent;
-  border-collapse: separate;
-  margin: 0 0 1em 0;
+  overflow: hidden;
+}
+
+table {
+  background-color: gray(130);
+  border-collapse: collapse;
+  margin: 0;
   width: 100%;
 
   thead {
@@ -32,6 +36,7 @@ table {
 
   }
 
+  // Rows
   tbody {
 
     tr {
@@ -49,11 +54,19 @@ table {
         background-color: $yellow;
       }
 
+      &:last-child {
+
+        > td {
+          border: none;
+        }
+
+      }
+
     }
 
   }
 
-  // columns
+  // Columns
   th,
   td {
     border-bottom: 1px solid gray(224);

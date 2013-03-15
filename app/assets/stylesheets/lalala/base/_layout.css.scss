@@ -88,9 +88,10 @@ html, body {
 // Footer
 //
 #footer {
-  background-color: $white;
+  bottom: 0;
   clear: both;
-  float: right;
+  position: absolute;
+  right: 0;
   width: 760px;
 
   @media screen and (min-width: $min_width_large) {
