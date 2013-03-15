@@ -1,0 +1,16 @@
+.index_as_tree_table {
+  @extend %table-wrapper;
+
+  table {
+
+    thead {
+      display: none;
+    }
+
+    td {
+      background-color: white;
+    }
+
+  }
+
+}

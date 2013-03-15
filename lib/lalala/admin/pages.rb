@@ -5,7 +5,6 @@ if defined?(ActiveAdmin)
 
     index as: :tree_table, paginator: false, download_links: false do
       selectable_column
-      id_column
       column :title
 
       actions defaults: false do |page|
