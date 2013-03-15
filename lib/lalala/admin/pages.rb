@@ -3,7 +3,7 @@ if defined?(ActiveAdmin)
 
     config.filters = false
 
-    index as: :tree_table do
+    index as: :tree_table, paginator: false, download_links: false do
       selectable_column
       id_column
       column :title
