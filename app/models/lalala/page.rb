@@ -60,7 +60,6 @@ class Lalala::Page < ActiveRecord::Base
 
   self.form = self.default_form
 
-
   def self.allowed_child_classes
     self.allowed_children.map do |name|
       if Class === name

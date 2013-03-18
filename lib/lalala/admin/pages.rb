@@ -11,13 +11,11 @@ if defined?(ActiveAdmin)
         links = ''.html_safe
 
         if authorized?(ActiveAdmin::Auth::CREATE, page)
-          classes = page.allowed_child_classes
+          classes = page.allowed_child_classes.select(&:allow_create)
           if classes.size > 0
             dropdown_menu "Add" do
               classes.each do |page_class|
-                if page_class.allow_create
-                  item page_class.to_s.humanize, new_resource_path(parent_id: page.to_param, page_type: page_class.to_s)
-                end
+                item page_class.to_s.humanize, new_resource_path(parent_id: page.to_param, page_type: page_class.to_s)
               end
             end
           end
