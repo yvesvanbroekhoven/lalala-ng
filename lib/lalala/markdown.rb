@@ -1,8 +1,14 @@
 class Lalala::Markdown
 
-  require 'redcarpet'
+  require 'lalala/markdown/preview'
+  require 'lalala/markdown/active_model'
   require 'lalala/markdown/html_renderer'
   require 'lalala/markdown/markdown_renderer'
+
+  module Handlers
+    require 'lalala/markdown/handlers/base'
+    require 'lalala/markdown/handlers/youtube'
+  end
 
   PARSER_OPTIONS = [
     :no_intra_emphasis,
@@ -24,11 +30,16 @@ class Lalala::Markdown
     :with_toc_data,
     :hard_wrap,
     :xhtml,
-    :link_attributes
+    :link_attributes,
+    :link_schemes
   ]
 
+  OPTIONS = PARSER_OPTIONS + RENDERER_OPTIONS
+
   def initialize(options={})
-    @parser_options = options.slice(PARSER_OPTIONS)
+    options.assert_valid_keys(*OPTIONS)
+
+    @parser_options = options.slice(*PARSER_OPTIONS)
     @parser_options = {
       no_intra_emphasis: true,
       tables: false,
@@ -40,7 +51,7 @@ class Lalala::Markdown
       superscript: false
     }.merge(@parser_options)
 
-    @rendered_options = options.slice(RENDERER_OPTIONS)
+    @rendered_options = options.slice(*RENDERER_OPTIONS)
     @rendered_options = {
       filter_html: true,
       no_images: false,
@@ -66,7 +77,7 @@ class Lalala::Markdown
 private
 
   def parser(renderer)
-    Redcarpet::Markdown.new(rendered, @parser_options)
+    Redcarpet::Markdown.new(renderer, @parser_options)
   end
 
   def markdown_renderer
@@ -77,4 +88,8 @@ private
     Lalala::Markdown::HtmlRenderer.new(@rendered_options)
   end
 
+end
+
+ActiveSupport.on_load :active_record do
+  ActiveRecord::Base.send :include, Lalala::Markdown::ActiveModel
 end

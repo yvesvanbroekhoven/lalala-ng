@@ -1,68 +1,109 @@
-class Lalala::Markdown::HtmlRenderer < Redcarpet::Render::Base
+class Lalala::Markdown::HtmlRenderer < Redcarpet::Render::HTML
 
-  URI_PATTERN = %r|^lalala[:][/]{2}.+|
+  URI_PATTERN = %r{\A(lalala|youtube|vimeo)[:][/]{2}.+\Z}
 
   def initialize(options)
-    @inner = Redcarpet::Render::HTML.new(options)
+    @options      = options.dup
+    @link_schemes = (options.delete(:link_schemes) || {}).dup
+    super(options)
   end
 
   def autolink(link, link_type)
-    if URI_PATTERN === link
-      return enhanced_autolink(link, link_type)
+    if link.blank?
+      return ""
     end
 
-    @inner.image(link, title, alt_text)
+    if URI_PATTERN === link
+      return enhanced_autolink($1, link, link_type)
+    end
+
+    if @options[:safe_links_only] and !safe_link(link) and type != :email
+      return ""
+    end
+
+    url = link
+    url = "mailto:"+url if type == :email
+
+    helpers.link_to(link, url, @options[:link_attributes])
   end
 
   def image(link, title, alt_text)
-    if URI_PATTERN === link
-      return enhanced_image(link, title, alt_text)
+    if link.blank?
+      return ""
     end
 
-    @inner.image(link, title, alt_text)
+    if URI_PATTERN === link
+      return enhanced_image($1, link, title, alt_text)
+    end
+
+    if @options[:safe_links_only] and !safe_link(link)
+      return ""
+    end
+
+    helpers.image_tag(link, alt: alt_text, title: title)
   end
 
   def link(link, title, content)
-    if URI_PATTERN === link
-      return enhanced_link(link, title, content)
+    if link.blank?
+      link = nil
     end
 
-    @inner.link(link, title, content)
+    if link and URI_PATTERN === link
+      return enhanced_link($1, link, title, content)
+    end
+
+    if link and @options[:safe_links_only] and !safe_link(link)
+      return ""
+    end
+
+    options = (@options[:link_attributes] || {}).merge(title: title)
+    helpers.link_to(content, link, options)
   end
 
-  %w(
-    block_code
-    block_quote
-    block_html
-    header
-    hrule
-    list
-    list_item
-    paragraph
-    table
-    table_row
-    table_cell
-    autolink
-    codespan
-    double_emphasis
-    emphasis
-    linebreak
-    raw_html
-    triple_emphasis
-    strikethrough
-    superscript
-    entity
-    normal_text
-    doc_header
-    doc_footer
-    preprocess
-    postprocess
-  ).each do |method|
-    class_eval <<-RUBY, __FILE__, __LINE__
-      def #{method}(*args)
-        @inner.#{method}(*args)
-      end
-    RUBY
+  def enhanced_autolink(scheme, link, link_type)
+    handler = @link_schemes[scheme]
+    if handler
+      handler.link(link, nil, nil)
+    else
+      ""
+    end
+  end
+
+  def enhanced_image(scheme, link, title, alt_text)
+    handler = @link_schemes[scheme]
+    if handler
+      handler.image(link, alt_text, title)
+    else
+      ""
+    end
+  end
+
+  def enhanced_link(scheme, link, title, content)
+    handler = @link_schemes[scheme]
+    if handler
+      handler.link(link, content, title)
+    else
+      ""
+    end
+  end
+
+private
+
+  def safe_link(link)
+    case link
+    when %r{^/}
+      return true
+    when %r{^(http|https|ftp)[:]//}
+      return true
+    when %r{^mailto[:]}
+      return true
+    else
+      return false
+    end
+  end
+
+  def helpers
+    ApplicationController.helpers
   end
 
 end
