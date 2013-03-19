@@ -13,6 +13,7 @@ module Lalala
   require 'carrierwave'
   require 'mini_magick'
   require 'closure_tree'
+  require 'redcarpet'
 
   if groups.include?(:assets)
     require 'sass'
