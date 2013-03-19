@@ -38,8 +38,10 @@ if defined?(ActiveAdmin)
 
     form do |f|
       h = "".html_safe
-      h << f.input(:parent_id, as: :hidden, wrapper_html: { :style => "display:none;" })
-      h << f.input(:page_type, as: :hidden, value: f.object.class.to_s, wrapper_html: { :style => "display:none;" })
+      if f.object.new_record?
+        h << f.input(:parent_id, as: :hidden, wrapper_html: { :style => "display:none;" })
+        h << f.input(:page_type, as: :hidden, value: f.object.class.to_s, wrapper_html: { :style => "display:none;" })
+      end
       h << self.instance_exec(f, &f.object.form)
       h
     end

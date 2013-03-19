@@ -1,3 +1,5 @@
+Lalala::Markdown::Preview.hookup
+
 ActiveAdmin.setup do |config|
 
   # Set a default site title

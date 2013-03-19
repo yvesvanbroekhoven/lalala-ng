@@ -1,7 +1,6 @@
 module Lalala::Markdown::ActiveModel
   extend ActiveSupport::Concern
 
-
   module ClassMethods
 
     def markdown(*columns)
@@ -9,7 +8,7 @@ module Lalala::Markdown::ActiveModel
       @markdown_transformers ||= {}
 
       md  = Lalala::Markdown.new(options)
-      mod = Module.new()
+      mod = Module.new
 
       columns.each do |column|
         column = column.to_sym
@@ -18,9 +17,10 @@ module Lalala::Markdown::ActiveModel
 
         mod.class_eval <<-SRC, __FILE__, __LINE__ + 1
 
-          def #{column}
-            value = super
-            self.class.markdown_transformer_for_column(#{column.inspect}).render(value)
+          def #{column}_html
+            value = self.#{column}
+            value = self.class.markdown_transformer_for_column(#{column.inspect}).render(value)
+            value.html_safe
           end
 
           def #{column}=(value)
@@ -40,7 +40,7 @@ module Lalala::Markdown::ActiveModel
       end
 
       if superclass.respond_to?(:markdown_transformer_for_column)
-        superclass.markdown_transformer_for_column(column_name)
+        return superclass.markdown_transformer_for_column(column_name)
       end
 
       raise "Missing markdown transformer for column `#{column_name}`"

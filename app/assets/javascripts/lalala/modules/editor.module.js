@@ -5,9 +5,11 @@ exports.init = function(){
 };
 
 function setup() {
-  var $this = $(this);
+  var $this    = $(this);
+  var settings = $.extend({}, markdown_settings);
 
-  $this.markItUp(markdown_settings);
+  settings.previewParserVar = $this.attr("name");
+  $this.markItUp(settings);
 
   var $markitup_wrapper = $this.closest('.markItUp');
   $markitup_wrapper.find('.fullscreen').click(open_fullscreen);
@@ -75,9 +77,11 @@ function load_cheatsheat(options) {
 //
 // Mark It Up settings
 //
+var base_path = window.location.pathname.replace(/[\/][^\/]+$/, "");
+
 markdown_settings = {
   nameSpace:          'markdown-editor', // Useful to prevent multi-instances CSS conflict
-  previewParserPath:  '/lalala/markdown/preview',
+  previewParserPath:  base_path + '/preview',
   onShiftEnter:       { keepDefault: false, openWith:'\n\n' },
   markupSet: [
     { name: 'Heading 2', key: '2', openWith: '## ', placeHolder: 'Your title here...', className: 'h2' },

@@ -3,11 +3,14 @@ class Lalala::Markdown::MarkdownRenderer < Redcarpet::Render::Base
   NEW_BLOCK = "\n\n"
 
   def initialize(options)
-    super
-    @list_counter     = 0
+    super()
+
+    @list_items       = []
+
+    @table_cell_index = 0
     @table_cells      = []
     @table_rows       = []
-    @table_alignments_builder = []
+    @table_alignments = []
   end
 
   # ```ruby
@@ -36,19 +39,48 @@ class Lalala::Markdown::MarkdownRenderer < Redcarpet::Render::Base
   end
 
   def list(content, type)
-    content.strip + NEW_BLOCK
+    case type
+    when :ordered
+      ordered_list
+    when :unordered
+      unordered_list
+    end
+
   ensure
-    # Reset the list counter
-    @list_counter = 0
+    @list_items = []
+  end
+
+  def unordered_list
+    items = @list_items.map do |item|
+      "# " + item.gsub("\n", "\n  ")
+    end
+
+    items.join("\n") + NEW_BLOCK
+  end
+
+  def ordered_list
+    items = []
+    width = @list_items.size.to_s.size + 2
+
+    @list_items.each_with_index do |item, idx|
+      prefix = (idx + 1).to_s + ". "
+
+      if prefix.size < width
+        prefix += (" " * (width - prefix.size))
+      end
+
+      item = item.gsub("\n", "\n" + (" " * width))
+
+      item = prefix + item
+      items << item
+    end
+
+    items.join("\n") + NEW_BLOCK
   end
 
   def list_item(content, type)
-    case type
-    when :ordered
-      "#{@list_counter}. #{content.strip}\n"
-    when :unordered
-      "# #{content.strip}\n"
-    end
+    @list_items << content.strip
+    content
   end
 
   def paragraph(content)
@@ -77,16 +109,18 @@ class Lalala::Markdown::MarkdownRenderer < Redcarpet::Render::Base
       width = widths[idx]
 
       case alignments[idx]
-      when :left
-        cell = ("-" * width)
       when :right
         cell = ("-" * (width - 1)) + ":"
       when :center
         cell = ":" + ("-" * (width - 2)) + ":"
+      else
+        cell = ("-" * width)
       end
 
       delimiter_row[idx] = cell
     end
+
+    Rails.logger.debug alignments.inspect
 
     if header.size > 0
       rows.insert(1, delimiter_row)
@@ -100,13 +134,13 @@ class Lalala::Markdown::MarkdownRenderer < Redcarpet::Render::Base
         width = widths[idx]
 
         case alignments[idx]
-        when :left
-          cell = cell + (" " * (width - cell.size))
         when :right
           cell = (" " * (width - cell.size)) + cell
         when :center
           half_width = (width - cell.size) / 2.0
           cell = (" " * half_width.floor) + cell + (" " * half_width.ceil)
+        else
+          cell = cell + (" " * (width - cell.size))
         end
 
         cell = " " + cell + " "
@@ -121,8 +155,7 @@ class Lalala::Markdown::MarkdownRenderer < Redcarpet::Render::Base
 
   ensure
     @table_rows = []
-    @table_alignments = nil
-    @table_alignments_builder = []
+    @table_alignments = []
   end
 
   def table_row(content)
@@ -132,20 +165,27 @@ class Lalala::Markdown::MarkdownRenderer < Redcarpet::Render::Base
 
     @table_rows.push(@table_cells)
 
-    "."
+    content
   ensure
     @table_cells = []
-    @table_alignments_builder = nil
+    @table_cell_index = 0
   end
 
   def table_cell(content, alignment)
     @table_cells << content
 
-    if @table_alignments_builder
-      @table_alignments_builder << alignment
+    if @table_cell_index >= @table_alignments.size
+      @table_alignments.push(nil)
     end
 
-    ""
+    if alignment
+      @table_alignments[@table_cell_index] = alignment
+    end
+
+    content
+
+  ensure
+    @table_cell_index += 1
   end
 
   def autolink(link, link_type)
@@ -165,10 +205,10 @@ class Lalala::Markdown::MarkdownRenderer < Redcarpet::Render::Base
   end
 
   def image(link, title, alt_text)
-    if title.size > 0
-      "![#{alt_text}](#{link} #{title})"
-    else
+    if title.blank?
       "![#{alt_text}](#{link})"
+    else
+      "![#{alt_text}](#{link} #{title})"
     end
   end
 
@@ -177,10 +217,10 @@ class Lalala::Markdown::MarkdownRenderer < Redcarpet::Render::Base
   end
 
   def link(link, title, content)
-    if title.size > 0
-      "[#{content}](#{link} #{title})"
-    else
+    if title.blank?
       "[#{content}](#{link})"
+    else
+      "[#{content}](#{link} #{title})"
     end
   end
 
