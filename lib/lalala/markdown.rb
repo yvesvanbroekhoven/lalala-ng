@@ -51,8 +51,8 @@ class Lalala::Markdown
       superscript: false
     }.merge(@parser_options)
 
-    @rendered_options = options.slice(*RENDERER_OPTIONS)
-    @rendered_options = {
+    @renderer_options = options.slice(*RENDERER_OPTIONS)
+    @renderer_options = {
       filter_html: true,
       no_images: false,
       no_links: false,
@@ -61,7 +61,11 @@ class Lalala::Markdown
       with_toc_data: true,
       hard_wrap: false,
       xhtml: false
-    }.merge(@rendered_options)
+    }.merge(@renderer_options)
+  end
+
+  def options
+    {}.merge(@parser_options).merge(@renderer_options)
   end
 
   def render(text)
@@ -81,11 +85,11 @@ private
   end
 
   def markdown_renderer
-    Lalala::Markdown::MarkdownRenderer.new(@rendered_options)
+    Lalala::Markdown::MarkdownRenderer.new(@renderer_options)
   end
 
   def html_renderer
-    Lalala::Markdown::HtmlRenderer.new(@rendered_options)
+    Lalala::Markdown::HtmlRenderer.new(@renderer_options)
   end
 
 end

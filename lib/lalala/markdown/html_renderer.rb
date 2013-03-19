@@ -4,7 +4,7 @@ class Lalala::Markdown::HtmlRenderer < Redcarpet::Render::HTML
 
   def initialize(options)
     @options      = options.dup
-    @link_schemes = (options.delete(:link_schemes) || {}).dup
+    @link_schemes = (options[:link_schemes] || {}).dup
     super(options)
   end
 
