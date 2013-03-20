@@ -15,9 +15,23 @@ module Lalala
         @_active_admin_source_root ||= File.expand_path("../templates", __FILE__)
       end
 
-			def copy_initializer
+      def copy_initializer
         @underscored_user_name = name.underscore
         template 'active_admin.rb.erb', 'config/initializers/active_admin.rb'
+      end
+
+      def setup_errors
+        empty_directory "app/controllers"
+        template 'errors_controller.rb', 'app/controllers/errors_controller.rb'
+      end
+
+      def setup_pages
+        empty_directory "app/models"
+        template 'application_page.rb', 'app/models/application_page.rb'
+        empty_directory "app/controllers"
+        template 'pages_controller.rb', 'app/controllers/pages_controller.rb'
+        empty_directory "app/admin"
+        template 'admin_pages.rb', 'app/admin/admin_pages.rb'
       end
 
       def setup_directory

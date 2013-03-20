@@ -1,4 +1,4 @@
-if defined?(ActiveAdmin)
+if defined?(ActiveAdmin) and defined?(ApplicationPage)
   ActiveAdmin.register ApplicationPage, :as => 'Page' do
 
     config.filters = false
