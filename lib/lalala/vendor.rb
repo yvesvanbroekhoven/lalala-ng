@@ -3,12 +3,12 @@ module Lalala::Vendor
   def self.enable(name, dirname=nil)
     dirname ||= name
 
-    # Find development version
-    path = File.expand_path("../../../../#{dirname}/lib", __FILE__)
+    # Find vendored version
+    path = File.expand_path("../../../vendor/deps/#{dirname}/lib", __FILE__)
 
-    # Find vandored version
-    unless File.directory?(path)
-      path = File.expand_path("../../../vendor/deps/#{dirname}/lib", __FILE__)
+    # Find development version
+    if ENV['LALALA_DEV']
+      path = File.expand_path("../../../../#{dirname}/lib", __FILE__)
     end
 
     unless File.directory?(path)
