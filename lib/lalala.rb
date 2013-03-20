@@ -1,10 +1,14 @@
 module Lalala
 
   require "lalala/version"
+  require "lalala/vendor"
 
   require 'rails/all'
 
   groups = Rails.groups(:assets => %w(development test)).map(&:to_sym)
+
+  Lalala::Vendor.enable('activeadmin', 'active_admin')
+  Lalala::Vendor.enable('closure_tree')
 
   require 'activeadmin'
   require 'carrierwave'
