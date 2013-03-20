@@ -6,14 +6,15 @@ module Lalala
 
   groups = Rails.groups(:assets => %w(development test)).map(&:to_sym)
 
-  require 'globalize3'
   require 'activeadmin'
-  require 'meta_search'
-  require 'jquery-rails'
   require 'carrierwave'
-  require 'mini_magick'
   require 'closure_tree'
+  require 'globalize3'
+  require 'jquery-rails'
+  require 'meta_search'
+  require 'mini_magick'
   require 'redcarpet'
+  require 'stringex'
 
   if groups.include?(:assets)
     require 'sass'
@@ -39,6 +40,7 @@ module Lalala
 
   module Pages
     require 'lalala/pages/child_type_validator'
+    require 'lalala/pages/path_handler'
   end
 
 end

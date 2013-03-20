@@ -15,7 +15,7 @@ if defined?(ActiveAdmin)
           if classes.size > 0
             dropdown_menu "Add" do
               classes.each do |page_class|
-                item page_class.to_s.humanize, new_resource_path(parent_id: page.to_param, page_type: page_class.to_s)
+                item page_class.to_s.underscore.humanize, new_resource_path(parent_id: page.to_param, page_type: page_class.to_s)
               end
             end
           end

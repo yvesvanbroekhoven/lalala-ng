@@ -1,5 +1,9 @@
 class Lalala::Engine < Rails::Engine
 
+  initializer "lalala.error_handlers" do |app|
+    app.config.exceptions_app = app.routes
+  end
+
   initializer "lalala.active_admin.load_path" do
     ActiveAdmin.application.load_paths.unshift File.expand_path('../admin', __FILE__)
   end

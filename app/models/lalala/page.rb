@@ -7,8 +7,13 @@ class Lalala::Page < ActiveRecord::Base
   # Basic properties
   attr_accessible :title, :position
 
+  # Translations
+  translates :title, :path_component
+  Lalala::Page::Translation.table_name = 'page_translations'
+
   # Tree
-  acts_as_tree dependent: :restrict, order: 'position'
+  acts_as_tree dependent: :restrict, order: 'position', name_column: 'path_component'
+  include Lalala::Pages::PathHandler
 
   # Validations
   validates :title,
@@ -28,6 +33,7 @@ class Lalala::Page < ActiveRecord::Base
   before_validation :set_default_title,             :on => :create
   before_validation :set_default_position,          :on => :create
   before_validation :build_default_static_children, :on => :create
+  before_validation :set_path_component
 
   # Settings
   define_setting :maximum_children
@@ -35,7 +41,15 @@ class Lalala::Page < ActiveRecord::Base
   define_setting :allowed_children, default: []
   define_setting :allow_destroy,    default: true
   define_setting :allow_create,     default: true
+  define_setting :route
   define_setting :form
+
+
+  def self.default_route
+    ->(p){ p.title.to_s.to_url }
+  end
+
+  self.route = self.default_route
 
 
   # The form
@@ -81,7 +95,7 @@ private
   end
 
   def set_default_title
-    self.title ||= self.class.to_s.humanize
+    self.title ||= self.class.to_s.underscore.humanize
   end
 
   def set_default_position
@@ -94,6 +108,20 @@ private
     return if children.blank?
 
     self.children = children
+  end
+
+  def set_path_component
+    r = self.route
+    case r
+    when NilClass
+      self.path_component = self.class.default_route.call(self)
+    when Proc
+      self.path_component = r.call(self)
+    when String
+      self.path_component = r
+    else
+      raise "Unexpected path_component value: #{r.inspect}"
+    end
   end
 
 end

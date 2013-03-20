@@ -11,27 +11,27 @@ class Lalala::Markdown
   end
 
   PARSER_OPTIONS = [
-    :no_intra_emphasis,
-    :tables,
-    :fenced_code_blocks,
     :autolink,
-    :strikethrough,
+    :fenced_code_blocks,
     :lax_spacing,
+    :no_intra_emphasis,
     :space_after_headers,
-    :superscript
+    :strikethrough,
+    :superscript,
+    :tables
   ]
 
   RENDERER_OPTIONS = [
     :filter_html,
+    :hard_wrap,
+    :link_attributes,
+    :link_schemes,
     :no_images,
     :no_links,
     :no_styles,
     :safe_links_only,
     :with_toc_data,
-    :hard_wrap,
-    :xhtml,
-    :link_attributes,
-    :link_schemes
+    :xhtml
   ]
 
   OPTIONS = PARSER_OPTIONS + RENDERER_OPTIONS
@@ -43,12 +43,12 @@ class Lalala::Markdown
     @parser_options = {
       no_intra_emphasis: true,
       tables: false,
-      fenced_code_blocks: false,
+      fenced_code_blocks: true,
       autolink: true,
-      strikethrough: false,
+      strikethrough: true,
       lax_spacing: false,
       space_after_headers: false,
-      superscript: false
+      superscript: true
     }.merge(@parser_options)
 
     @renderer_options = options.slice(*RENDERER_OPTIONS)

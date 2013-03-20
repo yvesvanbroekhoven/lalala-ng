@@ -52,7 +52,7 @@ class Lalala::Markdown::MarkdownRenderer < Redcarpet::Render::Base
 
   def unordered_list
     items = @list_items.map do |item|
-      "# " + item.gsub("\n", "\n  ")
+      "- " + item.gsub("\n", "\n  ")
     end
 
     items.join("\n") + NEW_BLOCK

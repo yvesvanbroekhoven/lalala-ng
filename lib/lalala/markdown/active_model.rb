@@ -18,7 +18,7 @@ module Lalala::Markdown::ActiveModel
         mod.class_eval <<-SRC, __FILE__, __LINE__ + 1
 
           def #{column}_html
-            value = self.#{column}
+            value = self.#{column} || ""
             value = self.class.markdown_transformer_for_column(#{column.inspect}).render(value)
             value.html_safe
           end
