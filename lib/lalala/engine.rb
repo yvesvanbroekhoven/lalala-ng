@@ -1,5 +1,9 @@
 class Lalala::Engine < Rails::Engine
 
+  config.i18n.fallbacks = true
+  config.i18n.default_locale = :en
+  config.i18n.available_locales = [:en]
+
   initializer "lalala.error_handlers" do |app|
     app.config.exceptions_app = app.routes
   end
