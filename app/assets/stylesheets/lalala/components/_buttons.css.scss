@@ -38,6 +38,14 @@
     padding-top: $padding_top + 1;
   }
 
+  &.disabled {
+    @include single-text-shadow(rgba(0,0,0, 0.1), 0, 0, 0);
+    color: white;
+    text-decoration: none;
+    padding-bottom: $padding_btm - 1;
+    padding-top: $padding_top + 1;
+  }
+
   &.with-icon {
     padding-left: 29px;
   }

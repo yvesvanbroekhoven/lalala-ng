@@ -1,31 +1,98 @@
 //
-// Tables
+// Table wrapper default style
+// Use as @extend on div wrapping the table
 //
-
-.index_table {
+%table-wrapper {
+  @include border-radius(5px);
+  border: 1px solid gray(224);
+  overflow: hidden;
   margin: 0 0 1em 0;
+}
+
+
+//
+// Table default styles
+//
+table {
+  background-color: gray(130);
+  border-collapse: collapse;
+  margin: 0;
   width: 100%;
 
+  thead {
+
+    th {
+      border: none;
+
+      a {
+        color: gray(188);
+        font-weight: bold;
+      }
+
+      &[class*="sorted"] {
+
+        a {
+          color: white;
+        }
+
+      }
+
+    }
+
+  }
+
+  // Rows
   tbody {
 
-    tr:nth-child(odd) {
-      background: gray(250);
-    }
+    tr {
+      @include transition( background-color 300ms );
 
-    tr.selected {
-      background: $yellow;
+      &:nth-child(odd) {
+        background-color: white;
+      }
+
+      &:nth-child(even) {
+        background-color: gray(250);
+      }
+
+      &.selected {
+        background-color: $yellow;
+      }
+
+      &:last-child {
+
+        > td {
+          border: none;
+        }
+
+      }
+
     }
 
   }
 
-  // columns
-  th, td {
+  // Columns
+  th,
+  td {
+    border-bottom: 1px solid gray(224);
     padding: 13px 15px 12px 15px;
 
-  }
+    &.subtree {
+      padding: 0 0 0 25px;
+    }
 
-  th {
-    font-weight: bold;
+    &.selectable {
+      width: 25px;
+    }
+
+    &.id {
+      width: 50px;
+    }
+
+    &:last-child {
+      width: 75px;
+    }
+
   }
 
   a {
@@ -40,6 +107,11 @@
       width: 16px;
     }
 
+
+    &.new_link {
+      @include icon('add');
+    }
+
     &.view_link {
       @include icon('eye');
     }
@@ -52,6 +124,38 @@
       @include icon('delete');
     }
 
+  }
+
+  .dropdown_menu {
+    display: inline-block;
+    height:  16px;
+    margin:  0 3px;
+    width:   16px;
+
+    .dropdown_menu_button {
+      background-color: transparent;
+      background-position: 0 0;
+      display:             inline-block;
+      height:              16px;
+      padding:     0 !important;
+      text-indent: -9999px;
+      width: 16px;
+
+      @include icon('add');
+
+      &:after {
+        display: none;
+      }
+
+      &:before {
+        display: none;
+      }
+
+    }
+  }
+
+  &.subtree {
+    margin: 0;
   }
 
 }
