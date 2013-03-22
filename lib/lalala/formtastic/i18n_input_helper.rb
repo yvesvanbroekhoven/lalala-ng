@@ -18,11 +18,26 @@ module Lalala::Formtastic::I18nInputHelper
         locales.unshift(I18n.default_locale)
       end
 
+      opts = options.dup
+      if opts[:wrapper_html]
+        opts[:wrapper_html] = opts[:wrapper_html].dup
+      else
+        opts[:wrapper_html] = {}
+      end
+
+      opts[:wrapper_html][:class] = [
+        opts[:wrapper_html][:class],
+        "translated"
+      ].flatten.compact
+
       locales.each do |locale|
         I18n.locale  = locale
         @object_name = "#{_object_name}[translations_writer][#{locale}]"
 
-        h << super(method, options)
+
+        opts[:wrapper_html][:'data-locale'] = locale.to_s
+
+        h << super(method, opts)
       end
 
       h
