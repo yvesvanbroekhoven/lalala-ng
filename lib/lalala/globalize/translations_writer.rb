@@ -8,7 +8,7 @@ module Lalala::Globalize::TranslationsWriter
       result = super(*attr_names)
 
       if init
-        include InstanceMethods
+        include Writer
         attr_accessible :translations_writer
       end
 
@@ -16,7 +16,7 @@ module Lalala::Globalize::TranslationsWriter
     end
   end
 
-  module InstanceMethods
+  module Writer
     def translations_writer=(attributes)
       _locale = I18n.locale
 
