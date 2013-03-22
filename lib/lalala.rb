@@ -42,6 +42,10 @@ module Lalala
     require 'lalala/core/class_inheritable_setting'
   end
 
+  module Formtastic
+    require 'lalala/formtastic/i18n_input_helper'
+  end
+
   module Pages
     require 'lalala/pages/child_type_validator'
     require 'lalala/pages/path_handler'
