@@ -32,10 +32,11 @@ module Lalala
     require 'uglifier'
   end
 
-  require 'lalala/engine'
+  if groups.include?(:development)
+    require 'pry-rails'
+  end
 
-  require 'lalala/views/tree_table_for'
-  require 'lalala/views/index_as_tree_table'
+  require 'lalala/engine'
   require 'lalala/markdown'
 
   module Core
@@ -44,6 +45,12 @@ module Lalala
 
   module Formtastic
     require 'lalala/formtastic/i18n_input_helper'
+  end
+
+  module Views
+    require 'lalala/views/tree_table_for'
+    require 'lalala/views/index_as_tree_table'
+    require 'lalala/views/title_bar'
   end
 
   module Pages
