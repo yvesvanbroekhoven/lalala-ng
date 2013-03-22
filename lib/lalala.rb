@@ -39,12 +39,16 @@ module Lalala
   require 'lalala/engine'
   require 'lalala/markdown'
 
-  module Core
-    require 'lalala/core/class_inheritable_setting'
-  end
-
   module Formtastic
     require 'lalala/formtastic/i18n_input_helper'
+  end
+
+  module Globalize
+    require 'lalala/globalize/translations_writer'
+  end
+
+  module Core
+    require 'lalala/core/class_inheritable_setting'
   end
 
   module Views
