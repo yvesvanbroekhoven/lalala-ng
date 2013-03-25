@@ -53,6 +53,7 @@ module Lalala
 
   module Pages
     require 'lalala/pages/child_type_validator'
+    require 'lalala/pages/children_length_validator'
     require 'lalala/pages/path_handler'
   end
 
