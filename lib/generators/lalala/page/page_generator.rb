@@ -1,8 +1,6 @@
-require 'rails/generators/rails/model/model_generator'
-
 module Lalala
   module Generators
-    class ResourceGenerator < Rails::Generators::NamedBase
+    class PageGenerator < Rails::Generators::NamedBase
       desc "Create a new page model"
 
       def self.source_root
