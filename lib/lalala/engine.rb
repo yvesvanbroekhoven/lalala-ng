@@ -4,12 +4,28 @@ class Lalala::Engine < Rails::Engine
   config.i18n.default_locale = :en
   config.i18n.available_locales = [:en]
 
+  config.lalala = ActiveSupport::OrderedOptions.new
+  config.lalala.i18n = ActiveSupport::OrderedOptions.new
+  config.lalala.i18n.adapter = nil
+
   initializer "lalala.error_handlers" do |app|
     app.config.exceptions_app = app.routes
   end
 
   initializer "lalala.active_admin.load_path" do
     ActiveAdmin.application.load_paths.unshift File.expand_path('../admin', __FILE__)
+  end
+
+  initializer "lalala.middleware" do |app|
+    app.middleware.insert_before(
+      'ActionDispatch::Flash', Lalala::Rack::CanonicalURL)
+  end
+
+  initializer "lalala.i18n.middleware" do |app|
+    adapter   = app.config.lalala.i18n.adapter
+    adapter ||= Lalala::I18n::Negotiation::Adapter.new
+    app.middleware.insert_before(
+      'ActionDispatch::Flash', Lalala::I18n::Negotiation::Router, adapter)
   end
 
   ::Sass::Engine::DEFAULT_OPTIONS[:load_paths] << File.expand_path("../../../app/assets/stylesheets", __FILE__)

@@ -39,6 +39,7 @@ module Lalala
   require 'lalala/engine'
   require 'lalala/markdown'
   require 'lalala/i18n'
+  require 'lalala/rack'
 
   module Core
     require 'lalala/core/class_inheritable_setting'
