@@ -29,6 +29,13 @@ class Lalala::Page < ActiveRecord::Base
 
   validates_with Lalala::Pages::ChildTypeValidator, types: ->(r){ r.allowed_children }
 
+  validates :children,
+    length: {
+      minimum: ->(r){ r.minimum_children || 0      },
+      maximum: ->(r){ r.maximum_children || 10_000 },
+      if:      ->(r){ r.minimum_children and r.maximum_children }
+    }
+
   # Before filters
   before_validation :set_default_title,             :on => :create
   before_validation :set_default_position,          :on => :create
