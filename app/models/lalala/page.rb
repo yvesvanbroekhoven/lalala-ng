@@ -132,9 +132,8 @@ private
 
     next_children = next_children.stringify_keys
 
-    prev_children = self.children
-    prev_children = prev_children.all.select(&:static?)
-    keep_children = prev_children.all.reject(&:static?)
+    prev_children = self.children.all.select(&:static?)
+    keep_children = self.children.all.reject(&:static?)
     prev_children = prev_children.index_by(&:static_uuid)
 
     created_uuids   = next_children.keys - prev_children.keys
