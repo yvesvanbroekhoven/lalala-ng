@@ -37,11 +37,11 @@ private
       raise ArgumentError, "expected arguments of format { :table_a => :fk_a, :table_b => :fk_b }"
     end
 
-    unless options.keys.all? { |v| _ng_stringish(v) }
+    unless options.keys.all? { |v| _ng_stringish?(v) }
       raise ArgumentError, "expected arguments of format { :table_a => :fk_a, :table_b => :fk_b }"
     end
 
-    unless options.values.all? { |v| _ng_stringish(v) }
+    unless options.values.all? { |v| _ng_stringish?(v) }
       raise ArgumentError, "expected arguments of format { :table_a => :fk_a, :table_b => :fk_b }"
     end
   end
@@ -80,7 +80,7 @@ private
       args = [table_name, keys]
     end
 
-    unless args.size == 2 and _ng_stringish(args[0]) and Array === args[1]
+    unless args.size == 2 and _ng_stringish?(args[0]) and Array === args[1]
       raise ArgumentError, "invalid arguments for create_join_table()"
     end
 
