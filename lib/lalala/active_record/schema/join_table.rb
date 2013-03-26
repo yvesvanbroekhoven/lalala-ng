@@ -10,7 +10,7 @@ module Lalala::ActiveRecord::Schema::JoinTable
   def create_join_table(*args)
     table_name, columns, options = _ng_normalize_options(args)
 
-    create_table args[0], :id => false do |t|
+    create_table table_name, :id => false do |t|
       columns.each do |column|
         t.send(options[:type], column)
       end
