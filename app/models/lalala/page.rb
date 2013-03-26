@@ -76,6 +76,7 @@ class Lalala::Page < ActiveRecord::Base
     proc do |f|
       f.inputs "Details" do
         f.input :title
+        f.input :body
       end
       f.buttons
     end
