@@ -4,6 +4,7 @@ module Lalala
   require "lalala/vendor"
 
   require 'rails/all'
+  extend ActiveSupport::Autoload
 
   groups = Rails.groups(:assets => %w(development test)).map(&:to_sym)
 
@@ -36,8 +37,8 @@ module Lalala
     require 'pry-rails'
   end
 
-  require 'lalala/engine'
-  require 'lalala/markdown'
+  autoload :Markdown
+  autoload :ActiveRecord
   require 'lalala/i18n'
   require 'lalala/rack'
 
@@ -56,5 +57,7 @@ module Lalala
     require 'lalala/pages/children_length_validator'
     require 'lalala/pages/path_handler'
   end
+
+  require 'lalala/engine'
 
 end

@@ -32,6 +32,11 @@ class Lalala::Engine < Rails::Engine
 
 end
 
+ActiveSupport.on_load :active_record do
+  ActiveRecord::ConnectionAdapters::AbstractAdapter.send :include, Lalala::ActiveRecord::Schema::JoinTable
+  ActiveRecord::Migration::CommandRecorder.send :include, Lalala::ActiveRecord::Schema::JoinTableInverter
+end
+
 if defined?(Rails::Generators)
   Rails::Generators.hidden_namespaces << %w(
     active_admin:resource
