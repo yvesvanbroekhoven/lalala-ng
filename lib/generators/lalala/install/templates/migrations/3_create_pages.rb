@@ -4,6 +4,7 @@ class CreatePages < ActiveRecord::Migration
       t.integer :parent_id
       t.integer :position
       t.string  :type
+      t.string  :static_uuid
 
       t.timestamps
     end
@@ -20,6 +21,7 @@ class CreatePages < ActiveRecord::Migration
 
       t.string :title
       t.string :path_component
+      t.text   :body
     end
 
     add_index :page_hierarchies,  [:ancestor_id, :descendant_id], :unique => true

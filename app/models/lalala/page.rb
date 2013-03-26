@@ -5,10 +5,10 @@ class Lalala::Page < ActiveRecord::Base
   self.table_name = "pages"
 
   # Basic properties
-  attr_accessible :title, :position
+  attr_accessible :title, :body, :position
 
   # Translations
-  translates :title, :path_component
+  translates :title, :body, :path_component
   Lalala::Page::Translation.table_name = 'page_translations'
 
   # Tree
@@ -16,6 +16,9 @@ class Lalala::Page < ActiveRecord::Base
   include Lalala::Pages::PathHandler
 
   # Validations
+  validates :static_uuid,
+    uniqueness: { allow_blank: true, scope: [:parent_id] }
+
   validates :title,
     presence: true,
     length:   { minimum: 2 }
@@ -24,8 +27,8 @@ class Lalala::Page < ActiveRecord::Base
     presence:     true,
     numericality: { greater_than_or_equal_to: 0, only_integer: true }
 
-  validates :parent,
-    associated: true
+  # validates :parent,
+  #   associated: true
 
   validates_with Lalala::Pages::ChildTypeValidator,
     types:   ->(r){ r.allowed_children }
@@ -38,7 +41,7 @@ class Lalala::Page < ActiveRecord::Base
   # Before filters
   before_validation :set_default_title,             :on => :create
   before_validation :set_default_position,          :on => :create
-  before_validation :build_default_static_children, :on => :create
+  before_validation :build_default_static_children
   before_validation :set_path_component
 
   # Settings
@@ -94,10 +97,19 @@ class Lalala::Page < ActiveRecord::Base
     self.class.allowed_child_classes
   end
 
+  def static?
+    self.static_uuid.present?
+  end
+
+  def destroy_recursively
+    self.children.each(&:destroy_recursively)
+    self.destroy
+  end
+
 private
 
   def static_children
-    []
+    {}
   end
 
   def set_default_title
@@ -110,8 +122,81 @@ private
   end
 
   def build_default_static_children
-    children = static_children
-    return if children.blank?
+    next_children = static_children
+    return if next_children.blank?
+
+    unless Hash === next_children
+      raise "Expected a Hash"
+    end
+
+    next_children = next_children.stringify_keys
+
+    prev_children = self.children
+    prev_children = prev_children.all.select(&:static_page?)
+    prev_children = prev_children.index_by(&:static_uuid)
+
+    created_uuids   = next_children.keys - prev_children.keys
+    destroyed_uuids = prev_children.keys - next_children.keys
+    updated_uuids   = next_children.keys - created_uuids
+
+    children = []
+
+    created_uuids.each do |uuid|
+      next_page = next_children[uuid]
+      next_page.static_uuid = uuid
+      children.push next_page
+    end
+
+    updated_uuids.each do |uuid|
+      prev_page = prev_children[uuid]
+      next_page = next_children[uuid]
+
+      if next_page.class != prev_page.class
+        new_page = prev_page.becomes(next_page.class)
+      else
+        new_page = prev_page
+      end
+
+      non_translated_attrs = new_page.class.attribute_names
+      translated_attrs     = new_page.class.translated_attribute_names.map(&:to_s)
+
+      non_translated_attrs -= ['id', 'parent_id', 'static_uuid', 'type']
+      translated_attrs     -= ['path_component']
+
+      # update normal attributes
+      non_translated_attrs.each do |attr|
+        next if prev_page.send(attr).present?
+        next if next_page.send(attr).blank?
+
+        new_page.send("#{attr}=", next_page.send(attr))
+      end
+
+      # update translated attributes
+      begin
+        _locale = I18n.locale
+        I18n.available_locales.each do |locale|
+          I18n.locale = locale
+
+          translated_attrs.each do |attr|
+            next if prev_page.send(attr).present?
+            next if next_page.send(attr).blank?
+
+            new_page.send("#{attr}=", next_page.send(attr))
+          end
+
+          new_page.path_component = nil
+        end
+
+      ensure
+        I18n.locale = _locale
+      end
+
+      children.push new_page
+    end
+
+    destroyed_uuids.each do |uuid|
+      prev_children[uuid].destroy_recursively
+    end
 
     self.children = children
   end
