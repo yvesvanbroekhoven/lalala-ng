@@ -133,14 +133,15 @@ private
     next_children = next_children.stringify_keys
 
     prev_children = self.children
-    prev_children = prev_children.all.select(&:static_page?)
+    prev_children = prev_children.all.select(&:static?)
+    keep_children = prev_children.all.reject(&:static?)
     prev_children = prev_children.index_by(&:static_uuid)
 
     created_uuids   = next_children.keys - prev_children.keys
     destroyed_uuids = prev_children.keys - next_children.keys
     updated_uuids   = next_children.keys - created_uuids
 
-    children = []
+    children = [] + keep_children
 
     created_uuids.each do |uuid|
       next_page = next_children[uuid]
