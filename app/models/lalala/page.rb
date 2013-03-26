@@ -130,10 +130,15 @@ private
       raise "Expected a Hash"
     end
 
+    prev_children = []
+    keep_children = []
     next_children = next_children.stringify_keys
 
-    prev_children = self.children.all.select(&:static?)
-    keep_children = self.children.all.reject(&:static?)
+    unless self.new_record?
+      prev_children = self.children.all.select(&:static?)
+      keep_children = self.children.all.reject(&:static?)
+    end
+
     prev_children = prev_children.index_by(&:static_uuid)
 
     created_uuids   = next_children.keys - prev_children.keys
