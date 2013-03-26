@@ -77,7 +77,7 @@ private
 
       table_name = keys.join('_')
 
-      args = [table_name, keys]
+      args = [table_name, columns]
     end
 
     unless args.size == 2 and _ng_stringish?(args[0]) and Array === args[1]
