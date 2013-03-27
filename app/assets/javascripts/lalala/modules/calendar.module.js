@@ -3,7 +3,7 @@ var Calendar;
 
 exports.init = function() {
   var instances = [];
-  this.$el = $(".input.datetime_select");
+  this.$el = $(".input.datetime_select, .input.date_select");
   this.$el.each(function() { instances.push(new Calendar(this)); });
 };
 
