@@ -5,6 +5,10 @@ class Lalala::Pages::PageLoader
   end
 
   def call(env)
+    if %r{^/(lalala|assets)(/|$)} === env['PATH_INFO']
+      return @app.call(env)
+    end
+
     env   = env
     chain = find_chain(env)
 
@@ -18,6 +22,7 @@ class Lalala::Pages::PageLoader
 protected
 
   def find_chain(env)
+
     path_info       = env['PATH_INFO']
     path_components = path_info.split('/')
 

@@ -38,6 +38,10 @@ class Lalala::Page < ActiveRecord::Base
     minimum:    ->(r){ r.minimum_children },
     maximum:    ->(r){ r.maximum_children }
 
+
+  default_scope order(:position)
+
+
   # Before filters
   before_validation :set_default_title,             :on => :create
   before_validation :set_default_position,          :on => :create
