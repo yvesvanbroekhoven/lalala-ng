@@ -8,7 +8,8 @@ module Lalala
       end
 
       def generate_config_file
-        template "page.rb", "app/models/#{file_path}.rb"
+        empty_directory 'app/pages'
+        template "page.rb", "app/pages/#{file_path}.rb"
       end
 
     end

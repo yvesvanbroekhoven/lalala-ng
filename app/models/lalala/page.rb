@@ -38,6 +38,10 @@ class Lalala::Page < ActiveRecord::Base
     minimum:    ->(r){ r.minimum_children },
     maximum:    ->(r){ r.maximum_children }
 
+
+  default_scope order(:position)
+
+
   # Before filters
   before_validation :set_default_title,             :on => :create
   before_validation :set_default_position,          :on => :create
@@ -105,6 +109,66 @@ class Lalala::Page < ActiveRecord::Base
   def destroy_recursively
     self.children.each(&:destroy_recursively)
     self.destroy
+  end
+
+  def self.find_chain_for_path(path_components)
+    if path_components.blank?
+      raise ActiveRecord::RecordNotFound, "empty path"
+    end
+
+    tn_b = quoted_table_name
+    tn_h = quoted_hierarchy_table_name
+    tn_t = connection.quote_table_name(translations_table_name)
+
+    scope = scoped.joins(<<-SQL)
+      INNER JOIN #{tn_h} AS h_ ON #{tn_b}.id     = h_.descendant_id
+      INNER JOIN #{tn_b} AS p_ ON h_.ancestor_id = p_.id
+      INNER JOIN #{tn_t} AS t_ ON #{tn_b}.id     = t_.#{class_name.foreign_key}
+    SQL
+
+    conditions     = []
+    params         = []
+    first_is_blank = path_components.first == ""
+
+    path_components.each_with_index do |path_component, idx|
+      conditions << "(t_.path_component = ? AND h_.generations = ?)"
+      params     << path_component.to_s
+      params     << idx
+
+      if first_is_blank and idx > 0
+        conditions << "(t_.path_component = ? AND h_.generations = ?)"
+        params     << path_component.to_s
+        params     << (idx - 1)
+      end
+    end
+
+    conditions = "(" + conditions.join(" OR ") + ") AND (p_.parent_id IS NULL)"
+
+    scope = scope.where(conditions, *params).order("h_.generations ASC")
+    pages = scope.all
+
+    # find the continuous chains
+    chains = { nil => [] }
+    pages.each do |page|
+      chain = chains[page.parent_id]
+      next unless chain
+
+      chain = chain.dup
+      chain.push page
+      chains[page.id] = chain
+    end
+
+    # longest chain
+    chain = chains.values.sort_by(&:size).last
+
+    if first_is_blank and chain.present?
+      path_component = chain.first.path_component
+      if path_component != ""
+        path_components.shift
+      end
+    end
+
+    chain.zip(path_components)
   end
 
 private

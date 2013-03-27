@@ -15,9 +15,4 @@ Rails.application.routes.draw do
     match '/500', to: 'errors#internal_server_error'
   end
 
-  if (PagesController rescue nil)
-    get '/*path', to: 'pages#show'
-    root to: 'pages#show'
-  end
-
 end

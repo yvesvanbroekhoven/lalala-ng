@@ -39,6 +39,7 @@ module Lalala
 
   autoload :Markdown
   autoload :ActiveRecord
+  autoload :Pages
   require 'lalala/i18n'
   require 'lalala/rack'
 
@@ -50,12 +51,6 @@ module Lalala
     require 'lalala/views/tree_table_for'
     require 'lalala/views/index_as_tree_table'
     require 'lalala/views/title_bar'
-  end
-
-  module Pages
-    require 'lalala/pages/child_type_validator'
-    require 'lalala/pages/children_length_validator'
-    require 'lalala/pages/path_handler'
   end
 
   require 'lalala/engine'
