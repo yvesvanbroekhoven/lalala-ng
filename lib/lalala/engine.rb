@@ -28,6 +28,11 @@ class Lalala::Engine < Rails::Engine
       'ActionDispatch::Flash', Lalala::I18n::Negotiation::Router, adapter)
   end
 
+  initializer "lalala.pages.middleware" do |app|
+    app.middleware.insert_before(
+      'ActionDispatch::Flash', Lalala::Pages::PageLoader)
+  end
+
   ::Sass::Engine::DEFAULT_OPTIONS[:load_paths] << File.expand_path("../../../app/assets/stylesheets", __FILE__)
 
 end
@@ -35,6 +40,10 @@ end
 ActiveSupport.on_load :active_record do
   ActiveRecord::ConnectionAdapters::AbstractAdapter.send :include, Lalala::ActiveRecord::Schema::JoinTable
   ActiveRecord::Migration::CommandRecorder.send :include, Lalala::ActiveRecord::Schema::JoinTableInverter
+end
+
+ActiveSupport.on_load :action_controller do
+  ActionDispatch::Routing::Mapper.send :include, Lalala::Pages::RouteMapper
 end
 
 if defined?(Rails::Generators)
