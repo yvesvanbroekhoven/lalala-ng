@@ -33,8 +33,6 @@ class Lalala::Engine < Rails::Engine
       'ActionDispatch::Flash', Lalala::Pages::PageLoader)
   end
 
-  ::Sass::Engine::DEFAULT_OPTIONS[:load_paths] << File.expand_path("../../../app/assets/stylesheets", __FILE__)
-
 end
 
 ActiveSupport.on_load :active_record do

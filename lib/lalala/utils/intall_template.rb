@@ -8,7 +8,7 @@ class AppBuilder < Rails::AppBuilder
     create_file 'Gemfile', <<-DOC
 source 'https://rubygems.org'
 
-ruby "1.9.2"
+ruby "1.9.3"
 
 gem 'lalala', :github => 'mrhenry/lalala-ng', :submodules => true
 

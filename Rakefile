@@ -23,8 +23,21 @@ RDoc::Task.new(:rdoc) do |rdoc|
 end
 
 
+namespace 'lalala' do
+  Bundler::GemHelper.install_tasks name: 'lalala'
+end
 
-Bundler::GemHelper.install_tasks
+namespace 'lalala-development' do
+  Bundler::GemHelper.install_tasks name: 'lalala-development'
+end
+
+namespace 'lalala-assets' do
+  Bundler::GemHelper.install_tasks name: 'lalala-assets'
+end
+
+namespace 'lalala-test' do
+  Bundler::GemHelper.install_tasks name: 'lalala-test'
+end
 
 
 

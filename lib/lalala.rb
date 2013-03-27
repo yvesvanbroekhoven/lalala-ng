@@ -22,19 +22,15 @@ module Lalala
   require 'stringex'
 
   if groups.include?(:assets)
-    require 'sass'
-    require 'sass-rails'
-    require 'compass-rails'
-
-    require 'coffee_script/source'
-    require 'coffee-rails'
-    require 'sprockets/commonjs'
-
-    require 'uglifier'
+    require 'lalala/assets'
   end
 
   if groups.include?(:development)
-    require 'pry-rails'
+    require 'lalala/development'
+  end
+
+  if groups.include?(:test)
+    require 'lalala/test'
   end
 
   autoload :Markdown
