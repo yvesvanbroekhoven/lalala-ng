@@ -10,6 +10,8 @@ module Lalala
       ActionDispatch::IntegrationTest.send :include, Capybara::DSL
 
       Capybara.javascript_driver = :poltergeist
+
+      I18n.reload!
     end
 
   end

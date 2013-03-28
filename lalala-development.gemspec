@@ -29,5 +29,6 @@ Gem::Specification.new do |gem|
   # generic
   gem.add_runtime_dependency 'lalala',               Lalala::VERSION
   gem.add_runtime_dependency 'lalala-assets',        Lalala::VERSION
+  gem.add_runtime_dependency 'sqlite3'
 
 end

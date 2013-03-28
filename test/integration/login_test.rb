@@ -16,7 +16,7 @@ class LoginIntegrationTest < ActionDispatch::IntegrationTest
     assert_equal(new_admin_user_session_path, current_path)
     fill_in('Email',    with: 'admin@example.com')
     fill_in('Password', with: 'password')
-    find('#admin_user_submit_action').find('input').click
+    click_on('Login')
     assert_equal(lalala_pages_path, current_path)
   end
 
