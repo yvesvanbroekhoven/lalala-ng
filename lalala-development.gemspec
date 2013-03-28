@@ -30,5 +30,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'lalala',               Lalala::VERSION
   gem.add_runtime_dependency 'lalala-assets',        Lalala::VERSION
   gem.add_runtime_dependency 'pry-rails',            '> 0'
+  gem.add_runtime_dependency 'sqlite3',              '> 0'
 
 end
