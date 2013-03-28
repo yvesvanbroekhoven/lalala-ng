@@ -56,6 +56,7 @@ module Lalala
     require 'lalala/views/title_bar'
   end
 
+  require 'lalala/uploaders'
   require 'lalala/engine'
 
 end
