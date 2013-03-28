@@ -6,6 +6,10 @@ yellow='\033[0;33m'
 green='\033[0;32m'
 clear='\033[0m'
 
+function indent() {
+  sed -u 's/^/        /'
+}
+
 function announce() {
   color="$1"
   msg="$2"
@@ -26,10 +30,14 @@ function cleanup {
 trap cleanup EXIT
 
 announce "${yellow}" "Create the postgres databases"
-psql -c 'CREATE DATABASE lalala_test' -U postgres
+{
+  psql -c 'CREATE DATABASE lalala_test' -U postgres
+} | indent
 
 announce "${yellow}" "Run the tests"
-rake
+{
+  rake
+} | indent
 
 # Are we allowed to push gems?
 if [[ "$TRAVIS_SECURE_ENV_VARS" == "true" && "$TRAVIS_PULL_REQUEST" == "false" ]]
@@ -55,16 +63,24 @@ then
     }
 
     step "${yellow}" "Building lalala"
-    rake lalala:build
+    {
+      rake lalala:build
+    } | indent
 
     step "${yellow}" "Building lalala-assets"
-    rake lalala-assets:build
+    {
+      rake lalala-assets:build
+    } | indent
 
     step "${yellow}" "Building lalala-development"
-    rake lalala-development:build
+    {
+      rake lalala-development:build
+    } | indent
 
     step "${yellow}" "Building lalala-test"
-    rake lalala-test:build
+    {
+      rake lalala-test:build
+    } | indent
 
   fi
 
