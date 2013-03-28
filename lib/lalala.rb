@@ -33,11 +33,12 @@ module Lalala
     require 'lalala/test'
   end
 
+  autoload :ExtActiveRecord
+  autoload :ExtRack
+  autoload :ExtI18n
+
   autoload :Markdown
-  autoload :ActiveRecord
   autoload :Pages
-  require 'lalala/i18n'
-  require 'lalala/rack'
 
   module Core
     require 'lalala/core/class_inheritable_setting'

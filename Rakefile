@@ -23,6 +23,12 @@ RDoc::Task.new(:rdoc) do |rdoc|
 end
 
 
+
+APP_RAKEFILE = File.expand_path("../test/dummy/Rakefile", __FILE__)
+load 'rails/tasks/engine.rake'
+
+
+
 namespace 'lalala' do
   Bundler::GemHelper.install_tasks name: 'lalala'
 end
@@ -49,6 +55,9 @@ Rake::TestTask.new(:test) do |t|
   t.pattern = 'test/**/*_test.rb'
   t.verbose = false
 end
+
+task :test => 'app:db:test:prepare'
+
 
 
 task :default => :test
