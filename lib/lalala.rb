@@ -11,7 +11,8 @@ module Lalala
   Lalala::Vendor.enable('activeadmin', 'active_admin')
   Lalala::Vendor.enable('closure_tree')
 
-  require 'activeadmin'
+  require 'rails-i18n'
+  require 'i18n-country-translations'
   require 'carrierwave'
   require 'closure_tree'
   require 'globalize3'
@@ -20,6 +21,7 @@ module Lalala
   require 'mini_magick'
   require 'redcarpet'
   require 'stringex'
+  require 'activeadmin'
 
   if groups.include?(:assets)
     require 'lalala/assets'
