@@ -51,8 +51,8 @@ then
 
     export LALALA_BUILD_VERSION="$TRAVIS_BUILD_NUMBER"
 
-    mkdir -p "~/.gem/"
-    echo -e "---\n:rubygems_api_key: RUBYGEMS_API_KEY" > "~/.gem/credentials"
+    mkdir -p "$HOME/.gem/"
+    echo -e "---\n:rubygems_api_key: RUBYGEMS_API_KEY" > "$HOME/.gem/credentials"
 
     { # set the build version
       cd lib/lalala
