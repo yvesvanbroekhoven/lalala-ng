@@ -2,7 +2,7 @@ class AppBuilder < Rails::AppBuilder
   include Thor::Actions
   include Thor::Shell
 
-  RUBY_VERSION = "1.9.3"
+  RUBY_VERSION = "2.0.0"
 
   def gemfile
     create_file 'Gemfile', <<-DOC

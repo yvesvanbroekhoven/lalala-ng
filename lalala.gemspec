@@ -41,8 +41,8 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'redcarpet',                 '= 2.2.2'
   gem.add_runtime_dependency 'thin',                      '= 1.5.1'
   gem.add_runtime_dependency 'stringex',                  '= 1.5.1'
-  gem.add_runtime_dependency 'rails-i18n',                '> 0'
-  gem.add_runtime_dependency 'i18n-country-translations', '> 0'
+  gem.add_runtime_dependency 'rails-i18n',                '= 0.7.3'
+  gem.add_runtime_dependency 'i18n-country-translations', '= 0.0.9'
 
   # vendor/deps/active_admin
   # gem.add_runtime_dependency 'activeadmin',  '= 0.5.1'
