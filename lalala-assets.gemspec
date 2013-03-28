@@ -5,7 +5,7 @@ require 'lalala/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "lalala-assets"
-  gem.version       = Lalala::VERSION
+  gem.version       = Lalala::BUILD_VERSION
 
   gem.authors       = [
     "Simon Menke",
@@ -27,7 +27,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   # generic
-  gem.add_runtime_dependency 'lalala',               Lalala::VERSION
+  gem.add_runtime_dependency 'lalala',               Lalala::BUILD_VERSION
   gem.add_runtime_dependency 'coffee-rails',         '= 3.2.2'
   gem.add_runtime_dependency 'coffee-script-source', '= 1.4.0'
   gem.add_runtime_dependency 'compass',              '= 0.13.alpha.0'
