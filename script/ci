@@ -6,8 +6,8 @@ clear='\033[0m'
 
 set -e
 
-echo -e "\n${blue_}----> migrate the database${clear}"
-rake db:migrate
+echo -e "\n${blue_}----> create the postgress databases${clear}"
+psql -c 'CREATE DATABASE lalala_test' -U postgres
 
 echo -e "\n${blue_}----> run the tests${clear}"
 rake
