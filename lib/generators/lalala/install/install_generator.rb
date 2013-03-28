@@ -4,7 +4,7 @@ module Lalala
   module Generators
 
     # This class is stolen from active admin
-    class InstallGenerator < ActiveRecord::Generators::Base
+    class InstallGenerator < ::ActiveRecord::Generators::Base
 
       desc "Installs Active Admin and generates the necessary migrations"
       argument :name, :type => :string, :default => "AdminUser"
@@ -15,9 +15,28 @@ module Lalala
         @_active_admin_source_root ||= File.expand_path("../templates", __FILE__)
       end
 
-			def copy_initializer
+      def setup_routes
+        remove_file("config/routes.rb")
+        template 'routes.rb.erb', 'config/routes.rb'
+      end
+
+      def copy_initializer
         @underscored_user_name = name.underscore
         template 'active_admin.rb.erb', 'config/initializers/active_admin.rb'
+      end
+
+      def setup_errors
+        empty_directory "app/controllers"
+        template 'errors_controller.rb', 'app/controllers/errors_controller.rb'
+      end
+
+      def setup_pages
+        empty_directory "app/pages"
+        template 'application_page.rb', 'app/pages/application_page.rb'
+        empty_directory "app/controllers"
+        template 'pages_controller.rb', 'app/controllers/pages_controller.rb'
+        empty_directory "app/admin"
+        template 'admin_pages.rb', 'app/admin/admin_pages.rb'
       end
 
       def setup_directory

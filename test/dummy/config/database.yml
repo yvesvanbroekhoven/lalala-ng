@@ -1,0 +1,35 @@
+sqlite_development: &sqlite_development
+  adapter:  sqlite3
+  database: db/development.sqlite3
+
+sqlite_test: &sqlite_test
+  adapter:  sqlite3
+  database: db/test.sqlite3
+
+postgresql_development: &postgresql_development
+  adapter:  postgresql
+  username: <%= ENV['BOXEN_POSTGRESQL_PORT'] ? ENV['USER'] : 'postgres' %>
+  password:
+  database: lalala_development
+  port:     <%= ENV['BOXEN_POSTGRESQL_PORT'] || '5432' %>
+  min_messages: ERROR
+
+postgresql_test: &postgresql_test
+  adapter:  postgresql
+  username: <%= ENV['BOXEN_POSTGRESQL_PORT'] ? ENV['USER'] : 'postgres' %>
+  password:
+  database: lalala_test
+  port:     <%= ENV['BOXEN_POSTGRESQL_PORT'] || '5432' %>
+  min_messages: ERROR
+
+development:
+  pool: 5
+  timeout: 5000
+  host: localhost
+  <<: *<%= ENV['DB'] || "sqlite" %>_development
+
+test:
+  pool: 5
+  timeout: 5000
+  host: localhost
+  <<: *<%= ENV['DB'] || "sqlite" %>_test

@@ -1,0 +1,17 @@
+language: ruby
+
+rvm:
+  - 2.0.0
+
+env:
+  global:
+    - secure: "NVOz7w0oOzOYon7G9jhvVNZmHMVvesLJHeFnOL8aPXjeSDVct0Prwg3/IVsO\nRWPOt0wV26QOZygtgMIzq4O2s13YR3nx8fY43Zn2pYxzYbX1QAEHKegn4hp3\n4RGUL0YXWyztY473VcDcvkWyRImSFiarCAiP9/IAkr8yzRaufiE="
+  matrix:
+    - DB=sqlite
+    - DB=postgresql
+
+before_install:
+  - git submodule update --init --recursive
+
+script:
+  script/ci

@@ -1,28 +1,59 @@
 module Lalala
 
+  unless RUBY_VERSION == "2.0.0"
+    raise "Lalala is only compatible with one version of ruby at a time (current: Ruby 2.0.0)"
+  end
+
   require "lalala/version"
+  require "lalala/vendor"
 
   require 'rails/all'
+  extend ActiveSupport::Autoload
 
   groups = Rails.groups(:assets => %w(development test)).map(&:to_sym)
 
-  require 'activeadmin'
-  require 'meta_search'
+  Lalala::Vendor.enable('activeadmin', 'active_admin')
+  Lalala::Vendor.enable('closure_tree')
+
+  require 'rails-i18n'
+  require 'i18n-country-translations'
   require 'carrierwave'
-  require 'mini_magick'
+  require 'closure_tree'
+  require 'globalize3'
   require 'jquery-rails'
+  require 'meta_search'
+  require 'mini_magick'
+  require 'redcarpet'
+  require 'stringex'
+  require 'activeadmin'
 
   if groups.include?(:assets)
-    require 'sass'
-    require 'sass-rails'
-    require 'compass-rails'
+    require 'lalala/assets'
+  end
 
-    require 'coffee_script/source'
-    require 'coffee-rails'
-    require 'sprockets/commonjs'
+  if groups.include?(:development)
+    require 'lalala/development'
+  end
 
-    require 'uglifier'
+  if groups.include?(:test)
+    require 'lalala/test'
+  end
 
+  autoload :ExtActiveRecord
+  autoload :ExtRack
+  autoload :ExtI18n
+
+  autoload :Markdown
+  autoload :Pages
+
+  module Core
+    require 'lalala/core/class_inheritable_setting'
+  end
+
+  module Views
+    require 'lalala/views/tree_table_for'
+    require 'lalala/views/index_as_tree_table'
+    require 'lalala/views/title_bar'
   end
 
   require 'lalala/engine'

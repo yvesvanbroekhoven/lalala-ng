@@ -10,8 +10,8 @@
 @import "lalala/components/forms";
 @import "lalala/components/buttons";
 @import "lalala/components/tables";
-@import "lalala/components/flash";
 
+@import "lalala/modules/flashes";
 @import "lalala/modules/login";
 @import "lalala/modules/header";
 @import "lalala/modules/title-bar";
@@ -20,5 +20,14 @@
 @import "lalala/modules/footer";
 @import "lalala/modules/sidebar-section";
 @import "lalala/modules/utility-nav";
+@import "lalala/modules/dropdown-menu";
+@import "lalala/modules/index-footer";
+@import "lalala/modules/table-tools";
+@import "lalala/modules/index-as-table";
+@import "lalala/modules/index-as-tree-table";
+@import "lalala/modules/editor";
+@import "lalala/modules/editor-cheatsheet";
 
 @import "lalala/lib/jquery-ui";
+@import "lalala/lib/chosen";
+@import "lalala/lib/pikaday";

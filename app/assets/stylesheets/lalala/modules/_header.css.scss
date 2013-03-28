@@ -8,8 +8,8 @@
     font-size: 16px;
     font-weight: 600;
     line-height: 1.2em;
-    margin: 10px 0 100px 30px;
-    text-align: center;
+    margin: 10px 20px 100px 10px;
+    text-align: right;
   }
 
   // nav items
@@ -73,6 +73,10 @@
 
       &#pages {
         @include icon('page_white_text');
+      }
+
+      &#posts {
+        @include icon('newspaper');
       }
 
       &#tags {
