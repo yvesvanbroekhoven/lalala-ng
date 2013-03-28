@@ -1,3 +1,5 @@
 module Lalala::Uploaders
-  require 'lalala/uploaders/image'
+  extend ActiveSupport::Autoload
+
+  autoload :Image
 end

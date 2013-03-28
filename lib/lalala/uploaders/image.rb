@@ -1,4 +1,5 @@
 class Lalala::Uploaders::Image < CarrierWave::Uploader::Base
+
   include CarrierWave::MiniMagick
   include Sprockets::Helpers::RailsHelper
   include Sprockets::Helpers::IsolatedHelper
@@ -12,4 +13,5 @@ class Lalala::Uploaders::Image < CarrierWave::Uploader::Base
   def extension_white_list
     %w(jpg jpeg gif png)
   end
+
 end
