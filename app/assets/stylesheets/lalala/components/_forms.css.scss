@@ -6,6 +6,7 @@
   Base styles for various input types, form layouts and states
 
 */
+
 form {
   margin: 0 0 1em 0;
 }
@@ -16,7 +17,7 @@ fieldset {
   border: 0;
 }
 
-legend {
+form > fieldset > legend {
   color: gray(200);
   display: block;
   font-size: 1.5em;
@@ -121,7 +122,8 @@ select:focus {
   }
 
   input,
-  textarea {
+  textarea,
+  select {
     width: $input_width;
   }
 
@@ -155,6 +157,13 @@ select:focus {
 
   &.boolean {
     padding-left: $label_width;
+
+    label { font-weight: normal; }
+    input[type="checkbox"] { margin-right: 11px; }
+  }
+
+  &.select {
+    white-space: nowrap;
   }
 }
 
@@ -176,4 +185,22 @@ select:focus {
       @include box-shadow(transparentize($red,.2) 0 0 5px);
     }
   }
+}
+
+// fragments
+.fragments .fragments-group {
+  clear: both;
+}
+
+
+
+/*
+
+  FORMS / CHOSEN
+  -----------------
+
+*/
+
+.chzn-container {
+  margin-top: 4px;
 }

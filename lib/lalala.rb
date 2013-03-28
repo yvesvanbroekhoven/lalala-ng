@@ -4,6 +4,7 @@ module Lalala
   require "lalala/vendor"
 
   require 'rails/all'
+  extend ActiveSupport::Autoload
 
   groups = Rails.groups(:assets => %w(development test)).map(&:to_sym)
 
@@ -32,19 +33,26 @@ module Lalala
     require 'uglifier'
   end
 
-  require 'lalala/engine'
+  if groups.include?(:development)
+    require 'pry-rails'
+  end
 
-  require 'lalala/views/tree_table_for'
-  require 'lalala/views/index_as_tree_table'
-  require 'lalala/markdown'
+  autoload :Markdown
+  autoload :ActiveRecord
+  autoload :Pages
+  require 'lalala/i18n'
+  require 'lalala/rack'
 
   module Core
     require 'lalala/core/class_inheritable_setting'
   end
 
-  module Pages
-    require 'lalala/pages/child_type_validator'
-    require 'lalala/pages/path_handler'
+  module Views
+    require 'lalala/views/tree_table_for'
+    require 'lalala/views/index_as_tree_table'
+    require 'lalala/views/title_bar'
   end
+
+  require 'lalala/engine'
 
 end

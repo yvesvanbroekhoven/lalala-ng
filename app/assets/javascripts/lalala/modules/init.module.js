@@ -1,7 +1,12 @@
 var console = require('browser/console'),
-    editor  = require("lalala/modules/editor");
+    calendar = require('lalala/modules/calendar'),
+    editor = require('lalala/modules/editor'),
+    locale_chooser = require("lalala/modules/locale_chooser");
 
 $(function(){
-  $('select').chosen();
+  locale_chooser.init();
   editor.init();
+  calendar.init();
+
+  $('select').chosen();
 });
