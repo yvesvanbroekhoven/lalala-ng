@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
+set -o pipefail
 
 yellow='\033[0;33m'
 green='\033[0;32m'
