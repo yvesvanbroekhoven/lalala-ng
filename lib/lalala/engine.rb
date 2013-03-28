@@ -5,8 +5,6 @@ module Lalala
     config.i18n.default_locale = :en
     config.i18n.available_locales = [:en]
 
-    config.assets.initialize_on_precompile = false
-
     config.lalala = ActiveSupport::OrderedOptions.new
     config.lalala.i18n = ActiveSupport::OrderedOptions.new
     config.lalala.i18n.adapter = nil
