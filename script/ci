@@ -83,31 +83,26 @@ then
       rake lalala-test:build
     } | indent
 
-    echo "~/.gem/credentials"
-    echo "------------------"
-    cat  ~/.gem/credentials
-    echo "------------------"
 
+    step "${yellow}" "Releasing lalala"
+    {
+      gem push pkg/lalala-[0-9]*.gem
+    } | indent
 
-    # step "${yellow}" "Releasing lalala"
-    # {
-    #   gem push pkg/lalala-[0-9]*.gem
-    # } | indent
+    step "${yellow}" "Releasing lalala-assets"
+    {
+      gem push pkg/lalala-assets-[0-9]*.gem
+    } | indent
 
-    # step "${yellow}" "Releasing lalala-assets"
-    # {
-    #   gem push pkg/lalala-assets-[0-9]*.gem
-    # } | indent
+    step "${yellow}" "Releasing lalala-development"
+    {
+      gem push pkg/lalala-development-[0-9]*.gem
+    } | indent
 
-    # step "${yellow}" "Releasing lalala-development"
-    # {
-    #   gem push pkg/lalala-development-[0-9]*.gem
-    # } | indent
-
-    # step "${yellow}" "Releasing lalala-test"
-    # {
-    #   gem push pkg/lalala-test-[0-9]*.gem
-    # } | indent
+    step "${yellow}" "Releasing lalala-test"
+    {
+      gem push pkg/lalala-test-[0-9]*.gem
+    } | indent
 
 
   fi
