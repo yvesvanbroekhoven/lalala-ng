@@ -24,7 +24,7 @@ Gem::Specification.new do |gem|
   gem.files         = []
   gem.executables   = []
   gem.test_files    = []
-  gem.require_paths = []
+  gem.require_paths = ["lib"]
 
   # generic
   gem.add_runtime_dependency 'lalala',               Lalala::VERSION

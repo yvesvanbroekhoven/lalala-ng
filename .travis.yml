@@ -11,3 +11,6 @@ matrix:
 
 before_install:
   - git submodule update --init --recursive
+
+script:
+  script/ci
