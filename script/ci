@@ -30,14 +30,10 @@ function cleanup {
 trap cleanup EXIT
 
 announce "${yellow}" "Create the postgres databases"
-{
-  psql -c 'CREATE DATABASE lalala_test' -U postgres
-} | indent
+psql -c 'CREATE DATABASE lalala_test' -U postgres | indent
 
 announce "${yellow}" "Run the tests"
-{
-  rake
-} | indent
+rake | indent
 
 # Are we allowed to push gems?
 if [[ "$TRAVIS_SECURE_ENV_VARS" == "true" && "$TRAVIS_PULL_REQUEST" == "false" ]]
@@ -61,24 +57,16 @@ then
 
 
     step "${yellow}" "Building lalala"
-    {
-      rake lalala:build
-    } | indent
+    rake lalala:build | indent
 
     step "${yellow}" "Building lalala-assets"
-    {
-      rake lalala-assets:build
-    } | indent
+    rake lalala-assets:build | indent
 
     step "${yellow}" "Building lalala-development"
-    {
-      rake lalala-development:build
-    } | indent
+    rake lalala-development:build | indent
 
     step "${yellow}" "Building lalala-test"
-    {
-      rake lalala-test:build
-    } | indent
+    rake lalala-test:build | indent
 
 
     announce "${yellow}" "Release development gems"
@@ -88,24 +76,16 @@ then
     chmod 0600 "$HOME/.gem/credentials"
 
     step "${yellow}" "Releasing lalala"
-    {
-      gem push pkg/lalala-[0-9]*.gem
-    } | indent
+    gem push pkg/lalala-[0-9]*.gem | indent
 
     step "${yellow}" "Releasing lalala-assets"
-    {
-      gem push pkg/lalala-assets-[0-9]*.gem
-    } | indent
+    gem push pkg/lalala-assets-[0-9]*.gem | indent
 
     step "${yellow}" "Releasing lalala-development"
-    {
-      gem push pkg/lalala-development-[0-9]*.gem
-    } | indent
+    gem push pkg/lalala-development-[0-9]*.gem | indent
 
     step "${yellow}" "Releasing lalala-test"
-    {
-      gem push pkg/lalala-test-[0-9]*.gem
-    } | indent
+    gem push pkg/lalala-test-[0-9]*.gem | indent
 
 
   fi
