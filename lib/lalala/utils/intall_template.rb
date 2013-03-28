@@ -2,7 +2,8 @@ class AppBuilder < Rails::AppBuilder
   include Thor::Actions
   include Thor::Shell
 
-  RUBY_VERSION = "2.0.0"
+  RUBY_VERSION   = "2.0.0"
+  LALALA_VERSION = "4.0.0.dev"
 
   def gemfile
     create_file 'Gemfile', <<-DOC
@@ -10,12 +11,10 @@ source 'https://rubygems.org'
 
 ruby "#{RUBY_VERSION}"
 
-git 'git://github.com/mrhenry/lalala-ng', submodules: true do
-  gem 'lalala'
-  gem 'lalala-development', groups: [:development]
-  gem 'lalala-assets',      groups: [:development, :assets]
-  gem 'lalala-test',        groups: [:test]
-end
+gem 'lalala',             "~> #{LALALA_VERSION}"
+gem 'lalala-development', "~> #{LALALA_VERSION}", groups: [:development]
+gem 'lalala-assets',      "~> #{LALALA_VERSION}", groups: [:development, :assets]
+gem 'lalala-test',        "~> #{LALALA_VERSION}", groups: [:test]
 DOC
   end
 
