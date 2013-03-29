@@ -88,6 +88,8 @@ Grid = (function() {
   };
 
   G.prototype.row_overlay_click = function(e) {
+    e.preventDefault();
+
     // $(this).parent().toggleClass("selected");
     this.toggle_destroy( $(e.currentTarget).parent()[0] );
   };
