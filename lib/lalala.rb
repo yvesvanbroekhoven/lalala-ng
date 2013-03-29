@@ -4,8 +4,8 @@ module Lalala
     raise "Lalala is only compatible with one version of ruby at a time (current: Ruby 2.0.0)"
   end
 
-  require "lalala/version"
-  require "lalala/vendor"
+  require 'lalala/version'
+  require 'lalala/vendor'
 
   require 'rails/all'
   extend ActiveSupport::Autoload
@@ -26,6 +26,8 @@ module Lalala
   require 'redcarpet'
   require 'stringex'
   require 'activeadmin'
+
+  require 'formtastic/inputs/grid_input'
 
   if groups.include?(:assets)
     require 'lalala/assets'
