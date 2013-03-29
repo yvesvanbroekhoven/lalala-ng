@@ -34,10 +34,6 @@ def configure_s3(config, s3)
     region: 'eu-west-1'
   }
 
-  if s3['vhost']
-    credentials.merge!(host: s3['vhost'])
-  end
-
   config.fog_credentials = credentials
   config.fog_directory = s3['vhost'] || s3['bucket']
 end
