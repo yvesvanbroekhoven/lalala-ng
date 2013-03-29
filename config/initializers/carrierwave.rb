@@ -35,7 +35,7 @@ def configure_s3(config, s3)
   }
 
   if s3['vhost']
-    credentials.merge!(host: "http://#{s3['vhost']}")
+    config.fog_host = "http://#{s3['vhost']}"
   end
 
   config.fog_credentials = credentials
