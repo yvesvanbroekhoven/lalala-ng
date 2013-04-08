@@ -36,6 +36,8 @@ def configure_s3(config, s3)
 
   if s3['vhost']
     config.asset_host = "http://#{s3['vhost']}"
+  elsif s3['bucket'] and s3['bucket'].index(".")
+    config.asset_host = "http://#{s3['bucket'].s3.amazonaws.com}"
   end
 
   config.fog_credentials = credentials
