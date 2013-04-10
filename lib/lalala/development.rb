@@ -3,6 +3,7 @@ require 'lalala'
 module Lalala
 
   require 'pry-rails'
+  require 'better_errors'
 
 end
 
