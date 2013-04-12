@@ -10,7 +10,9 @@ module Lalala
     config.lalala.i18n.adapter = nil
 
     initializer "lalala.threadsafe" do |app|
-      app.config.threadsafe!
+      unless Rails.env.development? or Rails.env.test?
+        app.config.threadsafe!
+      end
     end
 
     initializer "lalala.error_handlers" do |app|
