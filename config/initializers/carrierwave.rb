@@ -24,7 +24,7 @@ CarrierWave.configure do |config|
     )
 
     config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}
-    config.asset_host     = nil
+    config.asset_host     = ""
 
 
   else # dev
