@@ -15,8 +15,16 @@ CarrierWave.configure do |config|
       aws_secret_access_key: ENV["LALALA_S3_SECRET_KEY"]
     }
 
-    config.fog_directory   = ENV["LALALA_S3_BUCKET"]
-    config.fog_attributes  = {'Cache-Control'=>'max-age=315576000'}
+    config.fog_directory = File.join(
+      ENV["LALALA_S3_BUCKET"],
+      "storage",
+      ENV["APP_NAME"],
+      Rails.env.to_s,
+      "assets"
+    )
+
+    config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}
+    config.asset_host     = nil
 
 
   else # dev
