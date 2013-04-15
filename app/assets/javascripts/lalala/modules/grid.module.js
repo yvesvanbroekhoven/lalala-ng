@@ -21,7 +21,8 @@ Grid = (function() {
 
 
   G.prototype.transform_html = function(grid_element) {
-    var fragment, el, el_images, el_input, $grid;
+    var fragment, el, el_images, el_input, data_attr, $grid, $original_list;
+    data_attr = "data-accessible-attributes";
 
     // document fragment for the images
     fragment = document.createDocumentFragment();
@@ -37,11 +38,15 @@ Grid = (function() {
       fragment.appendChild(grid_piece);
     });
 
+    // original list
+    $original_list = $grid.children("ul:first-child");
+
     // create new container elements
     el = document.createElement("div");
     el.className = "mod-grid";
     el_images = document.createElement("ul");
     el_images.className = "images";
+    el_images.setAttribute(data_attr, $original_list.attr(data_attr));
     el_images.appendChild(fragment);
     el_input = document.createElement("div");
     el_input.className = "input-fields";
@@ -52,7 +57,7 @@ Grid = (function() {
     el.appendChild(el_input);
 
     // replace original with new
-    $grid.children("ul:first-child").replaceWith(el);
+    $original_list.replaceWith(el);
 
     // bind to instance
     this.$el = $(el);

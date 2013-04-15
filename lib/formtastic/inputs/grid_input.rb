@@ -6,7 +6,13 @@ class Formtastic::Inputs::GridInput
     assets = object.send(method)
     preroll = "#{object.class.table_name.singularize}[#{method}]"
 
-    ul = template.content_tag :ul do
+    image_attributes = assets.first.class.accessible_attributes.to_a
+    image_attributes.select! { |x| x.size > 0 and x != "asset" }
+
+    element_attributes = {}
+    element_attributes["data-accessible-attributes"] = image_attributes.join(",")
+
+    ul = template.content_tag :ul, element_attributes do
       html = template.raw("")
 
       assets.each_with_index do |asset, idx|
