@@ -51,6 +51,10 @@ module Lalala
   autoload :Pages
   autoload :Uploaders
 
+  module ActiveRecordMixins
+    require 'lalala/active_record_mixins/images'
+  end
+
   module Core
     require 'lalala/core/class_inheritable_setting'
   end

@@ -4,23 +4,24 @@ class Formtastic::Inputs::GridInput
   def to_html
     object = builder.object
     assets = object.send(method)
+    preroll = "#{object.class.table_name.singularize}[#{method}]"
 
     ul = template.content_tag :ul do
       html = template.raw("")
 
-      assets.each do |asset|
+      assets.each_with_index do |asset, idx|
         html += template.content_tag :li do
           builder.fields_for(method, asset) do |f|
             thumbnail_html = template.image_tag f.object.asset.thumb.url
-            template.link_to thumbnail_html, f.object.asset.url
+            h = template.hidden_field_tag "#{preroll}[][id]", f.object.id
+            h << template.link_to(thumbnail_html, f.object.asset.url)
+            h
           end
         end
       end
 
       html += template.content_tag :li do
-        builder.fields_for(method, assets.build) do |f|
-          f.file_field :asset
-        end
+        builder.file_field method, multiple: true
       end
 
       html
