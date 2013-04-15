@@ -14,7 +14,7 @@ class Lalala::Uploaders::Image < CarrierWave::Uploader::Base
 
   def url(*)
     if Rails.env.production? or Rails.env.staging?
-      File.join("/store/assets", super)
+      File.join("/storage/assets", super)
     else
       super
     end
