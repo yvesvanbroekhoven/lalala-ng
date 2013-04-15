@@ -27,7 +27,8 @@ class Formtastic::Inputs::GridInput
       end
 
       html += template.content_tag :li do
-        builder.file_field method, multiple: true
+        # name will probably be "#{preroll}[]" in a future rails release
+        builder.file_field method, name: "#{preroll}", multiple: true
       end
 
       html
