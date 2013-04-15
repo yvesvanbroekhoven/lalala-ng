@@ -6,7 +6,8 @@ module Lalala::ActiveRecordMixins::Images
   end
 
   def images=(attrs)
-    image_attributes = %w(title caption)
+    image_attributes = Image.accessible_attributes.to_a
+    image_attributes.select! { |x| x.size > 0 and x != "asset" }
 
     attrs.each do |attr|
       if attr.is_a? Hash
