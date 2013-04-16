@@ -52,7 +52,7 @@ module Lalala
   autoload :Uploaders
 
   module ActiveRecordMixins
-    require 'lalala/active_record_mixins/images'
+    require 'lalala/active_record_mixins/image_assets'
   end
 
   module Core

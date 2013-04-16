@@ -6,7 +6,8 @@ class Formtastic::Inputs::GridInput
     assets = object.send(method)
     preroll = "#{object.class.table_name.singularize}[#{method}]"
 
-    image_attributes = assets.first.class.accessible_attributes.to_a
+    image_model_class = object.class.reflect_on_association(method).class_name.constantize
+    image_attributes = image_model_class.accessible_attributes.to_a
     image_attributes.select! { |x| x.size > 0 and x != "asset" }
 
     element_attributes = {}
