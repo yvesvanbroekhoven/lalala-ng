@@ -45,6 +45,10 @@ module Lalala
         'ActionDispatch::Flash',
         Lalala::ExtRack::PageLoader)
 
+      stack.insert_before(
+        'ActionDispatch::Head',
+        Lalala::ExtRack::MultipleFileUploadSupport)
+
     end
 
   end

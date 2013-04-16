@@ -4,7 +4,6 @@ class Formtastic::Inputs::GridInput
   def to_html
     object = builder.object
     assets = object.send(method)
-    preroll = "#{object.class.table_name.singularize}[#{method}]"
 
     image_model_class = object.class.reflect_on_association(method).class_name.constantize
     image_attributes = image_model_class.accessible_attributes.to_a
@@ -20,16 +19,15 @@ class Formtastic::Inputs::GridInput
         html += template.content_tag :li do
           builder.fields_for(method, asset) do |f|
             thumbnail_html = template.image_tag f.object.asset.thumb.url
-            h = template.hidden_field_tag "#{preroll}[][id]", f.object.id
-            h << template.link_to(thumbnail_html, f.object.asset.url)
-            h
+            template.link_to(thumbnail_html, f.object.asset.url)
           end
         end
       end
 
       html += template.content_tag :li do
-        # name will probably be "#{preroll}[]" in a future rails release
-        builder.file_field method, name: "#{preroll}", multiple: true
+        builder.fields_for(method, assets.build) do |f|
+          f.file_field :asset, multiple: true
+        end
       end
 
       html
