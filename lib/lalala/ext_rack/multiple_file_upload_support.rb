@@ -16,7 +16,7 @@ class Lalala::ExtRack::MultipleFileUploadSupport
   end
 
   def correct_assets_hash_nesting(params, key=nil)
-    if key and key.to_s.ends_with?('_attributes')
+    if key and key.to_s.ends_with?("_attributes")
       return if params.size == 0
 
       last_id = params.keys.sort_by(&:to_i).last
@@ -34,11 +34,10 @@ class Lalala::ExtRack::MultipleFileUploadSupport
 
     else
       case params
-      when Hash
-        params.each { |k,v| correct_assets_hash_nesting(v, k) }
-      when Array
-        params.each { |v| correct_assets_hash_nesting(v) }
+      when Hash then params.each { |k, v| correct_assets_hash_nesting(v, k) }
+      when Array then params.each { |v| correct_assets_hash_nesting(v) }
       end
+
     end
   end
 

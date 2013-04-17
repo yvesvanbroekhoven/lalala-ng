@@ -8,4 +8,8 @@ class Lalala::Uploaders::Image < Lalala::Uploaders::File
     %w(jpg jpeg gif png)
   end
 
+  version :thumb do
+    process :resize_to_fill => [100, 100]
+  end
+
 end
