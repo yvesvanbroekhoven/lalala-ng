@@ -1,3 +1,5 @@
+require_relative "../../app/uploaders/image"
+
 class CreateImageAssets < ActiveRecord::Migration
   def up
     create_table :image_assets do |t|

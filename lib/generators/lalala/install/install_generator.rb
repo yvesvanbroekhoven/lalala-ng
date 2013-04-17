@@ -32,7 +32,7 @@ module Lalala
 
       def setup_models
         empty_directory "app/models"
-        template "models/image_asset.rb", "app/models/image_asset.rb"
+        copy_file "models/image_asset.rb", "app/models/image_asset.rb"
       end
 
       def setup_pages
@@ -55,7 +55,7 @@ module Lalala
 
       def setup_uploaders
         empty_directory "app/uploaders"
-        template "uploaders/image.rb", "app/uploaders/image.rb"
+        copy_file "uploaders/image.rb", "app/uploaders/image.rb"
       end
 
       def create_assets
