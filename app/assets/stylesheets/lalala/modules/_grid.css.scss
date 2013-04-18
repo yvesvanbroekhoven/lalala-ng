@@ -6,8 +6,11 @@
 */
 
 .mod-grid {
+  border: 1px solid #ddd;
+  padding: 18px;
+
   .images,
-  .input-fields {
+  .actions {
     overflow: hidden;
   }
 
@@ -53,6 +56,14 @@
     z-index: 1;
   }
 
+  // [row].edit-block
+  li.edit-block {
+    clear: both;
+    height: auto;
+    min-height: 100px;
+    width: 100%;
+  }
+
   // label
   li label {
     @include border-radius(2px);
@@ -71,5 +82,59 @@
     white-space: nowrap;
     z-index: 2;
   }
+
+  // attributes
+  li .attributes { display: none }
+
+
+  //
+  //  Actions
+  //
+  .actions {
+    padding-bottom: 10px;
+
+    & > div {
+      float: left;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .button {
+      background: $button_green;
+      color: white;
+      cursor: pointer;
+      float: left;
+      font-size: 10px;
+      font-weight: 600;
+      margin-right: 7px;
+      padding: 7px 9px 6px;
+      text-transform: uppercase;
+
+      @include border-radius(3px);
+    }
+
+    .button.unavailable {
+      background-color: #ddd !important;
+      cursor: default;
+    }
+
+    .button[rel="edit"] { background-color: #555; }
+    .button[rel="destroy"] { background-color: $button_red; }
+
+    .files-description {
+      color: #999;
+      display: none;
+      font-size: 9px;
+      height: 23px;
+      letter-spacing: 1px;
+      line-height: 25px;
+      margin-right: 12px;
+      overflow: hidden;
+      text-transform: uppercase;
+    }
+  }
+
 
 }

@@ -25,6 +25,11 @@ form > fieldset > legend {
   margin: 0 0 1em 0;
 }
 
+form > fieldset.next {
+  & > legend { float: left; width: 20%; }
+  & > ol { float: right; width: 80%; }
+}
+
 select {
   @include appearance(none);
 }

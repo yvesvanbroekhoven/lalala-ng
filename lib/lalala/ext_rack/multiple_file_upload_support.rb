@@ -21,10 +21,12 @@ class Lalala::ExtRack::MultipleFileUploadSupport
 
       last_id = params.keys.sort_by(&:to_i).last
       last_id = "#{last_id}"
-      last    = params.delete(last_id)
-      assets  = last["asset"]
 
-      return if assets.nil?
+      return if params[last_id]["asset"].nil?
+
+      last = params.delete(last_id)
+      assets = last["asset"]
+
       return unless Array === assets
 
       assets.each do |file|
