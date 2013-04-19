@@ -19,11 +19,12 @@
       background-position: 0 10px;
 
       a {
+        background-position: left center;
         border-top: 1px solid gray(190);
         color: $black;
         display: block;
         line-height: 36px;
-        margin: 0 0 0 30px;
+        padding: 0 0 0 30px;
         position: relative;
         text-decoration: none;
 
@@ -55,37 +56,14 @@
           font-weight: bold;
 
           &:after {
-            content: ">";
+            content: "→";
           }
 
         }
 
       }
 
-      // Nav item has module name as ID
-      &#dashboard {
-        @include icon('application_view_tile');
-      }
-
-      &#admin_users {
-        @include icon('user_gray');
-      }
-
-      &#pages {
-        @include icon('page_white_text');
-      }
-
-      &#posts {
-        @include icon('newspaper');
-      }
-
-      &#tags {
-        @include icon('tag_purple');
-      }
-
     }
-
-
 
   }
 
