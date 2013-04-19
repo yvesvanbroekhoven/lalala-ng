@@ -1,7 +1,7 @@
 .flashes {
   @include animation-name(flash-slide-up);
   @include animation-duration(500ms);
-  @include animation-delay(3s);
+  @include animation-delay(1.5s);
   @include animation-fill-mode(forwards);
   left: 0;
   height: $top_nav_height;
