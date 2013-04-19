@@ -59,7 +59,7 @@
     &:hover {
 
       & > td > .member_link {
-        display: inline-block;
+        @include opacity(1);
       }
 
     }
@@ -86,7 +86,7 @@
     }
 
     &:last-child {
-      width: 75px;
+      //width: 75px;
     }
 
   }
@@ -96,7 +96,9 @@
     text-decoration: none;
 
     &.member_link {
-      display: none; // Will be shown on <tr:hover>
+      @include opacity(0);
+      @include transition(opacity 300ms);
+      display: inline-block; // Will be shown on <tr:hover>
       height: 16px;
       margin: 0 3px;
       text-indent: -9999px;
@@ -151,6 +153,26 @@
 
   &.subtree {
     margin: 0;
+  }
+
+  &.index_table {
+
+    td {
+
+      &:last-child {
+        width: 75px;
+      }
+
+    }
+
+  }
+
+}
+
+#active_admin_content .attributes_table table {
+
+  th {
+    width: 25%;
   }
 
 }
