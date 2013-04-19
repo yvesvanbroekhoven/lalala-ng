@@ -4,6 +4,7 @@ class Lalala::Markdown
   require 'lalala/markdown/active_model'
   require 'lalala/markdown/html_renderer'
   require 'lalala/markdown/markdown_renderer'
+  require 'lalala/markdown/input_helper'
 
   module Handlers
     require 'lalala/markdown/handlers/base'

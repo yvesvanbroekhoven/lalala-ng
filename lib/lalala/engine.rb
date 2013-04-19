@@ -54,6 +54,9 @@ module Lalala
   end
 
   Formtastic::FormBuilder.send(
+    :include, Lalala::Markdown::InputHelper)
+
+  Formtastic::FormBuilder.send(
     :include, Lalala::ExtI18n::InputHelper)
 
   ActiveSupport.on_load :active_record do

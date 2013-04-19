@@ -64,6 +64,8 @@ select {
 
 // textarea, only vertically resizable
 textarea {
+  font-size: 12px;
+  line-height: 1.2em;
   resize: vertical;
 }
 
