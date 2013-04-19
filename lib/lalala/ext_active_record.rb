@@ -3,5 +3,5 @@ module Lalala::ExtActiveRecord
 
   autoload :Schema
   autoload :I18nTranslationsWriter
-  autoload :Mixins
+  autoload :Assets
 end

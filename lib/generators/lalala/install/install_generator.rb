@@ -55,6 +55,7 @@ module Lalala
 
       def setup_uploaders
         empty_directory "app/uploaders"
+        copy_file "uploaders/file.rb", "app/uploaders/file.rb"
         copy_file "uploaders/image.rb", "app/uploaders/image.rb"
       end
 
