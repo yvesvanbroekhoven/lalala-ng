@@ -25,13 +25,20 @@ Grid = (function() {
 
   G.prototype.transform_html = function(grid_element) {
     var fragment, el, el_images, el_input, data_attr, $grid, $original_list;
+
+    // elements
+    $grid = $(grid_element);
+    $original_list = $grid.children("ul:first-child");
+
+    // data -> attributes
     data_attr = "data-accessible-attributes";
+    data_attr = $original_list.attr(data_attr)
+    data_attr = data_attr ? data_attr.split(",") : [];
 
     // document fragment for the images
     fragment = document.createDocumentFragment();
 
     // transform images html
-    $grid = $(grid_element);
     $grid.find("li").not(":last-child").each(function() {
       var grid_piece = document.createElement("li");
       grid_piece.innerHTML = this.innerHTML.replace("<a", "<a class=\"image\"");
@@ -41,16 +48,14 @@ Grid = (function() {
       fragment.appendChild(grid_piece);
     });
 
-    // original list
-    $original_list = $grid.children("ul:first-child");
-
     // create new container elements
     el = document.createElement("div");
     el.className = "mod-grid";
+
     el_images = document.createElement("ul");
     el_images.className = "images";
-    el_images.setAttribute(data_attr, $original_list.attr(data_attr));
     el_images.appendChild(fragment);
+
     el_actions = document.createElement("div");
     el_actions.className = "actions";
     el_actions.innerHTML = "" +
@@ -104,8 +109,8 @@ Grid = (function() {
       .on("mouseleave", "li label", this.row_label_mouseleave)
       .on("mouseenter", "li label", this.row_label_mouseenter)
       .on("mouseenter", "li .image", this.row_image_mouseenter)
-      .on("click", "li a", function(e) { e.preventDefault(); });
-      // .on("click", "li .overlay", __bind(this.row_overlay_click, this))
+      .on("click", "li a", function(e) { e.preventDefault(); })
+      .on("click", "li .attributes .close-button", this.close_button_click);
 
     this.$el.children(".actions")
       .children("a[rel=\"choose-files\"]").on("click", this.choose_files_button_click).end()
@@ -127,14 +132,9 @@ Grid = (function() {
   };
 
   G.prototype.row_image_mouseenter = function(e) {
-    $(this).parent().addClass("properties");
-  };
-
-  G.prototype.row_overlay_click = function(e) {
-    var $img = $(e.currentTarget).parent();
-    var klass = "selected";
-      this.selected_images.splice(this.selected_images.indexOf(identifier), 1);
-      this.selected_images.push(identifier);
+    var $p = $(this).parent();
+    if ($p.hasClass("edit-block")) return;
+    $p.addClass("properties");
   };
 
   G.prototype.choose_files_button_click = function(e) {
@@ -169,6 +169,10 @@ Grid = (function() {
     this.check_edit_and_destroy_buttons();
   };
 
+  G.prototype.close_button_click = function(e) {
+    $(this).closest("li").removeClass("edit-block");
+  };
+
 
 
   //
@@ -179,10 +183,12 @@ Grid = (function() {
 
     this.$el.selectable({
       filter: "li",
-      cancel: ".actions,.button,input",
+      cancel: ".actions,.button,input,textarea,button",
       selecting: function(e, ui) {
         $row = $(ui.selecting);
-        if (!$row.hasClass("will-destroy")) $row.addClass("selected");
+        if (!$row.hasClass("will-destroy") && !$row.hasClass("edit-block")) {
+          $row.addClass("selected");
+        }
       },
       unselecting: function(e, ui) {
         $(ui.unselecting).removeClass("selected");
@@ -208,9 +214,23 @@ Grid = (function() {
   //
   //  Edit
   //
-  G.prototype.set_to_edit = function(row) {
-
+  G.prototype.toggle_edit = function(row) {
+    if ($(row).hasClass("edit-block")) {
+      this.set_to_not_edit(row);
+    } else {
+      this.set_to_edit(row);
+    }
   };
+
+
+  G.prototype.set_to_edit = function(row) {
+    $(row).addClass("edit-block");
+  };
+
+
+  G.prototype.set_to_not_edit = function(row) {
+    $(row).removeClass("edit-block");
+  }
 
 
 

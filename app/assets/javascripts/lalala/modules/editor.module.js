@@ -1,7 +1,7 @@
 var markdown_settings;
 
 exports.init = function(){
-  $("textarea").each(setup);
+  $(".input.text > textarea").each(setup);
 };
 
 function setup() {
