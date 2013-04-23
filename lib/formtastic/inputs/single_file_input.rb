@@ -4,7 +4,7 @@ class Formtastic::Inputs::SingleFileInput
   def to_html
     object = builder.object
     model_instance = object.send(method)
-    model_class = object.class.reflect_on_association(method).class_name.constantize
+    model_class = object.class.reflect_on_association(method).klass
 
     html = template.raw("")
     html << template.content_tag(:label, method.to_s.humanize, class: "label")
@@ -14,14 +14,15 @@ class Formtastic::Inputs::SingleFileInput
 
     if model_instance
       html << template.content_tag(:div, class: "file-description") do
+        filename = model_instance.asset.file.try(:filename)
         f_html = template.raw("")
 
-        if model_class.to_s.underscore.include?("image")
-          f_html << template.content_tag(:img, "", src: model_instance.asset.thumb.url)
+        if model_class.to_s.include?("Image")
+          f_html << template.content_tag(:img, "", src: model_instance.asset.lalala_thumb.url)
         end
 
-        if model_instance.asset.file.try(:filename)
-          f_html << template.content_tag(:span, model_instance.asset.file.filename)
+        if filename
+          f_html << template.content_tag(:span, filename)
         end
 
         f_html

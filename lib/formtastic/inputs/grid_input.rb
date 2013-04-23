@@ -15,20 +15,21 @@ class Formtastic::Inputs::GridInput
       assets.each_with_index do |asset, idx|
         html += template.content_tag :li do
           builder.fields_for(method, asset) do |f|
-            thumbnail_html = template.image_tag f.object.asset.thumb.url
+            thumbnail_html = template.image_tag f.object.asset.lalala_thumb.url
             asset_html = template.raw("")
             asset_html << template.link_to(thumbnail_html, f.object.asset.url)
             asset_html << template.content_tag(:div, { class: "attributes" }) do
               inputs = image_attributes.map do |ia|
-                column_type = if image_model_class.columns_hash[ia]
-                  image_model_class.columns_hash[ia].type
+                if image_model_class.columns_hash[ia]
+                  column_type = image_model_class.columns_hash[ia].type
                 elsif image_model_class.translation_class.columns_hash[ia]
-                  image_model_class.translation_class.columns_hash[ia].type
+                  column_type = image_model_class.translation_class.columns_hash[ia].type
                 end
 
                 case column_type
                 when :string then f.text_field(ia.to_sym, placeholder: ia)
                 when :text then f.text_area(ia.to_sym, placeholder: ia)
+                when :boolean then f.check_box(ia.to_sym)
                 end
               end
 
