@@ -1,5 +1,3 @@
-
-
 namespace :lalala do
 
   namespace :assets do
