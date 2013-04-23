@@ -65,11 +65,6 @@ Grid = (function() {
       '<a class="button unavailable" rel="edit">Edit selected</a>' +
       '<a class="button unavailable" rel="destroy">destroy selected</a>';
 
-    // inputs accept attribute
-    el_actions.innerHTML = el_actions.innerHTML.replace(
-      ' type="file"', ' accept=".jpg,.jpeg,.gif,.png" type="file"'
-    );
-
     // merge
     el.appendChild(el_actions);
     el.appendChild(el_images);

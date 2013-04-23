@@ -43,7 +43,7 @@ class Formtastic::Inputs::GridInput
 
       html += template.content_tag :li do
         builder.fields_for(method, assets.build) do |f|
-          f.file_field :asset, multiple: true
+          f.file_field :asset, multiple: true, accept: image_model_class.extension_white_list
         end
       end
 

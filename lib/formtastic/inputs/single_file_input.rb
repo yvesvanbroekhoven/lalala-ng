@@ -9,7 +9,7 @@ class Formtastic::Inputs::SingleFileInput
     html = template.raw("")
     html << template.content_tag(:label, method.to_s.humanize, class: "label")
     html << builder.fields_for(method, model_class.new) do |f|
-      f.file_field :asset
+      f.file_field :asset, accept: model_class.extension_white_list
     end
 
     if model_instance
