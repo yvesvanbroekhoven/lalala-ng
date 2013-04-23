@@ -49,16 +49,28 @@
     }
 
     &:last-child {
+
       > td {
         border: none;
       }
+
     }
+
+    &:hover {
+
+      & > td > .member_link {
+        @include opacity(1);
+      }
+
+    }
+
   }
 
   // Columns
   th,
   td {
     border-bottom: 1px solid gray(224);
+    line-height: 16px;
     padding: 13px 15px 12px 15px;
 
     &.subtree {
@@ -74,7 +86,7 @@
     }
 
     &:last-child {
-      width: 75px;
+      //width: 75px;
     }
 
   }
@@ -84,13 +96,14 @@
     text-decoration: none;
 
     &.member_link {
-      display: inline-block;
+      @include opacity(0);
+      @include transition(opacity 300ms);
+      display: inline-block; // Will be shown on <tr:hover>
       height: 16px;
       margin: 0 3px;
       text-indent: -9999px;
       width: 16px;
     }
-
 
     &.new_link {
       @include icon('add');
@@ -140,6 +153,26 @@
 
   &.subtree {
     margin: 0;
+  }
+
+  &.index_table {
+
+    td {
+
+      &:last-child {
+        width: 75px;
+      }
+
+    }
+
+  }
+
+}
+
+#active_admin_content .attributes_table table {
+
+  th {
+    width: 25%;
   }
 
 }

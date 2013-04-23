@@ -3,7 +3,17 @@
   top: 125px;
   left: 25px;
 
-  .current_user {
+  a {
+    @include text-shadow(1px 1px 2px #AAAAAA);
+    color: $white;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 20px 0 0 10px;
+    text-decoration: none;
+  }
+
+  #current_user {
     @include border-radius(50%);
     background-image: image-url('lalala/users/default.jpg');
     background-size: cover;
@@ -30,14 +40,8 @@
 
   }
 
-  a {
-    @include text-shadow(1px 1px 2px #AAAAAA);
-    color: $white;
-    display: inline-block;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 20px 0 0 10px;
-    text-decoration: none;
+  #logout {
+    float: left;
   }
 
 }
