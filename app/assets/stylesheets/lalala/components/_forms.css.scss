@@ -20,7 +20,7 @@ fieldset {
   border: 0;
 }
 
-form > fieldset > legend {
+fieldset.inputs > legend {
   color: gray(200);
   display: block;
   font-size: 1.5em;
@@ -28,9 +28,16 @@ form > fieldset > legend {
   margin: 0 0 1em 0;
 }
 
-form > fieldset.next {
+fieldset.inputs.next {
   & > legend { float: left; width: $label_width; }
   & > ol { float: right; width: $input_width; }
+}
+
+.panel {
+  padding-bottom: 45px;
+
+  &:last-child { padding-bottom: 60px; }
+  & > h3 { display: none; }
 }
 
 select {
@@ -72,6 +79,8 @@ select {
 
 // textarea, only vertically resizable
 textarea {
+  color: #000;
+  font-family: monospace;
   font-size: 12px;
   line-height: 1.2em;
   resize: vertical;
