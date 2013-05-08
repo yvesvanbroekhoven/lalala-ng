@@ -6,7 +6,6 @@ module Lalala::ExtActiveRecord::I18nTranslationsWriter
       init = translates?
 
       result = super(*attr_names)
-      raise attr_names.inspect
 
       if init
         include Writer
