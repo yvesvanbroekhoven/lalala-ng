@@ -39,8 +39,9 @@ Grid = (function() {
     fragment = document.createDocumentFragment();
 
     // transform images html
-    $grid.find("li").not(":last-child").each(function() {
+    $grid.find("li.asset").not(":last-child").each(function() {
       var grid_piece = document.createElement("li");
+      grid_piece.className = "asset";
       grid_piece.innerHTML = this.innerHTML.replace("<a", "<a class=\"image\"");
       var overlay = document.createElement("div");
       overlay.className = "overlay";
@@ -177,7 +178,7 @@ Grid = (function() {
     var grid = this;
 
     this.$el.selectable({
-      filter: "li",
+      filter: "li.asset",
       cancel: ".actions,.button,input,textarea,button",
       selecting: function(e, ui) {
         $row = $(ui.selecting);

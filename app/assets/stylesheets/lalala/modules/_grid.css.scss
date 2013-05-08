@@ -21,7 +21,7 @@
   }
 
   // [row]
-  li {
+  .asset {
     float: left;
     margin: 0 11px 11px 0;
     position: relative;
@@ -34,36 +34,42 @@
     &.move,
     &.properties,
     &.selected,
-    &.will-destroy { .overlay { display: block; }}
+    &.will-destroy {
+      .overlay { display: block; }
+    }
+
+    &.edit-block .attributes {
+      display: block;
+    }
   }
 
   // [row]:types
-  li.move label { cursor: move; }
-  li.properties { cursor: pointer; }
-  li.selected .overlay { background: rgba($yellow, .5); }
-  li.will-destroy .overlay,
-  li.selected.will-destroy .overlay { background: rgba($red, .5); }
+  .asset.move label { cursor: move; }
+  .asset.properties { cursor: pointer; }
+  .asset.selected .overlay { background: rgba($yellow, .5); }
+  .asset.will-destroy .overlay,
+  .asset.selected.will-destroy .overlay { background: rgba($red, .5); }
 
   // image + overlay
-  li .image,
-  li .overlay {
+  .asset .image,
+  .asset .overlay {
     left: 0;
     position: absolute;
     top: 0;
   }
 
-  li .image {
+  .asset .image {
     z-index: 0;
   }
 
-  li .overlay {
+  .asset .overlay {
     background: rgba(black, .5);
     display: none;
     z-index: 1;
   }
 
   // [row].edit-block
-  li.edit-block {
+  .asset.edit-block {
     clear: both;
     height: auto;
     min-height: 100px;
@@ -71,7 +77,7 @@
   }
 
   // label
-  li label {
+  .asset label {
     @include border-radius(2px);
     background: #fff;
     bottom: 6px;
@@ -90,22 +96,29 @@
   }
 
   // attributes
-  li .attributes { display: none; position: relative }
-  li.edit-block .attributes { display: block }
+  .asset .attributes { display: none; position: relative }
 
-  li .attributes input,
-  li .attributes textarea {
+  .asset .attributes input,
+  .asset .attributes textarea {
     margin-bottom: 6px;
     margin-left: 115px;
     resize: none;
     width: 300px;
   }
 
-  li .attributes textarea {
+  .asset .attributes textarea {
     height: 100px !important;
   }
 
-  li .attributes .close-button {
+  .asset .attributes li {
+    margin: 0;
+  }
+
+  .asset .attributes label {
+    display: none;
+  }
+
+  .asset .attributes .close-button {
     color: #c5c5c5;
     cursor: pointer;
     display: inline-block;

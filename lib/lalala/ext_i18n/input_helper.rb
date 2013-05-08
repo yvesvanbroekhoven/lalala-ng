@@ -34,7 +34,6 @@ module Lalala::ExtI18n::InputHelper
         I18n.locale  = locale
         @object_name = "#{_object_name}[translations_writer][#{locale}]"
 
-
         opts[:wrapper_html][:'data-locale'] = locale.to_s
 
         h << super(method, opts)

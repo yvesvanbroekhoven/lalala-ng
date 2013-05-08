@@ -2,6 +2,8 @@ class Lalala::AbstractAsset < ActiveRecord::Base
   self.abstract_class = true
   self.table_name = "assets"
 
+  include Lalala::ExtActiveRecord::I18nTranslationsWriter
+
   attr_accessible :asset, :title, :caption
   translates :title, :caption
   Lalala::AbstractAsset::Translation.table_name = 'asset_translations'
