@@ -30,8 +30,10 @@ class Lalala::ExtRack::MultipleFileUploadSupport
       return unless Array === assets
 
       assets.each do |file|
-        params[last_id] = { "asset" => file }.with_indifferent_access
-        last_id.succ!
+        if file.present?
+          params[last_id] = { "asset" => file }.with_indifferent_access
+          last_id.succ!
+        end
       end
 
     else

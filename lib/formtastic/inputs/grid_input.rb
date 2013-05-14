@@ -55,7 +55,7 @@ class Formtastic::Inputs::GridInput
         end
       end
 
-      html += template.content_tag :li do
+      html += template.content_tag :li, class: "actions" do
         builder.fields_for(method, assets.build) do |f|
           f.file_field :asset, multiple: true, accept: asset_model_class.extension_white_list
         end
