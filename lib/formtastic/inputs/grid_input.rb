@@ -11,10 +11,13 @@ class Formtastic::Inputs::GridInput
 
     ul = template.content_tag :ul do
       html = template.raw("")
+      asset_errors = []
 
       assets.each_with_index do |asset, idx|
         html += template.content_tag :li, class: "asset" do
           builder.fields_for(method, asset) do |f|
+            asset_errors.concat(asset.errors.to_a)
+
             lalala_thumb = f.object.asset.lalala_thumb
 
             if url = lalala_thumb.try(:url)
@@ -34,7 +37,20 @@ class Formtastic::Inputs::GridInput
                 :a, template.raw("&#10005;"), class: "close-button"
               )
             end
+
             asset_html
+          end
+        end
+      end
+
+      if asset_errors.present?
+        html += template.content_tag :li, class: "errors" do
+          template.content_tag :ul do
+            errors_html = template.raw("")
+            asset_errors.each do |error|
+              errors_html += template.content_tag(:li, error)
+            end
+            errors_html
           end
         end
       end
