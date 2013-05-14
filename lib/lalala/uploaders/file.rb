@@ -9,10 +9,15 @@ class Lalala::Uploaders::File < CarrierWave::Uploader::Base
   end
 
   def url(*)
+    super_url = super
     if Rails.env.production? or Rails.env.staging?
-      File.join("/storage/assets", super)
+      if super_url
+        File.join("/storage/assets", super_url)
+      else
+        super_url
+      end
     else
-      super
+      super_url
     end
   end
 
