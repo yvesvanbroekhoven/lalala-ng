@@ -12,6 +12,10 @@ class Lalala::ExtI18n::NegotiationAdapter
     nil
   end
 
+  def locale_for_ignored
+    default_locale
+  end
+
   def locales_for_hostname(hostname)
     available_locales
   end

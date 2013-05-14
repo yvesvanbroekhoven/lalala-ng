@@ -249,6 +249,7 @@ private
       # update translated attributes
       begin
         _locale = I18n.locale
+
         I18n.available_locales.each do |locale|
           I18n.locale = locale
 
@@ -277,17 +278,24 @@ private
   end
 
   def set_path_component
-    r = self.route
-    case r
-    when NilClass
-      self.path_component = self.class.default_route.call(self)
-    when Proc
-      self.path_component = r.call(self)
-    when String
-      self.path_component = r
-    else
-      raise "Unexpected path_component value: #{r.inspect}"
+    _locale = I18n.locale
+    I18n.available_locales.each do |locale|
+
+      r = self.route
+      case r
+      when NilClass
+        self.path_component = self.class.default_route.call(self)
+      when Proc
+        self.path_component = r.call(self)
+      when String
+        self.path_component = r
+      else
+        raise "Unexpected path_component value: #{r.inspect}"
+      end
+
     end
+  ensure
+    I18n.locale = _locale
   end
 
 end

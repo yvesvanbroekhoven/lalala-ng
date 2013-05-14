@@ -19,7 +19,11 @@ protected
     _locale = I18n.locale
 
     if @adapter.ignored?(env)
-      return @app.call(env)
+      I18n.locale = locale_for_ignored.to_sym
+      @env['rack.locale'] = I18n.locale
+      status, headers, body =  @app.call(env)
+      headers['Content-Language'] = I18n.locale.to_s
+      return [status, headers, body]
     end
 
     return determine_routing_path
@@ -72,7 +76,7 @@ private
     case action
 
     when :call
-      I18n.locale = new_env['rack.locale']
+      I18n.locale = new_env['rack.locale'].to_sym
 
       status, headers, body = @app.call(new_env)
       headers['Content-Language'] = I18n.locale.to_s
@@ -192,6 +196,10 @@ private
 
   def locales_for_hostname_set
     @_locales_for_hostname_set ||= locales_for_hostname.map(&:to_s)
+  end
+
+  def locale_for_ignored
+    @_locale_for_ignored ||= @adapter.locale_for_ignored
   end
 
   def hostname
