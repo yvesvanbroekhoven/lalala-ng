@@ -17,8 +17,8 @@ class Formtastic::Inputs::GridInput
           builder.fields_for(method, asset) do |f|
             lalala_thumb = f.object.asset.lalala_thumb
 
-            if lalala_thumb
-              link_inner_html = template.image_tag(lalala_thumb.url)
+            if url = lalala_thumb.try(:url)
+              link_inner_html = template.image_tag(url)
             else
               link_inner_html = ""
             end

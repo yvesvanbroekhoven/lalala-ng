@@ -37,7 +37,7 @@ class Lalala::Uploaders::File < CarrierWave::Uploader::Base
       self
     end
 
-    def  =~(pattern)
+    def =~(pattern)
       return true
     end
 
