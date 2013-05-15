@@ -56,6 +56,25 @@ module Lalala
       app.config.assets.precompile += %w( lalala/editor-preview.css )
     end
 
+    initializer "lalala.cache", before: :initialize_cache do |app|
+      servers  = []
+      username = nil
+      password = nil
+
+      if ENV['MEMCACHIER_SERVERS']
+        servers  = ENV['MEMCACHIER_SERVERS'].split(',')
+        username = ENV['MEMCACHIER_USERNAME']
+        password = ENV['MEMCACHIER_PASSWORD']
+      end
+
+      if ENV['BOXEN_MEMCACHED_URL']
+        url = URI.parse(ENV['BOXEN_MEMCACHED_URL'])
+        servers << "#{url.host}:#{url.port}"
+      end
+
+      Lalala::Cache.setup!(app, servers, username, password)
+    end
+
   end
 
   ActiveSupport.on_load :active_record do
