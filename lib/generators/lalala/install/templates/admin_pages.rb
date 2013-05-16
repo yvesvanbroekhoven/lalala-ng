@@ -3,6 +3,9 @@ ActiveAdmin.register ApplicationPage, :as => 'Page' do
 
   menu :priority => 2
 
+  # Disable pagination
+  config.paginate = false
+
   # Enable the filter
   # config.filters = false
 
