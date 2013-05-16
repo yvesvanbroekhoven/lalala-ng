@@ -13,7 +13,7 @@ class Lalala::AbstractAsset < ActiveRecord::Base
 
   def self.extension_white_list
     if self.uploaders and self.uploaders[:asset]
-      list = self.uploaders[:asset].new.try(:extension_white_list)
+      list = self.uploaders[:asset].new.try(:extension_white_list) || []
     else
       list = []
     end
