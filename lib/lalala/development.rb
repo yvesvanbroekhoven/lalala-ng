@@ -3,11 +3,8 @@ require 'lalala'
 module Lalala
 
   require 'pry-rails'
+  require 'binding_of_caller'
   require 'better_errors'
-
-  autoload :ExtBetterErrors
-
-  Lalala::ExtBetterErrors.patch!
 
 end
 
