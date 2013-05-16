@@ -31,8 +31,6 @@ class Lalala::ExtRack::MultipleFileUploadSupport
 
       assets.each do |file|
         if file.present?
-          file[:name] = file[:name].sub(/\[\]$/, '')
-          file[:head] = file[:head].sub(file[:name] + "[]", file[:name])
           params[last_id] = { "asset" => file }.with_indifferent_access
           last_id.succ!
         end

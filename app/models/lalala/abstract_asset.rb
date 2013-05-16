@@ -12,11 +12,12 @@ class Lalala::AbstractAsset < ActiveRecord::Base
   belongs_to :asset_owner, polymorphic: true
 
   def self.extension_white_list
-    list = if self.uploaders and self.uploaders[:asset]
-      self.uploaders[:asset].new.try(:extension_white_list)
+    if self.uploaders and self.uploaders[:asset]
+      list = self.uploaders[:asset].new.try(:extension_white_list)
+    else
+      list = []
     end
 
-    list = list || []
     list.map { |e| ".#{e}" }.join(",")
   end
 
