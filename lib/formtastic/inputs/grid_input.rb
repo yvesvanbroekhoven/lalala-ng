@@ -18,12 +18,14 @@ class Formtastic::Inputs::GridInput
           builder.fields_for(method, asset) do |f|
             asset_errors.concat(asset.errors.to_a)
 
-            lalala_thumb = f.object.asset.try(:lalala_thumb)
+            lalala_thumb = if f.object.asset.respond_to?(:lalala_thumb)
+              f.object.asset.lalala_thumb
+            end
 
             if url = lalala_thumb.try(:url)
               link_inner_html = template.image_tag(url)
             else
-              link_inner_html = ""
+              link_inner_html = template.content_tag(:span, "", class: "file-icon")
             end
 
             asset_html = template.raw("")

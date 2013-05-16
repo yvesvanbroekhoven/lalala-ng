@@ -50,7 +50,7 @@
   .asset.will-destroy .overlay,
   .asset.selected.will-destroy .overlay { background: rgba($red, .5); }
 
-  // thumbnail + overlay
+  // thumbnail + file-icon + overlay
   .asset .thumbnail,
   .asset .overlay {
     left: 0;
@@ -60,6 +60,13 @@
 
   .asset .thumbnail {
     z-index: 0;
+  }
+
+  .asset .file-icon {
+    background: #E4E4E4;
+    display: block;
+    height: 100%;
+    width: 100%;
   }
 
   .asset .overlay {
