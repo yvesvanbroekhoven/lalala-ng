@@ -32,7 +32,13 @@ class Formtastic::Inputs::GridInput
             asset_html << template.link_to(link_inner_html, f.object.asset.url)
             asset_html << template.content_tag(:ol, { class: "attributes" }) do
               inputs = asset_attributes.map do |ia|
-                f.input ia.to_sym, placeholder: ia
+                if ia.include?("_id")
+                  collection_name = ia.chomp("_id").pluralize
+                  collection = f.object.send(collection_name.to_sym)
+                  f.input ia.to_sym, as: :select, collection: collection
+                else
+                  f.input ia.to_sym, placeholder: ia
+                end
               end
 
               template.raw(inputs.join) + template.content_tag(

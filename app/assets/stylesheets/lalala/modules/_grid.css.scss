@@ -11,9 +11,12 @@
 
   @include border-radius(5px);
 
-  .assets,
   .actions {
     overflow: hidden;
+  }
+
+  .clear {
+    clear: both;
   }
 
   .assets {
@@ -103,12 +106,16 @@
   }
 
   // attributes
-  .asset .attributes { display: none; position: relative }
+  .asset .attributes {
+    display: none;
+    margin-left: 115px;
+    position: relative;
+  }
 
   .asset .attributes input,
-  .asset .attributes textarea {
+  .asset .attributes textarea,
+  .asset .attributes select {
     margin-bottom: 6px;
-    margin-left: 115px;
     resize: none;
     width: 300px;
   }

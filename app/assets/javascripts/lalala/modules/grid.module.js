@@ -24,7 +24,8 @@ Grid = (function() {
 
 
   G.prototype.transform_html = function(grid_element) {
-    var fragment, el, el_assets, el_actions, el_errors, $grid, $original_list;
+    var fragment, clear_element, el, el_assets, el_actions, el_errors,
+        $grid, $original_list;
 
     // elements
     $grid = $(grid_element);
@@ -48,9 +49,13 @@ Grid = (function() {
     el = document.createElement("div");
     el.className = "mod-grid";
 
+    clear_element = document.createElement("div");
+    clear_element.className = "clear";
+
     el_assets = document.createElement("ul");
     el_assets.className = "assets";
     el_assets.appendChild(fragment);
+    el_assets.appendChild(clear_element);
 
     el_actions = document.createElement("div");
     el_actions.className = "actions";
