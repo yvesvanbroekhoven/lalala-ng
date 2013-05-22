@@ -29,6 +29,11 @@ private
 
     last_id = value.keys.sort_by(&:to_i).last
     last_id = "#{last_id}"
+
+    unless /^\d+$/ === last_id
+      return value
+    end
+
     assets  = value[last_id].try(:[], "asset")
 
     unless Array === assets
