@@ -17,12 +17,12 @@ class Lalala::Markdown::HtmlRenderer < Redcarpet::Render::HTML
       return enhanced_autolink($1, link, link_type)
     end
 
-    if @options[:safe_links_only] and !safe_link(link) and type != :email
+    if @options[:safe_links_only] and !safe_link(link) and link_type != :email
       return ""
     end
 
     url = link
-    url = "mailto:"+url if type == :email
+    url = "mailto:"+url if link_type == :email
 
     helpers.link_to(link, url, @options[:link_attributes])
   end
