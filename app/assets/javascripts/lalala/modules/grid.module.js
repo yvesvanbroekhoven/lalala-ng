@@ -39,8 +39,11 @@ Grid = (function() {
       var grid_piece = document.createElement("li");
       grid_piece.className = "asset";
       grid_piece.innerHTML = this.innerHTML.replace("<a", "<a class=\"thumbnail\"");
+
       var overlay = document.createElement("div");
       overlay.className = "overlay";
+      $(overlay).attr("title", $(this).attr("title"));
+
       grid_piece.appendChild(overlay);
       fragment.appendChild(grid_piece);
     });

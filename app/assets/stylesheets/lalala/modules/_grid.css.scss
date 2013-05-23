@@ -87,7 +87,7 @@
   }
 
   // label
-  .asset label {
+  .asset .filename {
     @include border-radius(2px);
     background: #fff;
     bottom: 6px;
