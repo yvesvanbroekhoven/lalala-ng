@@ -73,16 +73,39 @@ Calendar = (function() {
       }
     });
 
+    cal.setDate(date);
+
     this.$el.data("calendar", cal);
   };
 
 
   Cal.prototype.get_date_from_hidden_fields = function() {
-    var values = [];
+    var fields = [], values = [], new_date;
 
     this.$fieldset.find('input[type="hidden"]').each(function() {
-      values.push( $(this).val() );
+      var name = $(this).attr("name");
+      fields.push(name);
     });
+
+    fields = fields.sort();
+    new_date = new Date();
+
+    for (var i=0,j=fields.length; i<j; ++i) {
+      var value = this.$fieldset.find('input[name="' + fields[i] + '"]').val();
+      var date_part_id = fields[i].match(/\(([^\)]+)\)/)[1];
+
+      if (!value) {
+        switch (date_part_id) {
+          case "1i": value = new_date.getFullYear(); break;
+          case "2i": value = new_date.getMonth() + 1; break;
+          case "3i": value = new_date.getDate(); break;
+          case "4i": value = "00"; break;
+          case "5i": value = "00"; break;
+        }
+      }
+
+      values.push(value);
+    }
 
     // return js date
     return new Date(values[0], values[1] - 1, values[2]);
