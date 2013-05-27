@@ -30,7 +30,7 @@ Gem::Specification.new do |gem|
 
   # generic
   gem.add_runtime_dependency 'carrierwave',               '= 0.8.0'
-  gem.add_runtime_dependency 'fog',                       '= 1.10.0'
+  gem.add_runtime_dependency 'fog',                       '= 1.11.1'
   gem.add_runtime_dependency 'globalize3',                '= 0.3.0'
   gem.add_runtime_dependency 'jquery-rails',              '= 2.2.1'
   gem.add_runtime_dependency 'meta_search',               '= 1.1.3'
