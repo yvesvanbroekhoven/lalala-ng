@@ -37,7 +37,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'mini_magick',               '= 3.6.0'
   gem.add_runtime_dependency 'pg',                        '= 0.15.1'
   gem.add_runtime_dependency 'rails',                     '= 3.2.13'
-  gem.add_runtime_dependency 'redcarpet',                 '= 2.2.2'
+  gem.add_runtime_dependency 'redcarpet',                 '= 2.3.0'
   gem.add_runtime_dependency 'puma',                      '= 2.0.1'
   gem.add_runtime_dependency 'stringex',                  '= 1.5.1'
   gem.add_runtime_dependency 'rails-i18n',                '= 0.7.3'
