@@ -1,4 +1,4 @@
-# Lalala
+# Lalala [![Build Status](https://secure.travis-ci.org/mrhenry/lalala-ng.png)](http://travis-ci.org/mrhenry/lalala-ng?branch=master) [![Dependency Status](https://gemnasium.com/mrhenry/lalala-ng.png)](https://gemnasium.com/mrhenry/lalala-ng)
 
 TODO: Write a gem description
 
