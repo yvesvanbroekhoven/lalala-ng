@@ -22,6 +22,7 @@ module Lalala
   require 'mini_magick'
   require 'redcarpet'
   require 'stringex'
+  require 'country-select'
   require 'activeadmin'
 
   if groups.include?(:assets)
