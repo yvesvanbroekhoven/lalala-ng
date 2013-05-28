@@ -7,9 +7,9 @@ class Formtastic::Inputs::SingleFileInput
     model_class = object.class.reflect_on_association(method).klass
 
     html = template.raw("")
-    html << template.content_tag(:label, method.to_s.humanize, class: "label")
+    html << label_html
     html << builder.fields_for(method, model_class.new) do |f|
-      f.file_field :asset, accept: model_class.extension_white_list
+      f.file_field :asset, accept: model_class.extension_white_list, id: input_html_options[:id]
     end
 
     if model_instance

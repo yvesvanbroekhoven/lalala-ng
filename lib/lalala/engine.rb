@@ -1,4 +1,6 @@
 module Lalala
+  require 'lalala'
+
   class Engine < Rails::Engine
 
     config.i18n.fallbacks = true
@@ -8,6 +10,14 @@ module Lalala
     config.lalala = ActiveSupport::OrderedOptions.new
     config.lalala.i18n = ActiveSupport::OrderedOptions.new
     config.lalala.i18n.adapter = nil
+
+    initializer "lalala.migrations" do |app|
+      app.class.configure do
+        unless defined?(CALLED_FROM_ENGINE) and CALLED_FROM_ENGINE
+          config.paths['db/migrate'] += Lalala::Engine.paths['db/migrate'].existent
+        end
+      end
+    end
 
     initializer "lalala.threadsafe" do |app|
       unless Rails.env.development? or Rails.env.test?
@@ -77,11 +87,13 @@ module Lalala
     Lalala::ExtWithAdvisoryLock.patch!
   end
 
-  Formtastic::FormBuilder.send(
-    :include, Lalala::Markdown::InputHelper)
+  if defined?(Formtastic)
+    Formtastic::FormBuilder.send(
+      :include, Lalala::Markdown::InputHelper)
 
-  Formtastic::FormBuilder.send(
-    :include, Lalala::ExtI18n::InputHelper)
+    Formtastic::FormBuilder.send(
+      :include, Lalala::ExtI18n::InputHelper)
+  end
 
   ActiveSupport.on_load :active_record do
 
