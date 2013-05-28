@@ -13,10 +13,10 @@ module Lalala
 
     initializer "lalala.migrations" do |app|
       app.class.configure do
-        if app.class.to_s == "Dummy::Application"
-        else
+        # if app.class.to_s == "Dummy::Application"
+        # else
           config.paths['db/migrate'] += Lalala::Engine.paths['db/migrate'].existent
-        end
+        # end
       end
     end
 

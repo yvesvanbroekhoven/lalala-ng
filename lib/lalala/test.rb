@@ -1,5 +1,8 @@
 module Lalala
   module Test
+    extend ActiveSupport::Autoload
+
+    autoload :LoginHelper
 
     def self.setup!
       require 'capybara/rails'
@@ -7,6 +10,7 @@ module Lalala
 
       Rails.backtrace_cleaner.remove_silencers!
 
+      ActionDispatch::IntegrationTest.send :include, Lalala::Test::LoginHelper
       ActionDispatch::IntegrationTest.send :include, Capybara::DSL
 
       Capybara.javascript_driver = :poltergeist
