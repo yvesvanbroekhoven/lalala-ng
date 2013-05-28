@@ -22,7 +22,6 @@ class Lalala::ExtRack::PageLoader
 protected
 
   def find_chain(env)
-
     path_info       = env['PATH_INFO']
     path_components = path_info.split('/')
 
@@ -31,20 +30,36 @@ protected
   end
 
   def update_env(env, chain)
-    pages       = []
-    script_name = env['SCRIPT_NAME'].to_s
-    path_info   = env['PATH_INFO'].to_s
+    pages     = []
+    page_name = "/"
+    path_info = env['PATH_INFO'].to_s
 
     chain.each do |(page, path_component)|
-      script_name = File.join(script_name, path_component)
-      path_info   = path_info[(1 + path_component.size)..-1]
+      page_name = File.join(page_name, path_component)
+      path_info = path_info[(1 + path_component.size)..-1]
 
       pages.push page
+    end
+
+    unless path_info.starts_with?('/')
+      path_info = "/" + path_info
+    end
+
+    if page_name == "/"
+      page_name = ""
+    end
+
+    if path_info.blank?
+      path_info = "/"
     end
 
     env['lalala.page_chain'] = pages
     env['lalala.page']       = pages.last
     env['PATH_INFO']         = path_info
+
+    unless page_name.blank?
+      env['PAGE_NAME'] = page_name
+    end
   end
 
 end

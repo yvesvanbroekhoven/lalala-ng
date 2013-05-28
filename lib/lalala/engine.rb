@@ -119,6 +119,9 @@ module Lalala
     ActionDispatch::Request.send(
       :include, Lalala::ExtActionDispatch::MultiFileUpload)
 
+    ActionDispatch::Request.send(
+      :include, Lalala::ExtActionDispatch::PageName)
+
   end
 
 end
