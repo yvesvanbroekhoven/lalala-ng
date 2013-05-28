@@ -33,13 +33,6 @@ fieldset.inputs.next {
   & > ol { float: right; width: $input_width; }
 }
 
-.panel {
-  padding-bottom: 45px;
-
-  &:last-child { padding-bottom: 60px; }
-  & > h3 { display: none; }
-}
-
 select {
   @include appearance(none);
 }
