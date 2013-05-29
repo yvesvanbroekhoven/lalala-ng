@@ -41,16 +41,16 @@ protected
       pages.push page
     end
 
+    if path_info.blank?
+      path_info = "/"
+    end
+
     unless path_info.starts_with?('/')
       path_info = "/" + path_info
     end
 
     if page_name == "/"
       page_name = ""
-    end
-
-    if path_info.blank?
-      path_info = "/"
     end
 
     env['lalala.page_chain'] = pages
