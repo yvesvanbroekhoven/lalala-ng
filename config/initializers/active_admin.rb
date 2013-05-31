@@ -21,4 +21,8 @@ ActiveAdmin.setup do |config|
   # Set the custom views
   config.view_factory.register :title_bar => Lalala::Views::TitleBar
 
+  # reset default_assets to prevent double loading
+  config.clear_stylesheets!
+  config.clear_javascripts!
+
 end
