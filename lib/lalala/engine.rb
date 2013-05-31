@@ -20,7 +20,7 @@ module Lalala
     end
 
     initializer "lalala.threadsafe" do |app|
-      unless Rails.env.development? or Rails.env.test?
+      unless Rails.env.development? or Rails.env.test? or defined?(::Rake)
         app.config.threadsafe!
       end
     end
