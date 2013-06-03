@@ -7,5 +7,6 @@ module Lalala::Pages
 
   autoload :PageTypeConstraint
   autoload :RouteMapper
+  autoload :Helpers
 
 end

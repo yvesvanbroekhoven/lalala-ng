@@ -122,6 +122,9 @@ module Lalala
     ActionDispatch::Request.send(
       :include, Lalala::ExtActionDispatch::PageName)
 
+    ActionController::Base.send(
+      :include, Lalala::Pages::Helpers)
+
   end
 
 end
