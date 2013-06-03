@@ -13,7 +13,7 @@ class Lalala::Pages::PageTypeConstraint
   end
 
   def matches?(request)
-    return false if env["action_dispatch.exception"]
+    return false if request.env["action_dispatch.exception"]
     request.env['lalala.page'] and @type === request.env['lalala.page']
   end
 
