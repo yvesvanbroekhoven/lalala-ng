@@ -15,8 +15,8 @@ module Lalala::Pages::RouteMapper
       raise ArgumentError, "expected a page type"
     end
 
-    type    = args[0]
-    options = { as: type }.merge(options)
+    type    = Lalala::Pages::RouteMapper.page_class_name(args[0])
+    options = { as: type.underscore }.merge(options)
     options[:constraints] = Lalala::Pages::PageTypeConstraint.new(type)
 
     match '/', options
@@ -26,6 +26,17 @@ module Lalala::Pages::RouteMapper
     end
 
     self
+  end
+
+  def self.page_class_name(type)
+    type = "#{type}_page"
+    type = type.classify
+
+    while type.ends_with?("PagePage")
+      type = type[0..-5]
+    end
+
+    type
   end
 
 end

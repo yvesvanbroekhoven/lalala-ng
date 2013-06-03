@@ -1,15 +1,7 @@
 class Lalala::Pages::PageTypeConstraint
 
   def initialize(type)
-    type = "#{type}_page"
-    type = type.classify
-
-    while type.ends_with?("PagePage")
-      type = type[0..-5]
-    end
-
-    type = type.constantize
-    @type = type
+    @type = type.constantize
   end
 
   def matches?(request)
