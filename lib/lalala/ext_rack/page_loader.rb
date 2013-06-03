@@ -4,8 +4,10 @@ class Lalala::ExtRack::PageLoader
     @app = app
   end
 
+  IGNORE = %r{^/(lalala|assets|404|422|500)(/|$)}
+
   def call(env)
-    if %r{^/(lalala|assets)(/|$)} === env['PATH_INFO']
+    if IGNORE === env['PATH_INFO']
       return @app.call(env)
     end
 
