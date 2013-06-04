@@ -7,7 +7,7 @@ module Lalala::ExtActiveRecord::I18nTranslationsWriter
 
       result = super(*attr_names)
 
-      if init
+      unless init
         include Writer
         attr_accessible :translations_writer
       end
