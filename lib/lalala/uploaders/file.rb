@@ -12,7 +12,11 @@ class Lalala::Uploaders::File < CarrierWave::Uploader::Base
     super_url = super
     if Rails.env.production? or Rails.env.staging?
       if super_url
-        AssetURL.new(File.join("/storage/assets", super_url))
+        if super_url.starts_with?('/storage/assets')
+          super_url
+        else
+          AssetURL.new(File.join("/storage/assets", super_url))
+        end
       else
         super_url
       end
