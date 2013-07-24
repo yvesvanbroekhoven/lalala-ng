@@ -49,6 +49,25 @@ if defined?(ActiveAdmin) and defined?(ApplicationPage)
       h
     end
 
+    collection_action :order, :method => :put do
+      # map the indexes of the pages by their id
+      indexes = {}
+      (params[:ordered_ids] || []).each do |id, idx|
+	indexes[id.to_i] = idx
+      end
+
+      # load the parent
+      parent = ApplicationPage.find(params[:parent_id])
+
+      # update the positions of the children
+      parent.children.each do |child|
+	child.position = indexes[child.id]
+	child.save!
+      end
+
+      render json: { status: "OK" }, status: 200
+    end
+
     controller do
 
       def new
