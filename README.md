@@ -1,4 +1,4 @@
-# Lalala [![Build Status](https://secure.travis-ci.org/mrhenry/lalala-ng.png)](http://travis-ci.org/mrhenry/lalala-ng?branch=master) [![Dependency Status](https://gemnasium.com/mrhenry/lalala-ng.png)](https://gemnasium.com/mrhenry/lalala-ng) [![Gem Version](https://badge.fury.io/rb/lalala.png)](http://badge.fury.io/rb/lalala)
+# Lalala [![Build Status](https://secure.travis-ci.org/mrhenry/lalala-ng.png)](http://travis-ci.org/mrhenry/lalala-ng?branch=master) [![Dependency Status](https://gemnasium.com/mrhenry/lalala-ng.png)](https://gemnasium.com/mrhenry/lalala-ng) [![Gem Version](https://badge.fury.io/rb/lalala.png)](http://badge.fury.io/rb/lalala) [![Code Climate](https://codeclimate.com/github/mrhenry/lalala-ng.png)](https://codeclimate.com/github/mrhenry/lalala-ng)
 
 TODO: Write a gem description
 
