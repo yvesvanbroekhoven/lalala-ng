@@ -8,6 +8,11 @@ if defined?(ActiveAdmin) and defined?(ApplicationPage)
 
     index as: :tree_table, paginator: false, download_links: false do
       selectable_column
+
+      column :position, label: "" do
+        %[<i class="drag-handle"></i>].html_safe
+      end
+
       column :title
 
       actions defaults: false do |page|
@@ -50,19 +55,14 @@ if defined?(ActiveAdmin) and defined?(ApplicationPage)
     end
 
     collection_action :order, :method => :put do
-      # map the indexes of the pages by their id
-      indexes = {}
-      (params[:ordered_ids] || []).each do |id, idx|
-	indexes[id.to_i] = idx
+      unless Array === params[:ordered_ids]
+        render status: 422
+        return
       end
 
-      # load the parent
-      parent = ApplicationPage.find(params[:parent_id])
-
-      # update the positions of the children
-      parent.children.each do |child|
-	child.position = indexes[child.id]
-	child.save!
+      # update the pages
+      params[:ordered_ids].each_with_index do |id, idx|
+        ApplicationPage.update_all({position: idx}, {id: id.to_i})
       end
 
       render json: { status: "OK" }, status: 200
