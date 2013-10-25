@@ -4,13 +4,10 @@ TODO: Write a gem description
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Make sure you have rails 3.X installed. Then run the generator:
 
-    gem 'lalala', '~> 4.0.0.dev.0'
+    rails new [APP_NAME] -m https://raw.github.com/mrhenry/lalala-ng/master/lib/lalala/utils/install_template.rb
 
-And then execute:
-
-    $ bundle
 
 ## Configuration
 
