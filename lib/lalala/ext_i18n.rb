@@ -4,4 +4,5 @@ module Lalala::ExtI18n
   autoload :InputHelper
   autoload :NegotiationAdapter
   autoload :TestNegotiationAdapter
+  autoload :LocaleSource
 end

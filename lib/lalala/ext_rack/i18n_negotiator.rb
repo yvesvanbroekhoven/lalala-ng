@@ -16,7 +16,8 @@ protected
   def _call(env)
     @env = env
 
-    _locale = I18n.locale
+    _locale        = I18n.locale
+    _locale_source = I18n.locale_source
 
     if @adapter.ignored?(env)
       I18n.locale = locale_for_ignored.to_sym
@@ -29,6 +30,7 @@ protected
     return determine_routing_path
   ensure
     I18n.locale = _locale
+    I18n.locale_source = _locale_source
   end
 
 private
@@ -39,6 +41,7 @@ private
     if m = one_available_locale?
       @env['rack.locale']           = m[0]
       @env['lalala.cannonical_url'] = nil
+      @env['lalala.locale.source']  = 'default'
       return action(true)
     end
 
@@ -46,6 +49,7 @@ private
     if m = hostname_with_one_available_locale?
       @env['rack.locale']           = m[0]
       @env['lalala.cannonical_url'] = nil
+      @env['lalala.locale.source']  = 'host'
       return action(true)
     end
 
@@ -55,6 +59,7 @@ private
       @env['SCRIPT_NAME']           = m[1]
       @env['PATH_INFO']             = m[2]
       @env['lalala.cannonical_url'] = nil
+      @env['lalala.locale.source']  = 'path'
       return action(true)
     end
 
@@ -63,10 +68,12 @@ private
       @env['rack.locale']           = m[0]
       @env['SCRIPT_NAME']           = m[1]
       @env['lalala.cannonical_url'] = m[2]
+      @env['lalala.locale.source']  = 'header'
       return action(false)
     end
 
     @env['rack.locale'] = default_locale_for_hostname.to_sym
+    @env['lalala.locale.source']  = 'default'
     return action(true)
   end
 
@@ -76,7 +83,8 @@ private
     case action
 
     when :call
-      I18n.locale = new_env['rack.locale'].to_sym
+      I18n.locale        = new_env['rack.locale'].to_sym
+      I18n.locale_source = new_env['lalala.locale.source']
 
       status, headers, body = @app.call(new_env)
       headers['Content-Language'] = I18n.locale.to_s

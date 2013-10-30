@@ -83,6 +83,12 @@ module Lalala
 
   end
 
+
+  if defined?(I18n)
+    I18n.send(
+      :extend, Lalala::ExtI18n::LocaleSource)
+  end
+
   ActiveSupport.on_load :active_record do
     Lalala::ExtWithAdvisoryLock.patch!
   end
