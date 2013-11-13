@@ -12,5 +12,5 @@ $(function(){
   grid.init();
   sorted_pages_tree.init();
 
-  $('select').chosen();
+  $('select').not(".bypass-chosen").chosen();
 });
