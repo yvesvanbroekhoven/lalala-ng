@@ -1,3 +1,7 @@
+var Helpers = require("./helpers");
+
+
+
 function Login(el) {
   this.$el = $(el);
   this.$tryout = this.$el.find(".text.tryout");
@@ -13,7 +17,7 @@ function Login(el) {
 //
 Login.prototype.bind_events = function() {
   this.$el.on("change", "input", $.proxy(this.input_change_handler, this));
-  this.$el.on("keyup", "input", _.debounce($.proxy(this.input_keyup_handler, this), 250));
+  this.$el.on("keyup", "input", Helpers.debounce($.proxy(this.input_keyup_handler, this), 250));
 };
 
 
