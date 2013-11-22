@@ -9,4 +9,8 @@ class Article < ActiveRecord::Base
   # Validations
   validates :title, presence: true
 
+  scope :catA, where(:category => "A")
+  scope :catB, where(:category => "B")
+  scope :catC, where(:category => "C")
+
 end
