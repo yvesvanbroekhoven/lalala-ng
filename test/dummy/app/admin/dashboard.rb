@@ -17,7 +17,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Recent Posts List" do
           ul do
             Article.all.map do |article|
-              li link_to(article.title, lalala_article_path(article))
+              li link_to(article.title, edit_lalala_article_path(article))
             end
           end
         end
@@ -30,10 +30,14 @@ ActiveAdmin.register_page "Dashboard" do
       end
 
       column do
-        panel "Recent Posts" do
-          table_for Article.all do
-            column "title" , :title
-            column "updated", :updated_at
+        panel "Latest Posts Updated" do
+          table_for Article.where('id > 0').order('updated_at DESC').limit(5) do
+            column :title do |article|
+                link_to(article.title, edit_lalala_article_path(article))
+            end
+            column :updated_at do |article|
+                span article.updated_at, { :class => "timeago", :title => article.updated_at }
+            end
           end
         end
       end

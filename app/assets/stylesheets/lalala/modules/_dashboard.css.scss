@@ -19,7 +19,7 @@ body.lalala_dashboard {
     .column {
       float: left;
       margin: 20px 20px 0 0 !important;
-      width: 31% !important;
+      width: 48% !important;
 
       .panel {
         @include border-radius(10px);
@@ -36,6 +36,7 @@ body.lalala_dashboard {
         }
 
         .panel_contents {
+
           // paragraph styles
           p {
             padding: 10px;
@@ -52,6 +53,32 @@ body.lalala_dashboard {
 
                 &:hover {
                   color: $blue;
+                }
+              }
+            }
+          }
+          // table styles
+          table {
+            thead {
+              display: none;
+            }
+            tbody {
+              // cell padding
+              td {
+                padding: 13px 10px 12px 10px !important;
+              }
+              // date format
+              .timeago {
+                display: block;
+                color: $gray_lighter;
+                text-align: right;
+              }
+              // default link
+              a {
+                color: $black;
+
+                &:hover {
+                  color: $blue !important;
                 }
               }
             }
