@@ -11,6 +11,7 @@ body.lalala_dashboard {
   #dashboard_default_message {
     @include border-radius(3px);
     border: 1px solid $gray_lighter;
+    margin: 0 0 40px 0;
   }
 
   .columns {
@@ -18,8 +19,6 @@ body.lalala_dashboard {
 
     .column {
       float: left;
-      margin: 20px 20px 0 0 !important;
-      width: 48% !important;
 
       .panel {
         @include border-radius(10px);

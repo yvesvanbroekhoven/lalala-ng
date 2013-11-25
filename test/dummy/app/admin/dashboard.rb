@@ -13,7 +13,7 @@ ActiveAdmin.register_page "Dashboard" do
     # Here is an example of a simple dashboard with columns and panels.
     #
     columns do
-      column do
+      column :span => 2 do
         panel "Recent Posts List" do
           ul do
             Article.all.map do |article|
@@ -23,13 +23,7 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
 
-      column do
-        panel "Info" do
-          para "Welcome to LALALA."
-        end
-      end
-
-      column do
+      column :span => 2 do
         panel "Latest Posts Updated" do
           table_for Article.where('id > 0').order('updated_at DESC').limit(5) do
             column :title do |article|
@@ -39,6 +33,12 @@ ActiveAdmin.register_page "Dashboard" do
                 span article.updated_at, { :class => "timeago", :title => article.updated_at }
             end
           end
+        end
+      end
+
+      column do
+        panel "Info" do
+          para "Welcome to LALALA."
         end
       end
 
