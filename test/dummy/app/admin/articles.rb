@@ -1,5 +1,10 @@
 ActiveAdmin.register Article do
 
+  scope :all, :default => true
+  scope :catA
+  scope :catB
+  scope :catC
+
   form do |f|
     f.inputs do
       f.input :title
