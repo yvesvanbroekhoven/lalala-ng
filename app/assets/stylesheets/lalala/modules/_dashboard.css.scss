@@ -1,0 +1,17 @@
+//
+// Trying to make lemonade with the dashboard lemons given by FormTastic
+//
+body.lalala_dashboard {
+
+  // reset main container
+  #main_content_wrapper {
+    outline: 1px dotted red;
+    width: 100% !important;
+  }
+
+  #dashboard_default_message {
+    @include border-radius(3px);
+    background-color: $gray_lighter;
+  }
+
+}
