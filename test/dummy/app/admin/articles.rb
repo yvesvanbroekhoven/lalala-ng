@@ -9,6 +9,7 @@ ActiveAdmin.register Article do
     f.inputs do
       f.input :title
       f.input :body
+      f.input :tags
       f.input :category, as: :select, collection: %w(A B C)
       f.input :image, as: :single_file
     end
