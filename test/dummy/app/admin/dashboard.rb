@@ -14,7 +14,7 @@ ActiveAdmin.register_page "Dashboard" do
     #
     columns do
       column do
-        panel "Recent Posts" do
+        panel "Recent Posts List" do
           ul do
             Article.all.map do |article|
               li link_to(article.title, lalala_article_path(article))
@@ -28,6 +28,16 @@ ActiveAdmin.register_page "Dashboard" do
           para "Welcome to LALALA."
         end
       end
+
+      column do
+        panel "Recent Posts" do
+          table_for Article.all do
+            column "title" , :title
+            column "updated", :updated_at
+          end
+        end
+      end
+
     end
   end # content
 end
