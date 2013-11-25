@@ -6,6 +6,10 @@
 @import "lalala/base/base";
 @import "lalala/base/layout";
 
+@import "lalala/lib/jquery-ui";
+@import "lalala/lib/chosen";
+@import "lalala/lib/pikaday";
+
 @import "lalala/components/icons";
 @import "lalala/components/forms";
 @import "lalala/components/buttons";
@@ -30,8 +34,4 @@
 @import "lalala/modules/editor-cheatsheet";
 @import "lalala/modules/grid";
 @import "lalala/modules/scopes";
-
-@import "lalala/lib/jquery-ui";
-@import "lalala/lib/chosen";
-@import "lalala/lib/pikaday";
 
