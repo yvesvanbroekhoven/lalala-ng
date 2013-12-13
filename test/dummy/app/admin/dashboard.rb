@@ -43,5 +43,21 @@ ActiveAdmin.register_page "Dashboard" do
       end
 
     end
+
+
+    columns do
+      column :span => 2 do
+        panel "Recent Posts List" do
+          ul do
+            Article.all.map do |article|
+              li link_to(article.title, edit_lalala_article_path(article))
+            end
+          end
+        end
+      end
+
+    end
+
+
   end # content
 end
