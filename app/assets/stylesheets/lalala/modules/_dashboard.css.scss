@@ -19,6 +19,7 @@ body.lalala_dashboard {
 
     .column {
       float: left;
+      margin-bottom: 20px;
 
       .panel {
         @include border-radius(10px);
