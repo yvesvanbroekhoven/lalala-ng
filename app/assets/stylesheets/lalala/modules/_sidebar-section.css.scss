@@ -7,11 +7,72 @@
   h3 {
     background-color: gray(220);
     color: $white;
+    font-size: 14px !important;
     font-weight: bold;
     padding: 10px;
+    margin: 0 !important;
   }
 
   .panel_contents {
     padding: 10px;
+
+    // LALALA specific styling
+    //
+    .lalala {
+      font-size: 13px;
+      line-height: 18px;
+
+      &.sidebar {
+
+        // intro message
+        &.message {
+          color: gray(180);
+          padding: 0 20px 10px 0;
+
+          strong {
+            font-weight: bold;
+          }
+        }
+
+        // listing, lists various elements (uls, divs, table, ...)
+        &.listing {
+          margin: 10px 0 0 0;
+
+          // plain div's
+          &.div {
+
+            .item {
+
+
+            }
+          }
+
+          // ul
+          &.ul {
+
+          }
+
+          // table
+          &.table {
+
+          }
+
+        }
+
+        // element has a closing line
+        &.with-closing-line {
+          border-bottom: 1px solid gray(220);
+        }
+
+      }
+
+    // default link style inside .panel_contents .lalala
+    a {
+      color: $blue;
+      text-decoration: none;
+    }
+
+    }
+
   }
 }

@@ -16,4 +16,37 @@ ActiveAdmin.register Article do
     f.actions
   end
 
+
+  sidebar "Related tags", :only => [:show] do
+
+    div :class => "lalala sidebar message", :id => "lalala_sidebar_message" do
+      "This is an intro block.... It is yours. It is the best <strong>intro block</strong> in the world. Click the link for a tag detail.".html_safe
+    end
+
+    div :class => "lalala sidebar message with-closing-line" do
+      "This is an intro block.... It is yours. It is the best <strong>intro block</strong> in the world. Click the <a href='#'>link</a> for a tag detail.".html_safe
+    end
+
+    div :class => "lalala sidebar listing div" do
+
+      div :class => "item" do
+        div link_to("tag.title", "#")
+        div "2 days ago", { :class => "timeago", :title => "2 days ago" }
+      end
+
+      div :class => "item" do
+        div link_to("hoe laat zou het zijn", "#")
+        div "2 days ago", { :class => "timeago", :title => "2 days ago" }
+      end
+
+      div :class => "item" do
+        div link_to("maakt da nu eens mee seg, een te lange titel", "#")
+        div "2 days ago", { :class => "timeago", :title => "2 days ago" }
+      end
+
+    end
+
+
+  end
+
 end
