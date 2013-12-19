@@ -24,7 +24,7 @@ ActiveAdmin.register Article do
     end
 
     div :class => "lalala sidebar message with-closing-line" do
-      "This is an intro block.... It is yours. It is the best <strong>intro block</strong> in the world. Click the <a href='#'>link</a> for a tag detail.".html_safe
+      "This is an intro block with a closing line.... It is yours. It is the best <strong>intro block</strong> in the world. Click the <a href='#'>link</a> for a tag detail.".html_safe
     end
 
     div :class => "lalala sidebar listing div" do
@@ -46,6 +46,13 @@ ActiveAdmin.register Article do
 
     end
 
+  end
+
+  sidebar "Help", :only => [:show] do
+    div :class => "lalala sidebar message", :id => "lalala_sidebar_message" do
+      "Test".html_safe
+    end
+
     ul :class => "lalala sidebar listing ul" do
 
       li :class => "item" do
@@ -59,7 +66,6 @@ ActiveAdmin.register Article do
       end
 
     end
-
 
   end
 
