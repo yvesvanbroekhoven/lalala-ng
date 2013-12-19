@@ -48,6 +48,30 @@ ActiveAdmin.register Article do
 
   end
 
+  sidebar "User Information", :only => [:show] do
+    div :class => "lalala sidebar person" do
+
+      fallback_url = "#{root_url}assets/lalala/users/fallback.jpg"
+      gravatar_id = Digest::MD5.hexdigest("hanefaeffes@mrhenry.be")
+      default_url = "http://gravatar.com/avatar/#{gravatar_id}.png?s=100&d=" + CGI.escape(fallback_url)
+
+      img(:src => default_url, :class => "avatar")
+
+      h4 :class => "title" do
+        "Hans Spooren"
+      end
+
+      div :class => "details" do
+        "sex: m<br />e-mail: hans@mrhenry.be<br />address: kronenburgstraat 14, 2000 Antwerp".html_safe
+      end
+
+      div :class => "cta" do
+        link_to("view detailed info", "#")
+      end
+
+    end
+  end
+
   sidebar "Help", :only => [:show] do
     div :class => "lalala sidebar message", :id => "lalala_sidebar_message" do
       "Test".html_safe
