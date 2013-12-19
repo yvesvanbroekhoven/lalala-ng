@@ -30,7 +30,7 @@ ActiveAdmin.register Article do
     div :class => "lalala sidebar listing div" do
 
       div :class => "item" do
-        div link_to("tag.title", "#")
+        span link_to("tag.title", "#")
         div "2 days ago", { :class => "timeago", :title => "2 days ago" }
       end
 
@@ -41,6 +41,20 @@ ActiveAdmin.register Article do
 
       div :class => "item" do
         div link_to("maakt da nu eens mee seg, een te lange titel", "#")
+        div "2 days ago", { :class => "timeago", :title => "2 days ago" }
+      end
+
+    end
+
+    ul :class => "lalala sidebar listing ul" do
+
+      li :class => "item" do
+        span link_to("tag.title", "#")
+        div "2 days ago", { :class => "timeago", :title => "2 days ago" }
+      end
+
+      li :class => "item" do
+        span link_to("tag.title", "#")
         div "2 days ago", { :class => "timeago", :title => "2 days ago" }
       end
 

@@ -42,9 +42,17 @@
           &.div {
 
             .item {
-
-
+              border-bottom: 1px solid gray(220);
+              padding: 0 0 5px 0;
+              margin: 0 0 10px 0;
             }
+
+            // last item has no border or margin
+            > :last-child {
+              border-bottom: none;
+              margin: 0;
+            }
+
           }
 
           // ul
@@ -62,6 +70,10 @@
         // element has a closing line
         &.with-closing-line {
           border-bottom: 1px solid gray(220);
+        }
+
+        .timeago {
+          color: $gray_lighter;
         }
 
       }
