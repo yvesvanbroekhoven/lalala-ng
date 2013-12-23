@@ -5,7 +5,7 @@ ActiveAdmin.register Tag do
 
   form do |f|
     f.inputs do
-      f.input :title
+      f.input :title, as: :extended_string, prefix: "dit willen we prefixen"
     end
 
     f.actions

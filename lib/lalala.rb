@@ -40,6 +40,7 @@ module Lalala
 
   require 'formtastic/inputs/grid_input'
   require 'formtastic/inputs/single_file_input'
+  require 'formtastic/inputs/extended_string_input'
 
   autoload :ExtActionDispatch
   autoload :ExtActiveRecord
