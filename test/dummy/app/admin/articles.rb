@@ -51,9 +51,8 @@ ActiveAdmin.register Article do
   sidebar "User Information", :only => [:show] do
     div :class => "lalala sidebar person" do
 
-      fallback_url = "#{root_url}assets/lalala/users/fallback.jpg"
-      gravatar_id = Digest::MD5.hexdigest("hanefaeffes@mrhenry.be")
-      default_url = "http://gravatar.com/avatar/#{gravatar_id}.png?s=100&d=" + CGI.escape(fallback_url)
+      gravatar_id  = Digest::MD5.hexdigest("hanefaeffes@mrhenry.be")
+      default_url  = "http://gravatar.com/avatar/#{gravatar_id}.png?s=100"
 
       img(:src => default_url, :class => "avatar")
 

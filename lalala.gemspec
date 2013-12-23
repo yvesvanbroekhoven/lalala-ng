@@ -30,7 +30,7 @@ Gem::Specification.new do |gem|
 
 
   # generic
-  gem.add_runtime_dependency 'activeadmin',               '= 0.6.0'
+  gem.add_runtime_dependency 'activeadmin',               '= 0.6.2'
   gem.add_runtime_dependency 'carrierwave',               '= 0.8.0'
   gem.add_runtime_dependency 'closure_tree',              '= 3.10.2'
   gem.add_runtime_dependency 'country-select',            '= 1.1.1'
