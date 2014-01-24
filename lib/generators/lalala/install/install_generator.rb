@@ -66,6 +66,14 @@ module Lalala
         copy_file "uploaders/image_uploader.rb", "app/uploaders/image_uploader.rb"
       end
 
+      def setup_environment_configs
+        template "staging.rb.erb", "config/environments/staging.rb"
+      end
+
+      def setup_forklift
+        empty_directory ".forklift"
+      end
+
       def create_assets
         generate "lalala:assets"
       end
