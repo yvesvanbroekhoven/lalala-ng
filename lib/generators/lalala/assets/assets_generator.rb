@@ -22,6 +22,8 @@ module Lalala
     config.assets.version = '1.0'
 
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
+
+    config.assets.initialize_on_precompile = false
 HEREDOC
 
         append_file(".gitignore", <<-HEREDOC
