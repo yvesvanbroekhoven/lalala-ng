@@ -7,15 +7,18 @@ class AppBuilder < Rails::AppBuilder
 
   def gemfile
     create_file 'Gemfile', <<-DOC
+
 source 'https://rubygems.org'
 
 ruby "#{RUBY_VERSION}"
 
+path "~/Github/yvesvanbroekhoven/lalala-ng" do
 gem 'lalala',             "~> #{LALALA_VERSION}"
 gem 'lalala-development', "~> #{LALALA_VERSION}", groups: [:development]
 gem 'lalala-assets',      "~> #{LALALA_VERSION}", groups: [:development, :assets]
 gem 'lalala-test',        "~> #{LALALA_VERSION}", groups: [:test]
 
+end
 DOC
   end
 

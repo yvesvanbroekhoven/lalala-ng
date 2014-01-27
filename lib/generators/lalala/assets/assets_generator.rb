@@ -32,8 +32,10 @@ HEREDOC
       end
 
       def setup_javascripts
+        copy_file ".jshintrc", ".jshintrc"
         remove_file "app/assets/javascripts/application.js"
         copy_file "application.js", "app/assets/javascripts/application.js"
+        copy_file "modernizr.js", "app/assets/javascripts/modernizr.js"
         empty_directory "app/assets/javascripts/modules"
         copy_file "initializer.module.js", "app/assets/javascripts/modules/initializer.module.js"
         copy_file "hello-world.module.js", "app/assets/javascripts/modules/hello-world.module.js"
