@@ -22,7 +22,7 @@
       }
     }
 
-    // date rage (add float to element)
+    // date rage
     &.filter_date_range {
 
       .datepicker {
@@ -32,6 +32,13 @@
         color: gray(200);
         font-weight: normal;
         padding: 0 4px;
+      }
+    }
+
+    &.filter_string.select_and_search {
+      input {
+        margin: 0 0 0 10px;
+        width: 60%;
       }
     }
 
