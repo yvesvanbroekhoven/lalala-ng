@@ -5,7 +5,8 @@ var console = require('browser/console'),
     locale_chooser = require("lalala/modules/locale_chooser"),
     sorted_pages_tree = require("lalala/modules/sorted_pages_tree"),
     login = require("lalala/modules/login"),
-    dashboard = require("lalala/modules/dashboard");
+    dashboard = require("lalala/modules/dashboard"),
+    collapsible_pages_tree = require("lalala/modules/collapsible_pages_tree");
 
 $(function() {
   login.init();
@@ -15,6 +16,7 @@ $(function() {
   grid.init();
   sorted_pages_tree.init();
   dashboard.init();
+  collapsible_pages_tree.init();
 
   $('select').not(".bypass-chosen").chosen();
 });
