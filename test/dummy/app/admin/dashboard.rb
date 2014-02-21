@@ -46,12 +46,6 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
 
-      column do
-        panel "Info" do
-          para "Welcome to LALALA."
-        end
-      end
-
     end
 
 

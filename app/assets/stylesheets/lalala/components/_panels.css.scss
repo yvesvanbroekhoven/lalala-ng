@@ -20,6 +20,9 @@
   // define default panel contents
   .panel_contents {
 
+    // default font-size
+    font-size: 13px;
+
     // paragraph styles
     p {
       padding: 10px;
@@ -32,7 +35,7 @@
         a {
           color: $black;
           display: block;
-          padding: 10px 5px 10px 10px;
+          padding: 10px 5px 10px 20px;
           text-decoration: none;
 
           &:hover {
@@ -54,10 +57,11 @@
       tbody {
         // cell padding
         td {
-          padding: 13px 10px 12px 10px !important;
+          padding: 13px 20px 12px 20px !important;
         }
         // date format
         .timeago {
+          @include mono-font;
           display: block;
           color: $gray_lighter;
           text-align: right;
