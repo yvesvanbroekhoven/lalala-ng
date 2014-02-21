@@ -1,4 +1,88 @@
 //
+// own partials and containers
+//
+.mod-dashboard {
+
+  .stats {
+    @include border-radius(3px);
+    border: 1px solid gray(220);
+
+    // list items are stats
+    // divide percentage with number of stats
+    // count_x <- x is set by rails
+    ul {
+      @include pie-clearfix;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        border-left: 1px solid gray(220);
+        float: left;
+        margin: 0;
+        padding: 20px 0;
+        text-align: center;
+
+        .val {
+          font-size: 30px;
+          font-weight: bold;
+          margin: 0 0 5px 0;
+        }
+        .title {
+          @include mono-font;
+          color: gray(200);
+        }
+      }
+
+    }
+
+    li:first-child {
+      border-left: none;
+    }
+
+    // count settings
+    &.count_2 {
+      ul {
+        li {
+          width: 49.999999%;
+        }
+      }
+    }
+    &.count_3 {
+      ul {
+        li {
+          width: 32.333333%;
+        }
+      }
+    }
+    &.count_4 {
+      ul {
+        li {
+          width: 24.8%;
+        }
+      }
+    }
+    &.count_5 {
+      ul {
+        li {
+          width: 19.999999%;
+        }
+      }
+    }
+    &.count_6 {
+      ul {
+        li {
+          width: 15.66666666%;
+        }
+      }
+    }
+
+  }
+
+}
+
+
+//
 // Trying to make lemonade with the dashboard lemons given by FormTastic
 //
 body.lalala_dashboard {

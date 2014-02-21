@@ -13,6 +13,17 @@ ActiveAdmin.register_page "Dashboard" do
     # Here is an example of a simple dashboard with columns and panels.
     #
     columns do
+
+      column do
+
+        render partial: "/admin/stats", :locals => { :matches => "test" }
+
+      end
+
+    end
+
+    columns do
+
       column :span => 2 do
         panel "Recent Posts List" do
           ul do
