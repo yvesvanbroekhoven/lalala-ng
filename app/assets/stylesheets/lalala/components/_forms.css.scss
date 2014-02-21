@@ -127,9 +127,9 @@ select:focus {
 
   ol {
     @include pie-clearfix;
-    border-top: 1px dotted gray(220);
+    border-top: 1px solid gray(220);
     padding: 15px 0 15px $label_width;
-    margin: 15px 0;
+    margin: 15px 0 30px 0;
 
     // float li items next to eachother
     li {
@@ -140,8 +140,8 @@ select:focus {
         // cancel (not an input, but a plain <a href>)
         a {
           @extend %btn;
-          @extend %btn.red;
-          @include icon('add', 'button');
+          @extend %btn.gray;
+          @include icon('bullet_orange', 'button');
         }
       }
     }
