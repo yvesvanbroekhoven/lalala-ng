@@ -16,7 +16,7 @@ function CPT() {
   this.addTriggers();
   this.initStates();
 
-  this.$tree_parents.on('click.collapsible_tree', '.collapse', $.proxy(this.toggleState, this));
+  this.$tree_parents.on('click.collapsible_tree', '.collapsable', $.proxy(this.toggleState, this));
 
   // Best behaviour would be to save on window unload,
   // but the current storage save on unload is wrong,
@@ -26,14 +26,14 @@ function CPT() {
 
 
 /**
- * Get tree items with children
+ * Get tree items (<tr>'s) with children
  *
  * It adds the target as a data attribute to the tree parent element
  *
  * @return {jQuery Array}
  */
 CPT.prototype.getTreeParents = function() {
-  return this.$element.find('td.subtree').map(function() {
+  return this.$element.find('td.subtree').closest('tr').map(function() {
     var $subtree     = $(this),
         $tree_parent = $(this).closest('tr').prev();
 
@@ -48,12 +48,19 @@ CPT.prototype.getTreeParents = function() {
  * Add trigger column to tree parent rows
  */
 CPT.prototype.addTriggers = function() {
-  this.$tree_parents.each(function() {
-    var $tree_parent = $(this),
-        $trigger     = $('<td class="collapse"></td>');
+  var $trigger = $('<td class="collapse"></td>');
 
-    $trigger.data('tree_parent', $tree_parent);
-    $trigger.prependTo($tree_parent);
+  // Add <td> to every <tr> to keep table structure in balance
+  this.$element.find('tr').prepend( $trigger );
+
+  // Activate triggers
+  this.$element.find('table.subtree').each(function() {
+    var $subtree     = $(this),
+        $tree_parent = $subtree.closest('tr').prev();
+
+    $tree_parent.find('.collapse')
+      .addClass('collapsable')
+      .data('tree_parent', $tree_parent);
   });
 };
 
