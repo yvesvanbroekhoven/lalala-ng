@@ -26,10 +26,10 @@ ActiveAdmin.register Article do
 
   end
 
-  sidebar "Actions", :only => [:edit] do
+  sidebar "Information", :only => [:edit] do
 
     div :class => "lalala sidebar message", :id => "lalala_sidebar_message" do
-      "This item has been updated last at <strong>Feb 14th, 2014</strong>".html_safe
+      "This item has been updated last at <strong>Feb 14th, 2014</strong> by <a href='#link-to-hans-profile'>Hans</a>.".html_safe
     end
 
   end
