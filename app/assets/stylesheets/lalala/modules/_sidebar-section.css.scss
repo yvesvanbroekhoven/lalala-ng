@@ -1,18 +1,6 @@
 .sidebar_section {
-  @include border-radius(5px);
-  border: 1px solid gray(220);
+  @extend %pnl;
   margin: 0 30px 20px 0;
-  overflow: hidden;
-
-  h3 {
-    background-color: gray(245);
-    border-bottom: 1px solid gray(220);
-    color: gray(70);
-    font-size: 14px !important;
-    font-weight: bold;
-    padding: 15px 20px;
-    margin: 0 !important;
-  }
 
   .panel_contents {
     padding: 15px 20px 10px 20px;

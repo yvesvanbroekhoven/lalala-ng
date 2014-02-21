@@ -1,0 +1,80 @@
+//
+// Default panel styles
+//
+%pnl {
+  @include border-radius(5px);
+  border: 1px solid gray(220);
+  overflow: hidden;
+
+  // title creates the 'header'
+  h3 {
+    background-color: gray(245);
+    border-bottom: 1px solid gray(220);
+    color: gray(70);
+    font-size: 14px !important;
+    font-weight: bold;
+    padding: 15px 20px;
+    margin: 0 !important;
+  }
+
+  // define default panel contents
+  .panel_contents {
+
+    // paragraph styles
+    p {
+      padding: 10px;
+    }
+
+    // list styles
+    ul {
+      li {
+        border-top: 1px solid $gray_lighter;
+        a {
+          color: $black;
+          display: block;
+          padding: 10px 5px 10px 10px;
+          text-decoration: none;
+
+          &:hover {
+            color: $blue;
+          }
+        }
+      }
+      // first item doesn't have a border
+      > :first-child {
+        border-top: none;
+      }
+    }
+
+    // table styles
+    table {
+      thead {
+        display: none;
+      }
+      tbody {
+        // cell padding
+        td {
+          padding: 13px 10px 12px 10px !important;
+        }
+        // date format
+        .timeago {
+          display: block;
+          color: $gray_lighter;
+          text-align: right;
+        }
+        // default link
+        a {
+          color: $black;
+
+          &:hover {
+            color: $blue !important;
+          }
+        }
+      }
+    }
+
+
+
+  }
+
+}
