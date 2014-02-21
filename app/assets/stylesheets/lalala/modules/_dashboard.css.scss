@@ -93,9 +93,16 @@ body.lalala_dashboard {
   }
 
   #dashboard_default_message {
-    @include border-radius(3px);
-    border: 1px solid $gray_lighter;
-    margin: 0 0 40px 0;
+    @include mono-font;
+    background-color: #fffbcb;
+    background-image: url('/assets/lalala/img-notes-pattern.jpg');
+    background-position-y: -5px;
+    margin: 0 0 20px 0;
+    width: auto;
+
+    .blank_slate {
+      font-style: normal;
+    }
   }
 
   .columns {

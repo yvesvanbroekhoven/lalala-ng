@@ -1,7 +1,7 @@
 <%
   @values         = []
   @page_total     = Lalala::Page::all.count
-  @post_total     = Article::all.count
+  @post_total     = Article::all.count rescue Post::all.count
   @assets_total   = "n/a"
   @user_total     = Lalala::AdminUser::all.count
 
