@@ -66,6 +66,27 @@ ActiveAdmin.register Article do
 
   end
 
+  sidebar "Help", :only => [:show] do
+    div :class => "lalala sidebar message", :id => "lalala_sidebar_message" do
+      "Test".html_safe
+    end
+
+    ul :class => "lalala sidebar listing ul" do
+
+      li :class => "item" do
+        span link_to("tag.title", "#")
+        div "2 days ago", { :class => "timeago", :title => "2 days ago" }
+      end
+
+      li :class => "item" do
+        span link_to("tag.title", "#")
+        div "2 days ago", { :class => "timeago", :title => "2 days ago" }
+      end
+
+    end
+
+  end
+
   sidebar "User Information", :only => [:show] do
     div :class => "lalala sidebar person" do
 
@@ -89,25 +110,5 @@ ActiveAdmin.register Article do
     end
   end
 
-  sidebar "Help", :only => [:show] do
-    div :class => "lalala sidebar message", :id => "lalala_sidebar_message" do
-      "Test".html_safe
-    end
-
-    ul :class => "lalala sidebar listing ul" do
-
-      li :class => "item" do
-        span link_to("tag.title", "#")
-        div "2 days ago", { :class => "timeago", :title => "2 days ago" }
-      end
-
-      li :class => "item" do
-        span link_to("tag.title", "#")
-        div "2 days ago", { :class => "timeago", :title => "2 days ago" }
-      end
-
-    end
-
-  end
 
 end
