@@ -8,8 +8,8 @@ var lalalaStorage = require('lalala/modules/storage'),
 /**
  * @constructor
  */
-function CPT() {
-  this.$element      = $('#index_tree_table_pages');
+function CPT($element) {
+  this.$element      = $element;
   this.$tree_parents = this.getTreeParents();
   this.states        = lalalaStorage[storage_key] || [];
 
@@ -88,6 +88,11 @@ CPT.prototype.initStates = function() {
  * @param  {jQuery object} $trigger The trigger element
  */
 CPT.prototype.close = function($target, $trigger) {
+  if ( !$target ) {
+    console.warn('Can not find tree target');
+    return;
+  }
+
   $target.hide();
   $trigger.addClass('closed');
 
@@ -102,6 +107,11 @@ CPT.prototype.close = function($target, $trigger) {
  * @param  {jQuery object} $trigger The trigger element
  */
 CPT.prototype.open = function($target, $trigger) {
+  if ( !$target ) {
+    console.warn('Can not find tree target');
+    return;
+  }
+
   $target.show();
   $trigger.removeClass('closed');
 
@@ -155,5 +165,17 @@ CPT.prototype.saveState = function() {
  * Initialize module
  */
 exports.init = function() {
-  new CPT();
+  var $collapsible_page_trees = $('#index_tree_table_pages');
+
+  if ( $collapsible_page_trees.length < 1 ) {
+    return;
+  }
+
+  $collapsible_page_trees.each( function() {
+    var $this = $(this);
+
+    if ( !$this.data('collapsible_pages_tree_instance') ) {
+      $this.data( 'collapsible_pages_tree_instance', new CPT($this) );
+    }
+  });
 };
