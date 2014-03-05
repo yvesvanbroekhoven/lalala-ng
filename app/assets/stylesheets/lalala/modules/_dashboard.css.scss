@@ -116,6 +116,15 @@ body.lalala_dashboard {
       .panel {
         @extend %pnl;
 
+        // overwrite default link behaviour on panel
+        a {
+          color: $blue !important;
+
+          &:hover {
+            color: $black !important;
+          }
+        }
+
       }
 
     }
