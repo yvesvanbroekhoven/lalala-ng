@@ -21,17 +21,49 @@
         float: left;
         margin: 0;
         padding: 20px 0;
+        position: relative;
         text-align: center;
 
-        .val {
-          font-size: 30px;
-          font-weight: bold;
-          margin: 0 0 5px 0;
+        // default shows the values
+        .default {
+
+          .val {
+            font-size: 30px;
+            font-weight: bold;
+            margin: 0 0 5px 0;
+          }
+          .title {
+            @include mono-font;
+            color: gray(200);
+          }
         }
-        .title {
-          @include mono-font;
-          color: gray(200);
+
+        // hover has the action to create a new instance
+        .hover {
+          position: absolute;
+          height: 100%;
+          top: 0;
+          left: 0;
+          width: 100%;
+
+          a.button {
+            @include transition(all 150ms);
+            @include icon('add', 'button');
+            background-position: -20px center;
+            display: block;
+            height: 100%;
+            text-indent: -9999px;
+          }
         }
+
+        &:hover {
+          .hover {
+            a {
+              background-position: 30px center;
+            }
+          }
+        }
+
       }
 
     }
@@ -121,7 +153,7 @@ body.lalala_dashboard {
           color: $blue !important;
 
           &:hover {
-            color: $black !important;
+            color: $blue !important;
           }
         }
 
