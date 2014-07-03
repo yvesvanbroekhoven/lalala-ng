@@ -230,23 +230,39 @@ select:focus {
 }
 
 // single file
-.input.single_file .file-description {
-  font-size: 12px;
-  margin-left: $label_width;
-  margin-top: 7px;
-  width: $input_width;
+.input.single_file  {
+  .delete-button {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    width: 60px;
 
-  img {
-    display: inline-block;
+    input {
+      width: auto;
+      padding: 0;
+      margin: 0 0 0 5px;
+    }
   }
 
-  span {
-    display: inline-block;
-    font-size: 13px;
-    margin-left: 8px;
-    vertical-align: top;
+  .file-description {
+    font-size: 12px;
+    margin-left: $label_width;
+    margin-top: 7px;
+    width: $input_width;
+
+    img {
+      display: inline-block;
+    }
+
+    span {
+      display: inline-block;
+      font-size: 13px;
+      margin-left: 8px;
+      vertical-align: top;
+    }
   }
 }
+
 
 
 

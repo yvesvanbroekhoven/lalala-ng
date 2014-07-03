@@ -8,8 +8,18 @@ class Formtastic::Inputs::SingleFileInput
 
     html = template.raw("")
     html << label_html
-    html << builder.fields_for(method, model_class.new) do |f|
-      f.file_field :asset, accept: model_class.extension_white_list, id: input_html_options[:id]
+    html << builder.fields_for(method, model_instance || model_class.new) do |f|
+      f_html = template.raw("")
+      f_html << f.file_field(:asset, accept: model_class.extension_white_list, id: input_html_options[:id])
+      if model_instance
+        f_html << template.content_tag(:div, class: "delete-button") do
+          b_html = template.raw("")
+          b_html << f.label(:_destroy, "delete")
+          b_html << f.check_box(:_destroy)
+          b_html
+        end
+      end
+      f_html
     end
 
     if model_instance
