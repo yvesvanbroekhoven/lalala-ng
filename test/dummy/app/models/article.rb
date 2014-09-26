@@ -1,5 +1,5 @@
 class Article < ActiveRecord::Base
-  attr_accessible :body, :title, :category, :tag_ids
+  attr_accessible :body, :title, :category, :tag_ids, :url, :price
 
   has_one_asset :image
 
