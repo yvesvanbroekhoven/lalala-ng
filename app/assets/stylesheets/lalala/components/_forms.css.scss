@@ -280,7 +280,7 @@ select:focus {
 .input-group {
   display: inline-block;
   position: relative;
-  width: 80%;
+  width: $input_width;
 
   input {
     width: 100%;
