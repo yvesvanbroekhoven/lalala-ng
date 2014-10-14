@@ -23,8 +23,19 @@
     // default font-size
     font-size: 13px;
 
+    .title {
+      color: gray(100);
+      font-size: 16px;
+      margin: 1em 0;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
     // paragraph styles
-    p {
+    p,
+    .paragraph {
       padding: 10px;
     }
 

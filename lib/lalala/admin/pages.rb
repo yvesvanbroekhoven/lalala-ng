@@ -131,5 +131,37 @@ if defined?(ActiveAdmin) and defined?(ApplicationPage)
 
     end
 
+
+    #
+    # Sidebar: Related pages
+    #
+    sidebar "Related pages", :only => [:edit], :if => proc{ page.parent or page.siblings.count > 0 } do
+      if page.parent
+        div :class => "lalala sidebar message", :id => "lalala_sidebar_message" do
+          h4 class: "title" do
+            "Parent page"
+          end
+          div do
+            link_to page.parent.title, edit_lalala_page_path(page.parent)
+          end
+        end
+      end
+
+      if page.siblings.count > 0
+        div :class => "lalala sidebar message", :id => "lalala_sidebar_message" do
+          h4 class: "title" do
+            "Siblings"
+          end
+          ul :class => "lalala sidebar listing ul" do
+            page.siblings.each do |sibling|
+              li :class => "item" do
+                link_to sibling.title, edit_lalala_page_path(sibling)
+              end
+            end
+          end
+        end
+      end
+    end
+
   end
 end
