@@ -1,11 +1,24 @@
 if defined?(ActiveAdmin) and defined?(ApplicationPage)
   ActiveAdmin.register ApplicationPage, :as => 'Page' do
-
     menu priority: 20, html_options: { class: 'icon-page' }
 
     config.filters  = false
     config.paginate = false
 
+    # Remove action buttons in topbar
+    config.clear_action_items!
+
+    # Edit button in topbar only on show
+    action_item :only => [:show] do
+      if controller.action_methods.include?('edit')
+        link_to(I18n.t('active_admin.edit_model', :model => active_admin_config.resource_name), edit_resource_path)
+      end
+    end
+
+
+    #
+    # Index
+    #
     index as: :tree_table, paginator: false, download_links: false do
       selectable_column
 
@@ -44,6 +57,10 @@ if defined?(ActiveAdmin) and defined?(ApplicationPage)
 
     end
 
+
+    #
+    # Form
+    #
     form do |f|
       h = "".html_safe
       if f.object.new_record?
@@ -54,6 +71,10 @@ if defined?(ActiveAdmin) and defined?(ApplicationPage)
       h
     end
 
+
+    #
+    # Order action
+    #
     collection_action :order, :method => :put do
       unless Array === params[:ordered_ids]
         render status: 422
@@ -68,6 +89,10 @@ if defined?(ActiveAdmin) and defined?(ApplicationPage)
       render json: { status: "OK" }, status: 200
     end
 
+
+    #
+    # Controller
+    #
     controller do
 
       def new
