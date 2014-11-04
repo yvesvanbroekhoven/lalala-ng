@@ -15,6 +15,7 @@ function setup() {
   $markitup_wrapper.find('.fullscreen').click(open_fullscreen);
   $markitup_wrapper.find('.close-fullscreen').click(close_fullscreen);
   $markitup_wrapper.find('.markdown-cheatsheet').click(toggle_cheatsheet);
+  $('body').on('click', '.markdown-cheatsheet-close', toggle_cheatsheet);
 }
 
 //
@@ -24,14 +25,21 @@ function open_fullscreen(event) {
   var $markitup_wrapper = $(this).closest('.markItUp');
   $markitup_wrapper.find('.markItUpHeader .preview').trigger('mouseup');
   $markitup_wrapper.addClass('fullscreen');
+
+  $('body').on('keyup.MARKDOWN_FULLSCREEN', function (event) {
+    if (event.which === 27) {
+      close_fullscreen(event);
+    }
+  });
 }
 
 //
 // Close fullscreen
 //
 function close_fullscreen(event) {
-  var $markitup_wrapper = $(this).closest('.markItUp');
+  var $markitup_wrapper = $('.close-fullscreen').closest('.markItUp');
   $markitup_wrapper.removeClass('fullscreen');
+  $('body').off('keyup.MARKDOWN_FULLSCREEN');
 }
 
 //
